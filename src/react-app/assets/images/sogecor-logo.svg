@@ -1,0 +1,57 @@
+<svg width="400" height="80" viewBox="0 0 400 80" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Navy blue background -->
+    <rect id="bg" width="400" height="80" fill="#2B3A5C"/>
+  </defs>
+  
+  <!-- Background -->
+  <use href="#bg"/>
+  
+  <!-- SOGECOR Text -->
+  <g fill="white" font-family="Arial, sans-serif" font-weight="bold" font-size="32">
+    <!-- S with blue accent -->
+    <g>
+      <path d="M20 55 Q20 60 25 60 L45 60 Q55 60 55 50 Q55 40 45 40 L35 40 Q25 40 25 30 Q25 20 35 20 L50 20 Q55 20 55 25" 
+            stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <!-- Blue accent in S -->
+      <path d="M25 45 Q30 42 35 42 L40 42" stroke="#4A90E2" stroke-width="4" stroke-linecap="round"/>
+    </g>
+    
+    <!-- O -->
+    <circle cx="85" cy="40" r="20" stroke="white" stroke-width="6" fill="none"/>
+    
+    <!-- G -->
+    <g>
+      <path d="M125 60 Q115 60 115 50 L115 30 Q115 20 125 20 L145 20 Q155 20 155 30" 
+            stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <line x1="145" y1="40" x2="155" y2="40" stroke="white" stroke-width="6" stroke-linecap="round"/>
+      <line x1="150" y1="40" x2="150" y2="50" stroke="white" stroke-width="6" stroke-linecap="round"/>
+    </g>
+    
+    <!-- E with blue accent -->
+    <g>
+      <line x1="175" y1="20" x2="175" y2="60" stroke="white" stroke-width="6" stroke-linecap="round"/>
+      <line x1="175" y1="20" x2="200" y2="20" stroke="white" stroke-width="6" stroke-linecap="round"/>
+      <line x1="175" y1="40" x2="195" y2="40" stroke="#4A90E2" stroke-width="4" stroke-linecap="round"/>
+      <line x1="175" y1="60" x2="200" y2="60" stroke="white" stroke-width="6" stroke-linecap="round"/>
+    </g>
+    
+    <!-- C -->
+    <path d="M235 20 Q215 20 215 40 Q215 60 235 60 L245 60" 
+          stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/>
+    
+    <!-- O -->
+    <circle cx="275" cy="40" r="20" stroke="white" stroke-width="6" fill="none"/>
+    
+    <!-- R -->
+    <g>
+      <line x1="305" y1="20" x2="305" y2="60" stroke="white" stroke-width="6" stroke-linecap="round"/>
+      <path d="M305 20 L325 20 Q335 20 335 30 Q335 40 325 40 L305 40" 
+            stroke="white" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <line x1="320" y1="40" x2="335" y2="60" stroke="white" stroke-width="6" stroke-linecap="round"/>
+    </g>
+  </g>
+  
+  <!-- Blue accent elements -->
+  <ellipse cx="215" cy="15" rx="15" ry="3" fill="#4A90E2"/>
+</svg>
