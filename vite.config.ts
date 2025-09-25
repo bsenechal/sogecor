@@ -24,18 +24,6 @@ export default defineConfig(async ({ command }) => {
     resolve: {
       alias: {
         "@": resolve(__dirname, "src/react-app"),
-        ...(command === "serve"
-          ? {
-              "@github/spark/hooks": resolve(
-                __dirname,
-                "src/react-app/shims/spark.ts"
-              ),
-              "@github/spark/spark": resolve(
-                __dirname,
-                "src/react-app/shims/spark.ts"
-              ),
-            }
-          : {}),
       },
     },
   };

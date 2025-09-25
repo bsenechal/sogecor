@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { EnvelopeSimple, MapPin, Phone, PaperPlaneTilt } from "@phosphor-icons/react";
-import { useKV } from "@github/spark/hooks";
 import { toast } from "sonner";
 
 interface ContactSubmission {
@@ -19,7 +18,7 @@ interface ContactSubmission {
 
 export function ContactSection() {
   const [contactForm, setContactForm] = useState({ name: "", email: "", phone: "", message: "" });
-  const [formSubmissions, setFormSubmissions] = useKV<ContactSubmission[]>("contact-submissions", []);
+  const [formSubmissions, setFormSubmissions] = useState<ContactSubmission[]>([]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

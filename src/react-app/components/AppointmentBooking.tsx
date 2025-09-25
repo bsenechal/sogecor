@@ -20,7 +20,6 @@ import {
   X,
   PaperPlaneTilt
 } from '@phosphor-icons/react'
-import { useKV } from '@github/spark/hooks'
 import { format, isAfter, isBefore, isSameDay, addDays } from 'date-fns'
 import { fr } from 'date-fns/locale'
 
@@ -38,16 +37,6 @@ interface Appointment {
   createdAt: Date
   emailSent: boolean
   confirmationEmailId?: string
-}
-
-interface EmailConfirmation {
-  id: string
-  appointmentId: string
-  clientEmail: string
-  subject: string
-  content: string
-  sentAt: Date
-  type: 'confirmation' | 'reminder' | 'cancellation'
 }
 
 interface TimeSlot {
@@ -83,8 +72,7 @@ const timeSlots: TimeSlot[] = [
 ]
 
 export function AppointmentBooking() {
-  const [appointments, setAppointments] = useKV<Appointment[]>('appointments', [])
-  const [emailConfirmations, setEmailConfirmations] = useKV<EmailConfirmation[]>('email-confirmations', [])
+  const [appointments, setAppointments] = useState<Appointment[]>([])
   const [selectedDate, setSelectedDate] = useState<Date>()
   const [selectedTime, setSelectedTime] = useState<string>()
   const [selectedService, setSelectedService] = useState<string>()
@@ -98,54 +86,7 @@ export function AppointmentBooking() {
     notes: ''
   })
 
-  // Fonction pour générer et envoyer un email de confirmation
-  const sendConfirmationEmail = async (appointment: Appointment): Promise<EmailConfirmation | null> => {
-    try {
-      const promptText = `Génère un email de confirmation professionnel pour un rendez-vous d'entreprise avec les détails suivants :
-
-Entreprise : SOGECOR
-Client : ${appointment.clientName}
-Email client : ${appointment.clientEmail}
-Date : ${format(new Date(appointment.date), 'EEEE dd MMMM yyyy', { locale: fr })}
-Heure : ${appointment.time}
-Service : ${appointment.service}
-Durée : ${appointment.duration} minutes
-Notes : ${appointment.notes || 'Aucune note spécifique'}
-
-L'email doit inclure :
-- Un objet professionnel et clair
-- Un message de bienvenue chaleureux
-- Tous les détails du rendez-vous
-- Les coordonnées de SOGECOR (182 rue du Général Leclerc, 60250 Mouy)
-- Instructions pour annuler ou reporter si nécessaire
-- Signature professionnelle
-
-Retourne le résultat au format JSON avec les propriétés "subject" et "content".`
-
-      const emailResponse = await window.spark.llm(promptText, "gpt-4o", true)
-      const emailData = JSON.parse(emailResponse)
-      
-      const emailConfirmation: EmailConfirmation = {
-        id: `email_${Date.now()}`,
-        appointmentId: appointment.id,
-        clientEmail: appointment.clientEmail,
-        subject: emailData.subject,
-        content: emailData.content,
-        sentAt: new Date(),
-        type: 'confirmation'
-      }
-
-      // Enregistrer l'email dans le stockage
-      setEmailConfirmations(currentEmails => [...(currentEmails || []), emailConfirmation])
-      
-      return emailConfirmation
-    } catch (error) {
-      console.error('Erreur lors de la génération de l\'email:', error)
-      return null
-    }
-  }
-
-  // Fonction pour confirmer automatiquement un rendez-vous et envoyer l'email
+  // Fonction pour confirmer un rendez-vous
   const confirmAppointment = async (appointmentId: string) => {
     const appointment = appointments?.find(apt => apt.id === appointmentId)
     if (!appointment) return
@@ -153,29 +94,21 @@ Retourne le résultat au format JSON avec les propriétés "subject" et "content
     setIsSendingEmail(true)
     
     try {
-      // Générer et envoyer l'email de confirmation
-      const emailConfirmation = await sendConfirmationEmail(appointment)
-      
-      if (emailConfirmation) {
-        // Mettre à jour le statut du rendez-vous
-        setAppointments(currentAppointments => 
-          (currentAppointments || []).map(apt => 
-            apt.id === appointmentId 
-              ? { 
-                  ...apt, 
-                  status: 'confirmed' as const, 
-                  emailSent: true, 
-                  confirmationEmailId: emailConfirmation.id 
-                }
-              : apt
-          )
+      // Mettre à jour le statut du rendez-vous
+      setAppointments(currentAppointments => 
+        (currentAppointments || []).map(apt => 
+          apt.id === appointmentId 
+            ? { 
+                ...apt, 
+                status: 'confirmed' as const, 
+                emailSent: false
+              }
+            : apt
         )
-        
-        toast.success('Rendez-vous confirmé et email envoyé avec succès!')
-      } else {
-        toast.error('Erreur lors de l\'envoi de l\'email de confirmation')
-      }
-    } catch (error) {
+      )
+      
+      toast.success('Rendez-vous confirmé avec succès!')
+    } catch {
       toast.error('Erreur lors de la confirmation du rendez-vous')
     } finally {
       setIsSendingEmail(false)
@@ -247,34 +180,7 @@ Retourne le résultat au format JSON avec les propriétés "subject" et "content
 
     setAppointments((currentAppointments) => [...(currentAppointments || []), newAppointment])
     
-    // Envoyer automatiquement l'email de confirmation
-    setIsSendingEmail(true)
-    try {
-      const emailConfirmation = await sendConfirmationEmail(newAppointment)
-      
-      if (emailConfirmation) {
-        // Mettre à jour le rendez-vous pour marquer l'email comme envoyé
-        setAppointments((currentAppointments) => 
-          (currentAppointments || []).map(apt => 
-            apt.id === newAppointment.id 
-              ? { 
-                  ...apt, 
-                  emailSent: true, 
-                  confirmationEmailId: emailConfirmation.id,
-                  status: 'confirmed' as const
-                }
-              : apt
-          )
-        )
-        toast.success('Rendez-vous créé et email de confirmation envoyé avec succès!')
-      } else {
-        toast.success('Rendez-vous créé! Un problème est survenu lors de l\'envoi de l\'email.')
-      }
-    } catch (error) {
-      toast.success('Rendez-vous créé! Un problème est survenu lors de l\'envoi de l\'email.')
-    } finally {
-      setIsSendingEmail(false)
-    }
+    toast.success('Rendez-vous créé avec succès!')
     
     // Reset form
     setSelectedDate(undefined)
@@ -649,53 +555,6 @@ Retourne le résultat au format JSON avec les propriétés "subject" et "content
                     </div>
                   </div>
                 ))}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Section des emails de confirmation */}
-      {emailConfirmations && emailConfirmations.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle>Emails de Confirmation Envoyés</CardTitle>
-            <CardDescription>
-              Historique des emails de confirmation automatiques
-            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {emailConfirmations
-                .sort((a, b) => new Date(b.sentAt).getTime() - new Date(a.sentAt).getTime())
-                .map((email) => {
-                  const appointment = appointments?.find(apt => apt.id === email.appointmentId)
-                  return (
-                    <div key={email.id} className="border border-border rounded-lg p-4">
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <EnvelopeSimple className="h-4 w-4 text-primary" />
-                            <span className="font-medium text-sm">{email.subject}</span>
-                          </div>
-                          <Badge variant="outline" className="text-xs">
-                            {format(new Date(email.sentAt), 'dd/MM/yyyy HH:mm')}
-                          </Badge>
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          À: {email.clientEmail}
-                        </div>
-                        {appointment && (
-                          <div className="text-xs text-muted-foreground">
-                            Rendez-vous: {format(new Date(appointment.date), 'dd/MM/yyyy')} à {appointment.time}
-                          </div>
-                        )}
-                        <div className="mt-2 p-3 bg-muted rounded text-xs">
-                          <div className="whitespace-pre-wrap">{email.content}</div>
-                        </div>
-                      </div>
-                    </div>
-                  )
-                })}
             </div>
           </CardContent>
         </Card>

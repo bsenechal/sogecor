@@ -1,4 +1,42 @@
+# Copilot InData flow
+- Vite builds the client to `dist/client`. Wrangler se## Navigation patterns
+- Sections are navigated via `scrollToId(sectionId)` function (see `HeroSection.tsx`, `HeaderNav.tsx`)
+- Mobile navigation uses hamburger menu with same section navigation
+- All navigation buttons include ARIA labels for accessibility
+
+## Content patterns
+- Services defined as array in `ServicesSection.tsx` with title, description, icon
+- Company info hardcoded: phone `+33 (0)3 44 41 XX XX`, email `contact@sogecor.com`
+- French locale used throughout (`date-fns/locale/fr`, content in French)
+- Appointment booking has predefined services with duration (see `AppointmentBooking.tsx` services array)
+
+## When something breaks in dev
+- If Vite fails with wrangler import errors, ensure Cloudflare plugin remains build-only (see `vite.config.ts`)
+- TypeScript paths: ensure `@/*` alias points to `src/react-app/*` in both `vite.config.ts` and `tsconfig.json`
+- Worker types: run `yarn cf-typegen` to refresh `worker-configuration.d.ts` after wrangler config changes
+
+Keep instructions concise and file-specific in replies. Prefer concrete pointers like "edit `src/react-app/components/...` and reuse `cn()` and `buttonVariants`".those assets at the edge and mounts Hono routes (e.g., `GET /api/`).
 # Copilot Instructions for this Repo
+
+Purpose: Give AI coding agents the minimum context to be productive in this project. Keep answers concrete, file-oriented, and aligned with the existing patterns.
+
+## Architecture at a glance
+- Frontend: React 19 + Vite 6 in `src/react-app/` (entry: `main.tsx`, app root: `App.tsx`).
+- Styling: Tailwind CSS v4 "CSS-first" via `@import "tailwindcss"` in `src/react-app/main.css` and theme tokens in `src/react-app/styles/theme.css`.
+- UI primitives: Radix UI + shadcn-like components in `src/react-app/components/ui/*` with `class-variance-authority` and the `cn()` helper from `src/react-app/lib/utils.ts`.
+- Icons and utilities: `@phosphor-icons/react`, `lucide-react`, `date-fns` with `fr` locale.
+- Backend/edge: Cloudflare Workers + Hono in `src/worker/index.ts`. Wrangler configured in `wrangler.json` with SPA asset serving from `dist/client` and an example API route at `/api/`.
+- Worker types live in `worker-configuration.d.ts` and are refreshed by `wrangler types`.
+
+## Business context
+- SOGECOR corporate website with sections: Hero, About, Services, RSE, Appointments, Contact
+- French business consulting company (address: 182 rue du Général Leclerc, 60250 Mouy)
+- Single-page application with smooth scroll navigation between sections
+- Each section has an `id` anchor (e.g., `#services`, `#contact`) for navigation
+
+Data flow
+- Vite builds the client to `dist/client`. Wrangler serves those assets at the edge and mounts Hono routes (e.g., `GET /api/`).
+- The "Appointment booking" and "Contact" sections use `useState` for local state management.
 
 Purpose: Give AI coding agents the minimum context to be productive in this project. Keep answers concrete, file-oriented, and aligned with the existing patterns.
 
@@ -23,13 +61,6 @@ Data flow
 
 Notes on dependencies
 - This project relies on: Radix UI packages (`@radix-ui/react-*`), `class-variance-authority`, `clsx`, `tailwind-merge`, `react-error-boundary`, `sonner`, `react-day-picker`, `date-fns`, `@phosphor-icons/react`, `lucide-react`.
-- Spark integration: `@github/spark/spark` (for `window.spark`) and `@github/spark/hooks` (for `useKV`). If these aren’t installed in your environment, provide a dev-only shim instead of removing calls.
-
-Local dev shims (only if Spark packages are unavailable)
-- Create `src/react-app/shims/spark.ts`:
-  - `export function useKV<T>(key: string, initial: T): [T, (updater: (t: T) => T) => void]` backed by `localStorage`.
-  - `declare global { interface Window { spark: { llm: (prompt: string) => Promise<string> } } }` and implement `window.spark.llm` to return a JSON string with `{ subject, content }` for previews.
-- In `vite.config.ts` add a dev-only alias: `{ '@github/spark/hooks': path.resolve('src/react-app/shims/spark.ts'), '@github/spark/spark': path.resolve('src/react-app/shims/spark.ts') }`.
 
 ## Conventions and patterns
 - Path alias: Use `@/*` to import from `src/react-app/*`. Configured in both `vite.config.ts` and `tsconfig.app.json`.
