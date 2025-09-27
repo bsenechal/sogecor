@@ -130,7 +130,6 @@
    *
    * https://tailwindcss.com/docs/customizing-spacing#default-spacing-scale
    */
-    --spacing: 1rem;
     --size-scale: 1;
     --size-0: 0px;
     --size-px: 1px;

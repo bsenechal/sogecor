@@ -1,143 +1,203 @@
-import { useEffect, useState } from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { TreeEvergreen, Leaf, Heart, HandHeart, Users, Recycle, Medal } from "@phosphor-icons/react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  Leaf,
+  Recycle,
+  Users,
+  Heart,
+  TreeEvergreen,
+  CarSimple,
+} from "@phosphor-icons/react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function RSESection() {
-  const [scrollY, setScrollY] = useState(0);
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const rseCommitments = [
+    {
+      icon: Leaf,
+      title: "Respect de l'Environnement",
+      description:
+        "Nos méthodes de détection non invasives préservent l'environnement et limitent les excavations inutiles.",
+      features: [
+        "Techniques non destructives",
+        "Réduction des déchets",
+        "Préservation des sols",
+      ],
+    },
+    {
+      icon: Recycle,
+      title: "Économie Circulaire",
+      description:
+        "Nous privilégions la réutilisation et le recyclage de nos équipements pour minimiser notre impact.",
+      features: [
+        "Matériel reconditionné",
+        "Recyclage des composants",
+        "Durabilité des équipements",
+      ],
+    },
+    {
+      icon: Users,
+      title: "Responsabilité Sociale",
+      description:
+        "Formation continue de nos équipes et partenariats avec les acteurs locaux du territoire.",
+      features: [
+        "Formation certifiée",
+        "Emploi local",
+        "Partenariats durables",
+      ],
+    },
+    {
+      icon: Heart,
+      title: "Engagement Communautaire",
+      description:
+        "Soutien aux initiatives locales et participation à l'amélioration de notre territoire.",
+      features: [
+        "Actions citoyennes",
+        "Soutien associatif",
+        "Développement local",
+      ],
+    },
+  ];
+
+  const environmentalImpacts = [
+    {
+      icon: TreeEvergreen,
+      title: "Réduction des excavations",
+      value: "75%",
+      description:
+        "de réduction des travaux de terrassement grâce à nos techniques précises",
+    },
+    {
+      icon: CarSimple,
+      title: "Déplacements optimisés",
+      value: "40%",
+      description:
+        "de réduction des émissions CO2 par optimisation de nos tournées",
+    },
+  ];
 
   return (
-    <section id="rse" className="bg-background relative overflow-hidden" role="main">
-      <div
-        className="absolute inset-0 opacity-10 parallax-container"
-        style={{
-          backgroundImage:
-            'url("https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80")',
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundAttachment: "fixed",
-          transform: `translateY(${scrollY * 0.3}px)`,
-        }}
-      />
-      <div className="container-max section-padding relative z-10">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Responsabilité Sociétale d'Entreprise</h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Engagement envers un avenir durable et une société plus responsable
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
-          <div>
-            <h3 className="text-3xl font-semibold mb-6">Notre Engagement RSE</h3>
-            <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              Chez SOGECOR, nous croyons fermement que la réussite économique doit s'accompagner d'un impact positif sur la société et l'environnement. Notre démarche RSE s'articule autour de trois piliers fondamentaux : la responsabilité environnementale, l'engagement social et la gouvernance éthique.
+    <section id="rse" className="py-20 lg:py-32 bg-muted/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto">
+          {/* Section Header */}
+          <ScrollReveal direction="up" className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+              Notre Engagement <span className="text-primary">Responsable</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              SOGECOR s'engage dans une démarche de responsabilité sociétale et
+              environnementale, au service d'un développement durable et
+              respectueux de notre territoire.
             </p>
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Nous intégrons ces valeurs dans chacune de nos décisions opérationnelles et stratégiques, créant ainsi une valeur partagée pour nos clients, nos équipes et les communautés dans lesquelles nous opérons.
-            </p>
+          </ScrollReveal>
+
+          {/* RSE Commitments */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+            {rseCommitments.map((commitment, index) => {
+              const Icon = commitment.icon;
+              return (
+                <ScrollReveal
+                  key={index}
+                  direction={index % 2 === 0 ? "left" : "right"}
+                  delay={0.2 * index}
+                >
+                  <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-primary h-full">
+                    <CardHeader>
+                      <div className="flex items-start gap-4">
+                        <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                          <Icon size={24} className="text-primary" />
+                        </div>
+                        <div>
+                          <CardTitle className="text-xl mb-2">
+                            {commitment.title}
+                          </CardTitle>
+                          <p className="text-muted-foreground leading-relaxed">
+                            {commitment.description}
+                          </p>
+                        </div>
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-2">
+                        {commitment.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-center gap-2">
+                            <div className="w-1.5 h-1.5 bg-primary rounded-full"></div>
+                            <span className="text-sm text-muted-foreground">
+                              {feature}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </ScrollReveal>
+              );
+            })}
           </div>
-          <div className="bg-gradient-to-br from-emerald-100 to-sky-100 p-8 rounded-lg">
-            <div className="text-center">
-              <TreeEvergreen className="h-16 w-16 text-emerald-600 mx-auto mb-4" aria-hidden="true" />
-              <h4 className="text-2xl font-semibold mb-4 text-emerald-700">Impact Positif</h4>
-              <p className="text-emerald-600">Nous nous engageons à créer un impact positif durable à travers nos actions et nos partenariats responsables.</p>
+
+          {/* Environmental Impact */}
+          <ScrollReveal direction="up" delay={0.2} className="mb-16">
+            <h3 className="text-2xl font-semibold text-foreground text-center mb-12">
+              Notre Impact Environnemental
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {environmentalImpacts.map((impact, index) => {
+                const Icon = impact.icon;
+                return (
+                  <ScrollReveal key={index} direction="up" delay={0.1 * index}>
+                    <Card className="text-center hover:shadow-md transition-shadow bg-card/50">
+                      <CardContent className="p-8">
+                        <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
+                          <Icon size={32} className="text-primary" />
+                        </div>
+                        <div className="text-4xl font-bold text-primary mb-2">
+                          {impact.value}
+                        </div>
+                        <h4 className="font-semibold text-foreground mb-3">
+                          {impact.title}
+                        </h4>
+                        <p className="text-sm text-muted-foreground">
+                          {impact.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </ScrollReveal>
+                );
+              })}
             </div>
-          </div>
-        </div>
+          </ScrollReveal>
 
-        <div className="grid md:grid-cols-3 gap-8" role="list">
-          <Card className="border-emerald-200 hover:shadow-lg transition-shadow duration-300 bg-emerald-50/30" role="listitem">
-            <CardHeader>
-              <div className="flex items-center gap-4 mb-3">
-                <div className="p-3 bg-emerald-100 rounded-lg text-emerald-600" aria-hidden="true">
-                  <Leaf className="w-8 h-8" />
+          {/* Additional Commitment */}
+          <ScrollReveal direction="up" delay={0.4}>
+            <Card className="bg-primary/5 border-primary/20">
+              <CardContent className="p-8 text-center">
+                <h3 className="text-2xl font-semibold text-foreground mb-4">
+                  Notre Engagement Continu
+                </h3>
+                <p className="text-muted-foreground mb-6 max-w-3xl mx-auto">
+                  Nous nous engageons à améliorer continuellement nos pratiques,
+                  à réduire notre empreinte environnementale et à contribuer
+                  positivement au développement durable de notre région.
+                </p>
+                <div className="flex flex-wrap justify-center gap-3">
+                  <Badge variant="secondary" className="text-sm">
+                    ISO 14001
+                  </Badge>
+                  <Badge variant="secondary" className="text-sm">
+                    Certification Qualité
+                  </Badge>
+                  <Badge variant="secondary" className="text-sm">
+                    Formation Continue
+                  </Badge>
+                  <Badge variant="secondary" className="text-sm">
+                    Innovation Durable
+                  </Badge>
                 </div>
-              </div>
-              <CardTitle className="text-xl text-emerald-700">Environnement</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="text-base leading-relaxed text-emerald-600">
-                Réduction de notre empreinte carbone, promotion des énergies renouvelables et sensibilisation à l'éco-responsabilité dans toutes nos activités.
-              </CardDescription>
-            </CardContent>
-          </Card>
-
-          <Card className="border-sky-200 hover:shadow-lg transition-shadow duration-300 bg-sky-50/30" role="listitem">
-            <CardHeader>
-              <div className="flex items-center gap-4 mb-3">
-                <div className="p-3 bg-sky-100 rounded-lg text-sky-600" aria-hidden="true">
-                  <Heart className="w-8 h-8" />
-                </div>
-              </div>
-              <CardTitle className="text-xl text-sky-700">Social</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="text-base leading-relaxed text-sky-600">
-                Soutien aux communautés locales, promotion de la diversité et de l'inclusion, et développement des compétences de nos collaborateurs.
-              </CardDescription>
-            </CardContent>
-          </Card>
-
-          <Card className="border-violet-200 hover:shadow-lg transition-shadow duration-300 bg-violet-50/30" role="listitem">
-            <CardHeader>
-              <div className="flex items-center gap-4 mb-3">
-                <div className="p-3 bg-violet-100 rounded-lg text-violet-600" aria-hidden="true">
-                  <HandHeart className="w-8 h-8" />
-                </div>
-              </div>
-              <CardTitle className="text-xl text-violet-700">Gouvernance</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <CardDescription className="text-base leading-relaxed text-violet-600">
-                Transparence, éthique des affaires, respect des droits humains et gouvernance responsable dans toutes nos opérations.
-              </CardDescription>
-            </CardContent>
-          </Card>
-        </div>
-
-        <div className="mt-16 bg-gradient-to-br from-slate-100/60 to-stone-100/60 rounded-lg p-8 border border-slate-200/50">
-          <div className="text-center">
-            <h3 className="text-2xl font-semibold mb-4 text-slate-700">Nos Actions Concrètes</h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mt-8" role="list">
-              <div className="text-center" role="listitem">
-                <div className="bg-emerald-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3" aria-hidden="true">
-                  <Recycle className="h-8 w-8 text-emerald-600" />
-                </div>
-                <h4 className="font-semibold mb-2 text-emerald-700">Économie Circulaire</h4>
-                <p className="text-sm text-emerald-600">Réduction des déchets et recyclage</p>
-              </div>
-              <div className="text-center" role="listitem">
-                <div className="bg-sky-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3" aria-hidden="true">
-                  <Users className="h-8 w-8 text-sky-600" />
-                </div>
-                <h4 className="font-semibold mb-2 text-sky-700">Formation Continue</h4>
-                <p className="text-sm text-sky-600">Développement des compétences</p>
-              </div>
-              <div className="text-center" role="listitem">
-                <div className="bg-violet-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3" aria-hidden="true">
-                  <Heart className="h-8 w-8 text-violet-600" />
-                </div>
-                <h4 className="font-semibold mb-2 text-violet-700">Mécénat Social</h4>
-                <p className="text-sm text-violet-600">Soutien aux associations locales</p>
-              </div>
-              <div className="text-center" role="listitem">
-                <div className="bg-amber-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3" aria-hidden="true">
-                  <Medal className="h-8 w-8 text-amber-600" />
-                </div>
-                <h4 className="font-semibold mb-2 text-amber-700">Certifications</h4>
-                <p className="text-sm text-amber-600">Labels qualité et environnement</p>
-              </div>
-            </div>
-          </div>
+              </CardContent>
+            </Card>
+          </ScrollReveal>
         </div>
       </div>
     </section>
   );
 }
-
-export default RSESection;

@@ -1,90 +1,23 @@
-# React + Vite + Hono + Cloudflare Workers
+# ✨ Welcome to Your Spark Template!
+You've just launched your brand-new Spark Template Codespace — everything’s fired up and ready for you to explore, build, and create with Spark!
 
-[![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/templates/tree/main/vite-react-template)
+This template is your blank canvas. It comes with a minimal setup to help you get started quickly with Spark development.
 
-This template provides a minimal setup for building a React application with TypeScript and Vite, designed to run on Cloudflare Workers. It features hot module replacement, ESLint integration, and the flexibility of Workers deployments.
+🚀 What's Inside?
+- A clean, minimal Spark environment
+- Pre-configured for local development
+- Ready to scale with your ideas
+  
+🧠 What Can You Do?
 
-![React + TypeScript + Vite + Cloudflare Workers](https://imagedelivery.net/wSMYJvS3Xw-n339CbDyDIA/fc7b4b62-442b-4769-641b-ad4422d74300/public)
+Right now, this is just a starting point — the perfect place to begin building and testing your Spark applications.
 
-<!-- dash-content-start -->
+🧹 Just Exploring?
+No problem! If you were just checking things out and don’t need to keep this code:
 
-🚀 Supercharge your web development with this powerful stack:
+- Simply delete your Spark.
+- Everything will be cleaned up — no traces left behind.
 
-- [**React**](https://react.dev/) - A modern UI library for building interactive interfaces
-- [**Vite**](https://vite.dev/) - Lightning-fast build tooling and development server
-- [**Hono**](https://hono.dev/) - Ultralight, modern backend framework
-- [**Cloudflare Workers**](https://developers.cloudflare.com/workers/) - Edge computing platform for global deployment
+📄 License For Spark Template Resources 
 
-### ✨ Key Features
-
-- 🔥 Hot Module Replacement (HMR) for rapid development
-- 📦 TypeScript support out of the box
-- 🛠️ ESLint configuration included
-- ⚡ Zero-config deployment to Cloudflare's global network
-- 🎯 API routes with Hono's elegant routing
-- 🔄 Full-stack development setup
-- 🔎 Built-in Observability to monitor your Worker
-
-Get started in minutes with local development or deploy directly via the Cloudflare dashboard. Perfect for building modern, performant web applications at the edge.
-
-<!-- dash-content-end -->
-
-## Getting Started
-
-To start a new project with this template, run:
-
-```bash
-npm create cloudflare@latest -- --template=cloudflare/templates/vite-react-template
-```
-
-A live deployment of this template is available at:
-[https://react-vite-template.templates.workers.dev](https://react-vite-template.templates.workers.dev)
-
-## Development
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Start the development server with:
-
-```bash
-npm run dev
-```
-
-Your application will be available at [http://localhost:5173](http://localhost:5173).
-
-## Production
-
-Build your project for production:
-
-```bash
-npm run build
-```
-
-Preview your build locally:
-
-```bash
-npm run preview
-```
-
-Deploy your project to Cloudflare Workers:
-
-```bash
-npm run build && npm run deploy
-```
-
-Monitor your workers:
-
-```bash
-npx wrangler tail
-```
-
-## Additional Resources
-
-- [Cloudflare Workers Documentation](https://developers.cloudflare.com/workers/)
-- [Vite Documentation](https://vitejs.dev/guide/)
-- [React Documentation](https://reactjs.org/)
-- [Hono Documentation](https://hono.dev/)
+The Spark Template files and resources from GitHub are licensed under the terms of the MIT license, Copyright GitHub, Inc.

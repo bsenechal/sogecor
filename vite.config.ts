@@ -1,30 +1,26 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react";
-import { fileURLToPath } from "node:url";
-import { dirname, resolve } from "node:path";
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react-swc";
+import { defineConfig, PluginOption } from "vite";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-// Note: We only load the Cloudflare plugin during build to avoid
-// wrangler ESM/CJS interop issues in dev.
-export default defineConfig(async ({ command }) => {
-  const plugins = [react()];
+import sparkPlugin from "@github/spark/spark-vite-plugin";
+import createIconImportProxy from "@github/spark/vitePhosphorIconProxyPlugin";
+import { resolve } from "path";
 
-  // Always add Tailwind CSS plugin
-  const tailwindcss = await import("@tailwindcss/vite");
-  plugins.push(tailwindcss.default());
+const projectRoot = process.env.PROJECT_ROOT || import.meta.dirname;
 
-  if (command === "build") {
-    const { cloudflare } = await import("@cloudflare/vite-plugin");
-    plugins.push(cloudflare());
-  }
-
-  return {
-    plugins,
-    resolve: {
-      alias: {
-        "@": resolve(__dirname, "src/react-app"),
-      },
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+    // DO NOT REMOVE
+    createIconImportProxy() as PluginOption,
+    sparkPlugin() as PluginOption,
+  ],
+  assetsInclude: ["**/*.webp"],
+  resolve: {
+    alias: {
+      "@": resolve(projectRoot, "src/react-app"),
     },
-  };
+  },
 });
