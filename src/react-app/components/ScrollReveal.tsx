@@ -47,8 +47,7 @@ export const ScrollReveal = forwardRef<HTMLDivElement, ScrollRevealProps>(
         scale: 1,
         transition: {
           duration,
-          delay,
-          ease: [0.25, 0.46, 0.45, 0.94] // Courbe d'animation élégante
+          delay
         }
       }
     }
