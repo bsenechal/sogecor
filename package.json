@@ -110,5 +110,6 @@
     "lint": "eslint .",
     "preview": "npm run build && vite preview"
   },
-  "type": "module"
+  "type": "module",
+  "packageManager": "yarn@4.10.3"
 }
