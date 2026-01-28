@@ -39,6 +39,7 @@ export function HeroSection() {
           transition: "transform 0.1s ease-out",
         }}
       >
+        <></>
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
           style={{
