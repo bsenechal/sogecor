@@ -1,5 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import {
   Leaf,
   Recycle,
@@ -9,6 +7,8 @@ import {
   CarSimple,
 } from "@phosphor-icons/react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Badge } from "@/components/ui/badge";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function RSESection() {
   const rseCommitments = [

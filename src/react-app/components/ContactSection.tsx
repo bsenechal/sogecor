@@ -1,19 +1,19 @@
-import { useState } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import { Badge } from "@/components/ui/badge";
-import { toast } from "sonner";
 import {
-  Phone,
+  Clock,
   Envelope,
   MapPin as LocationIcon,
-  Clock,
   PaperPlaneTilt,
+  Phone,
 } from "@phosphor-icons/react";
+import { useState } from "react";
+import { toast } from "sonner";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -25,7 +25,7 @@ export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -56,7 +56,7 @@ export function ContactSection() {
       await new Promise((resolve) => setTimeout(resolve, 1000));
 
       toast.success(
-        "Votre message a été envoyé avec succès ! Nous vous recontacterons rapidement."
+        "Votre message a été envoyé avec succès ! Nous vous recontacterons rapidement.",
       );
 
       // Reset form
@@ -66,7 +66,7 @@ export function ContactSection() {
         phone: "",
         message: "",
       });
-    } catch (error) {
+    } catch (_error) {
       toast.error("Erreur lors de l'envoi du message. Veuillez réessayer.");
     } finally {
       setIsSubmitting(false);

@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { List, X } from "@phosphor-icons/react";
+import { useState } from "react";
 import sogeCorLogo from "@/assets/images/sogecor-logo.svg";
+import { Button } from "@/components/ui/button";
 
 function scrollToId(sectionId: string) {
   const el = document.getElementById(sectionId);

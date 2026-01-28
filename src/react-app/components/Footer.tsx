@@ -1,5 +1,5 @@
-import { Phone, Envelope, MapPin } from '@phosphor-icons/react'
-import { ScrollReveal } from '@/components/ScrollReveal'
+import { Phone, Envelope, MapPin } from "@phosphor-icons/react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Footer() {
   return (
@@ -13,12 +13,15 @@ export function Footer() {
                 SOGECOR
               </div>
               <p className="text-background/80 mb-4 leading-relaxed">
-                Expert en détection de canalisations par géoradar. 
-                Solutions professionnelles pour tous vos projets de localisation de réseaux souterrains.
+                Expert en détection de canalisations par géoradar. Solutions
+                professionnelles pour tous vos projets de localisation de
+                réseaux souterrains.
               </p>
               <div className="flex items-center gap-2 text-background/80">
                 <MapPin size={16} />
-                <span className="text-sm">Interventions sur toute la France</span>
+                <span className="text-sm">
+                  Interventions sur toute la France
+                </span>
               </div>
             </ScrollReveal>
 
@@ -27,8 +30,12 @@ export function Footer() {
               <h4 className="font-semibold text-background mb-4">Navigation</h4>
               <ul className="space-y-2">
                 <li>
-                  <button 
-                    onClick={() => document.getElementById('accueil')?.scrollIntoView({ behavior: 'smooth' })}
+                  <button
+                    onClick={() =>
+                      document
+                        .getElementById("accueil")
+                        ?.scrollIntoView({ behavior: "smooth" })
+                    }
                     className="text-background/80 hover:text-background transition-colors"
                   >
                     Accueil
@@ -36,7 +43,11 @@ export function Footer() {
                 </li>
                 <li>
                   <button
-                    onClick={() => document.getElementById('a-propos')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() =>
+                      document
+                        .getElementById("a-propos")
+                        ?.scrollIntoView({ behavior: "smooth" })
+                    }
                     className="text-background/80 hover:text-background transition-colors"
                   >
                     À Propos
@@ -44,7 +55,11 @@ export function Footer() {
                 </li>
                 <li>
                   <button
-                    onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() =>
+                      document
+                        .getElementById("services")
+                        ?.scrollIntoView({ behavior: "smooth" })
+                    }
                     className="text-background/80 hover:text-background transition-colors"
                   >
                     Nos Services
@@ -52,7 +67,11 @@ export function Footer() {
                 </li>
                 <li>
                   <button
-                    onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                    onClick={() =>
+                      document
+                        .getElementById("contact")
+                        ?.scrollIntoView({ behavior: "smooth" })
+                    }
                     className="text-background/80 hover:text-background transition-colors"
                   >
                     Contact
@@ -67,13 +86,19 @@ export function Footer() {
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
                   <Phone size={16} className="text-background/60" />
-                  <a href="tel:0123456789" className="text-background/80 hover:text-background transition-colors">
+                  <a
+                    href="tel:0123456789"
+                    className="text-background/80 hover:text-background transition-colors"
+                  >
                     01 23 45 67 89
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Envelope size={16} className="text-background/60" />
-                  <a href="mailto:contact@sogecor.fr" className="text-background/80 hover:text-background transition-colors">
+                  <a
+                    href="mailto:contact@sogecor.fr"
+                    className="text-background/80 hover:text-background transition-colors"
+                  >
                     contact@sogecor.fr
                   </a>
                 </div>
@@ -81,7 +106,8 @@ export function Footer() {
               <div className="mt-6">
                 <h5 className="font-medium text-background mb-2">Horaires</h5>
                 <p className="text-sm text-background/80">
-                  Lun - Ven : 8h00 - 18h00<br />
+                  Lun - Ven : 8h00 - 18h00
+                  <br />
                   Samedi : 9h00 - 12h00
                 </p>
               </div>
@@ -92,14 +118,14 @@ export function Footer() {
           <ScrollReveal direction="fade" delay={0.4}>
             <div className="border-t border-background/20 mt-8 pt-8 text-center">
               <p className="text-background/60 text-sm">
-                © {new Date().getFullYear()} SOGECOR. Tous droits réservés. | 
-                Détection de canalisations par géoradar | 
-                SIRET : 123 456 789 00012
+                © {new Date().getFullYear()} SOGECOR. Tous droits réservés. |
+                Détection de canalisations par géoradar | SIRET : 123 456 789
+                00012
               </p>
             </div>
           </ScrollReveal>
         </div>
       </div>
     </footer>
-  )
+  );
 }

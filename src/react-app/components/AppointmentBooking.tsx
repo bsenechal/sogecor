@@ -1,34 +1,3 @@
-import { useState } from "react";
-import { Calendar } from "@/components/ui/calendar";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Badge } from "@/components/ui/badge";
-import { Alert, AlertDescription } from "@/components/ui/alert";
-import { toast } from "sonner";
 import {
   Calendar as CalendarIcon,
   Clock,
@@ -41,6 +10,37 @@ import {
 } from "@phosphor-icons/react";
 import { format, isAfter, isBefore, isSameDay, addDays } from "date-fns";
 import { fr } from "date-fns/locale";
+import { useState } from "react";
+import { toast } from "sonner";
+import { Alert, AlertDescription } from "@/components/ui/alert";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 interface Appointment {
   id: string;
@@ -122,8 +122,8 @@ export function AppointmentBooking() {
                 status: "confirmed" as const,
                 emailSent: false,
               }
-            : apt
-        )
+            : apt,
+        ),
       );
 
       toast.success("Rendez-vous confirmé avec succès!");
@@ -139,7 +139,7 @@ export function AppointmentBooking() {
     const dayAppointments =
       appointments?.filter(
         (apt) =>
-          isSameDay(new Date(apt.date), date) && apt.status !== "cancelled"
+          isSameDay(new Date(apt.date), date) && apt.status !== "cancelled",
       ) || [];
 
     return timeSlots.map((slot) => ({
@@ -614,7 +614,7 @@ export function AppointmentBooking() {
               {appointments
                 .sort(
                   (a, b) =>
-                    new Date(a.date).getTime() - new Date(b.date).getTime()
+                    new Date(a.date).getTime() - new Date(b.date).getTime(),
                 )
                 .map((appointment) => (
                   <div
@@ -633,7 +633,7 @@ export function AppointmentBooking() {
                             {format(
                               new Date(appointment.date),
                               "EEEE dd MMMM yyyy",
-                              { locale: fr }
+                              { locale: fr },
                             )}
                           </span>
                           <Clock
@@ -676,15 +676,15 @@ export function AppointmentBooking() {
                             appointment.status === "confirmed"
                               ? "default"
                               : appointment.status === "pending"
-                              ? "secondary"
-                              : "destructive"
+                                ? "secondary"
+                                : "destructive"
                           }
                         >
                           {appointment.status === "confirmed"
                             ? "Confirmé"
                             : appointment.status === "pending"
-                            ? "En attente"
-                            : "Annulé"}
+                              ? "En attente"
+                              : "Annulé"}
                         </Badge>
                         {appointment.status === "pending" &&
                           !appointment.emailSent && (

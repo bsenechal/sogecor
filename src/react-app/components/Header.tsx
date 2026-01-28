@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { List, X } from "@phosphor-icons/react";
+import { useState } from "react";
 import logo from "@/assets/images/logo.webp";
+import { Button } from "@/components/ui/button";
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

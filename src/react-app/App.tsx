@@ -1,19 +1,18 @@
-import { Toaster } from "@/components/ui/sonner";
+import { AboutSection } from "@/components/AboutSection";
+import { ContactSection } from "@/components/ContactSection";
+import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
-import { AboutSection } from "@/components/AboutSection";
-import { ServicesSection } from "@/components/ServicesSection";
-import { RSESection } from "@/components/RSESection";
-import { ContactSection } from "@/components/ContactSection";
 import { MapSection } from "@/components/MapSection";
-import { Footer } from "@/components/Footer";
+import { RSESection } from "@/components/RSESection";
+import { ServicesSection } from "@/components/ServicesSection";
+import { Toaster } from "@/components/ui/sonner";
 
 function App() {
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
-      <></>
       <main>
         <HeroSection />
         <AboutSection />

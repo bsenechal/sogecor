@@ -1,8 +1,8 @@
-import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin, Crosshair } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import surveyorBg from "@/assets/images/surveyor-background.svg";
+import { Button } from "@/components/ui/button";
 
 export function HeroSection() {
   const [scrollY, setScrollY] = useState(0);

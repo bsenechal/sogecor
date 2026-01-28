@@ -1,5 +1,3 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import {
   MapPin,
   Crosshair,
@@ -11,6 +9,8 @@ import {
   Wrench,
 } from "@phosphor-icons/react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 export function ServicesSection() {
   const services = [

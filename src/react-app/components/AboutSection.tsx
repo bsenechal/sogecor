@@ -1,6 +1,6 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { Users, Target, Medal, TrendUp } from "@phosphor-icons/react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { Card, CardContent } from "@/components/ui/card";
 
 export function AboutSection() {
   const values = [

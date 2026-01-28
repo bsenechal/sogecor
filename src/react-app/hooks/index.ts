@@ -1,1 +1,1 @@
-export { useScrollAnimation } from './useScrollAnimation'
+export { useScrollAnimation } from "./useScrollAnimation";
