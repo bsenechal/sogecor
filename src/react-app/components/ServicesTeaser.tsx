@@ -42,8 +42,17 @@ export function ServicesTeaser() {
   ];
 
   return (
-    <section id="nos-services" className="py-20 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="nos-services" className="py-20 bg-background relative overflow-hidden">
+      {/* Background with Map Texture */}
+      <div className="absolute inset-0 z-0 opacity-[0.03] rotate-12 scale-150 pointer-events-none">
+         <img 
+            src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=2074&auto=format&fit=crop" 
+            alt="" 
+            className="w-full h-full object-cover grayscale"
+         />
+      </div>
+
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <ScrollReveal direction="up" className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
             Nos Domaines d'<span className="text-primary">Expertise</span>

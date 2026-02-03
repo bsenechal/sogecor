@@ -9,8 +9,19 @@ import {
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useState, useEffect } from "react";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export function RSESection() {
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const imageUrl = "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?q=80&w=2070&auto=format&fit=crop";
+  
+    useEffect(() => {
+      const img = new Image();
+      img.src = imageUrl;
+      img.onload = () => setImageLoaded(true);
+    }, []);
+
   const rseCommitments = [
     {
       icon: Leaf,
@@ -92,14 +103,14 @@ export function RSESection() {
           </ScrollReveal>
 
           {/* RSE Commitments */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-24">
             {rseCommitments.map((commitment, index) => {
               const Icon = commitment.icon;
               return (
                 <ScrollReveal
                   key={index}
                   direction={index % 2 === 0 ? "left" : "right"}
-                  delay={0.2 * index}
+                  delay={0.1 * index}
                 >
                   <Card className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-primary h-full">
                     <CardHeader>
@@ -135,37 +146,75 @@ export function RSESection() {
             })}
           </div>
 
-          {/* Environmental Impact */}
-          <ScrollReveal direction="up" delay={0.2} className="mb-16">
-            <h3 className="text-2xl font-semibold text-foreground text-center mb-12">
-              Notre Impact Environnemental
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {environmentalImpacts.map((impact, index) => {
-                const Icon = impact.icon;
-                return (
-                  <ScrollReveal key={index} direction="up" delay={0.1 * index}>
-                    <Card className="text-center hover:shadow-md transition-shadow bg-card/50">
-                      <CardContent className="p-8">
-                        <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                          <Icon size={32} className="text-primary" />
+          {/* Environmental Impact - Side by Side with Image */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16">
+             {/* Left: Content */}
+             <div className="order-2 lg:order-1 space-y-8">
+                <ScrollReveal direction="up" className="space-y-4">
+                    <h3 className="text-3xl font-bold text-foreground">
+                    Notre Impact Environnemental
+                    </h3>
+                    <p className="text-muted-foreground text-lg">
+                        Concrètement, l'utilisation de nos technologies permet de limiter drastiquement l'empreinte carbone des chantiers en évitant les destructions inutiles.
+                    </p>
+                </ScrollReveal>
+
+                <div className="grid grid-cols-1 gap-6">
+                {environmentalImpacts.map((impact, index) => {
+                    const Icon = impact.icon;
+                    return (
+                    <ScrollReveal key={index} direction="up" delay={0.2 * index}>
+                        <Card className="hover:shadow-md transition-shadow bg-card/50 border-primary/20">
+                        <CardContent className="p-6 flex items-center gap-6">
+                            <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                                <Icon size={32} className="text-primary" />
+                            </div>
+                            <div>
+                                <div className="text-3xl font-bold text-primary mb-1">
+                                    {impact.value}
+                                </div>
+                                <h4 className="font-semibold text-foreground">
+                                    {impact.title}
+                                </h4>
+                                <p className="text-sm text-muted-foreground">
+                                    {impact.description}
+                                </p>
+                            </div>
+                        </CardContent>
+                        </Card>
+                    </ScrollReveal>
+                    );
+                })}
+                </div>
+             </div>
+
+             {/* Right: Image */}
+             <ScrollReveal direction="left" className="order-1 lg:order-2 h-full min-h-[300px] lg:min-h-[500px] relative">
+                 <div className="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl">
+                    {!imageLoaded && (
+                        <Skeleton className="absolute inset-0 w-full h-full" />
+                    )}
+                    <img 
+                        src={imageUrl}
+                        alt="Environnement et Nature"
+                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${imageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                    <div className="absolute bottom-6 left-6 right-6 text-white">
+                        <div className="flex items-center gap-2 mb-2">
+                            <Leaf weight="fill" className="text-green-400" size={24}/>
+                            <span className="font-semibold text-lg">Préserver demain</span>
                         </div>
-                        <div className="text-4xl font-bold text-primary mb-2">
-                          {impact.value}
-                        </div>
-                        <h4 className="font-semibold text-foreground mb-3">
-                          {impact.title}
-                        </h4>
-                        <p className="text-sm text-muted-foreground">
-                          {impact.description}
+                        <p className="text-white/90 text-sm">
+                            La technologie au service de la nature.
                         </p>
-                      </CardContent>
-                    </Card>
-                  </ScrollReveal>
-                );
-              })}
-            </div>
-          </ScrollReveal>
+                    </div>
+                 </div>
+                 {/* Decorative */}
+                 <div className="absolute -top-4 -right-4 w-20 h-20 bg-green-500/20 rounded-full blur-xl -z-10" />
+                 <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/20 rounded-full blur-xl -z-10" />
+             </ScrollReveal>
+          </div>
 
           {/* Additional Commitment */}
           <ScrollReveal direction="up" delay={0.4}>
