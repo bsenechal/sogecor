@@ -104,16 +104,28 @@ export function Header() {
               {navLinks.map((link) => (
                 <div key={link.path}>
                   <div className="flex items-center justify-between px-3 py-2 rounded-md hover:bg-muted transition-colors">
-                    <NavLink
-                      to={link.path}
-                      onClick={() => !link.children && setIsMenuOpen(false)}
-                      className={({ isActive }) => cn(
-                        "block w-full text-foreground hover:text-primary cursor-pointer font-medium",
-                        isActive && "text-primary font-semibold"
-                      )}
-                    >
-                      {link.name}
-                    </NavLink>
+                    {link.children ? (
+                      <div
+                        onClick={() => toggleSubmenu(link.name)}
+                        className={cn(
+                          "block w-full text-foreground hover:text-primary cursor-pointer font-medium select-none",
+                          openSubmenu === link.name && "text-primary font-semibold"
+                        )}
+                      >
+                        {link.name}
+                      </div>
+                    ) : (
+                      <NavLink
+                        to={link.path}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={({ isActive }) => cn(
+                          "block w-full text-foreground hover:text-primary cursor-pointer font-medium",
+                          isActive && "text-primary font-semibold"
+                        )}
+                      >
+                        {link.name}
+                      </NavLink>
+                    )}
                     {link.children && (
                       <button 
                         onClick={(e) => {

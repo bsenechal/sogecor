@@ -13,20 +13,8 @@ export function HeroSection() {
 
   return (
     <section id="accueil" className="relative pt-16 overflow-hidden">
-<<<<<<< HEAD
-      {/* Parallax Background */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
-          transition: "transform 0.1s ease-out",
-        }}
-      >
-        <></>
-=======
       {/* Background */}
       <div className="absolute inset-0 z-0">
->>>>>>> fdb0b98 (implement v2)
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
           style={{
