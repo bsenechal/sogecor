@@ -14,12 +14,6 @@
   html {
     scroll-behavior: smooth;
   }
-
-  /* Transition fluide pour les changements d'opacité */
-  * {
-    transition-property: opacity, transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  }
 }
 
 :root {

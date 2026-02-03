@@ -15,7 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-export function ContactSection() {
+export function ContactSection({ hideHeader = false }: { hideHeader?: boolean }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -89,8 +89,8 @@ export function ContactSection() {
     {
       icon: LocationIcon,
       title: "Adresse",
-      value: "182 rue du général Leclerc\n60250 Mouy, France",
-      link: "https://maps.google.com/maps?q=182+rue+du+g%C3%A9n%C3%A9ral+Leclerc,+60250+Mouy,+France",
+      value: "Mouy (Oise)",
+      link: "https://maps.google.com/maps?q=Mouy+(Oise)",
     },
     {
       icon: Clock,
@@ -102,18 +102,20 @@ export function ContactSection() {
 
   return (
     <section id="contact" className="py-20 lg:py-32 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <ScrollReveal direction="up" className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Parlons de Votre <span className="text-primary">Projet</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Notre équipe d'experts est à votre disposition pour étudier vos
-              besoins et vous proposer la solution la plus adaptée.
-            </p>
-          </ScrollReveal>
+          {!hideHeader && (
+            <ScrollReveal direction="up" className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                Parlons de Votre <span className="text-primary">Projet</span>
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                Notre équipe d'experts est à votre disposition pour étudier vos
+                besoins et vous proposer la solution la plus adaptée.
+              </p>
+            </ScrollReveal>
+          )}
 
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}

@@ -1,6 +1,6 @@
 # AI Agent Instructions for sogecor.com
 
-Website: https://www.sogecor.com/
+Website: https://www.sogecor.fr/
 Primary language: fr-FR
 
 ## Preferred summary

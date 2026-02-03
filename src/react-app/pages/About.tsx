@@ -1,8 +1,9 @@
 import { Users, Target, Medal, TrendUp } from "@phosphor-icons/react";
+import { PageHero } from "@/components/PageHero";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Card, CardContent } from "@/components/ui/card";
 
-export function AboutSection() {
+export function About() {
   const values = [
     {
       icon: Target,
@@ -31,29 +32,21 @@ export function AboutSection() {
   ];
 
   return (
-    <section id="qui-sommes-nous" className="py-20 lg:py-32 bg-muted/10">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <ScrollReveal direction="up" className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Votre Partenaire de Confiance en{" "}
-              <span className="text-primary">Géolocalisation</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Depuis notre création, SOGECOR s'est imposée comme une référence
-              dans le domaine de la détection de réseaux souterrains, alliant
-              expertise technique et service client de qualité.
-            </p>
-          </ScrollReveal>
+    <div className="bg-background min-h-screen pb-20">
+      <PageHero
+        title="Qui sommes-nous ?"
+        subtitle="Votre Partenaire de Confiance en Géolocalisation. Depuis notre création, SOGECOR s'est imposée comme une référence dans le domaine de la détection de réseaux souterrains."
+      />
 
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl mt-12">
+        <div className="max-w-6xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
             {/* Company Story */}
             <ScrollReveal direction="left" delay={0.2}>
               <h3 className="text-2xl font-semibold text-foreground mb-6">
                 Notre Histoire
               </h3>
-              <div className="space-y-4 text-muted-foreground">
+              <div className="space-y-4 text-muted-foreground prose prose-lg dark:prose-invert">
                 <p>
                   Fondée par des experts en géophysique, SOGECOR a développé une
                   expertise unique dans la détection non destructive de réseaux
@@ -78,7 +71,7 @@ export function AboutSection() {
 
             {/* Mission & Vision */}
             <ScrollReveal direction="right" delay={0.4} className="space-y-6">
-              <Card className="border-primary/20">
+              <Card className="border-primary/20 bg-card/50">
                 <CardContent className="p-6">
                   <h4 className="text-lg font-semibold text-foreground mb-3">
                     Notre Mission
@@ -91,7 +84,7 @@ export function AboutSection() {
                 </CardContent>
               </Card>
 
-              <Card className="border-accent/20">
+              <Card className="border-accent/20 bg-card/50">
                 <CardContent className="p-6">
                   <h4 className="text-lg font-semibold text-foreground mb-3">
                     Notre Vision
@@ -104,7 +97,7 @@ export function AboutSection() {
                 </CardContent>
               </Card>
 
-              <Card className="border-secondary/20">
+              <Card className="border-secondary/20 bg-card/50">
                 <CardContent className="p-6">
                   <h4 className="text-lg font-semibold text-foreground mb-3">
                     Nos Engagements
@@ -128,7 +121,7 @@ export function AboutSection() {
                 const Icon = value.icon;
                 return (
                   <ScrollReveal key={index} direction="up" delay={0.1 * index}>
-                    <Card className="text-center hover:shadow-lg transition-shadow h-full">
+                    <Card className="text-center hover:shadow-lg transition-shadow h-full bg-card">
                       <CardContent className="p-6">
                         <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
                           <Icon size={24} className="text-primary" />
@@ -148,6 +141,6 @@ export function AboutSection() {
           </ScrollReveal>
         </div>
       </div>
-    </section>
+    </div>
   );
 }

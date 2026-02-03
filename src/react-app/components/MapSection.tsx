@@ -14,7 +14,7 @@ export function MapSection() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Localisation SOGECOR - 182 rue du général Leclerc, 60250 Mouy"
+              title="Localisation SOGECOR - Mouy (Oise)"
               className="w-full h-full"
             />
           </div>

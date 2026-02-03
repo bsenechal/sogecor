@@ -1,4 +1,5 @@
 import { Phone, Envelope, MapPin } from "@phosphor-icons/react";
+import { Link } from "react-router-dom";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 export function Footer() {
@@ -30,52 +31,28 @@ export function Footer() {
               <h4 className="font-semibold text-background mb-4">Navigation</h4>
               <ul className="space-y-2">
                 <li>
-                  <button
-                    onClick={() =>
-                      document
-                        .getElementById("accueil")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
-                    className="text-background/80 hover:text-background transition-colors"
+                  <Link
+                    to="/"
+                    className="text-background/80 hover:text-background transition-colors cursor-pointer"
                   >
                     Accueil
-                  </button>
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={() =>
-                      document
-                        .getElementById("a-propos")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
-                    className="text-background/80 hover:text-background transition-colors"
+                  <Link
+                    to="/metiers"
+                    className="text-background/80 hover:text-background transition-colors cursor-pointer"
                   >
-                    À Propos
-                  </button>
+                    Nos Métiers
+                  </Link>
                 </li>
                 <li>
-                  <button
-                    onClick={() =>
-                      document
-                        .getElementById("services")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
-                    className="text-background/80 hover:text-background transition-colors"
-                  >
-                    Nos Services
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() =>
-                      document
-                        .getElementById("contact")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
-                    className="text-background/80 hover:text-background transition-colors"
+                  <Link
+                    to="/contact"
+                    className="text-background/80 hover:text-background transition-colors cursor-pointer"
                   >
                     Contact
-                  </button>
+                  </Link>
                 </li>
               </ul>
             </ScrollReveal>
