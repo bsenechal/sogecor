@@ -1,8 +1,10 @@
-import { ArrowRight, MapPin, Crosshair } from "@phosphor-icons/react";
+import { ArrowRight } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import surveyorBg from "@/assets/images/surveyor-background.svg";
 import { Button } from "@/components/ui/button";
+import bgImage from "@/assets/images/Fond.jpg";
+import vlocImage from "@/assets/images/vloc.png";
+import gpsImage from "@/assets/images/gps.png";
 
 export function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
@@ -30,7 +32,23 @@ export function HeroSection() {
   };
 
   return (
-    <section id="accueil" className="relative pt-16 overflow-hidden">
+    <>
+      <section id="accueil" className="relative pt-16 overflow-hidden min-h-[60vh]">
+        <div className="absolute inset-0 z-0 hero">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source
+              src={new URL("../assets/images/background-video.mp4", import.meta.url).href}
+              type="video/mp4"
+            />
+          </video>
+          <div className="absolute inset-0 bg-background/40" />
+        </div>
       {/* Parallax Background */}
       <div
         className="absolute inset-0 z-0"
@@ -39,16 +57,9 @@ export function HeroSection() {
           transition: "transform 0.1s ease-out",
         }}
       >
-        <></>
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
-          style={{
-            backgroundImage: `url(${surveyorBg})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center bottom",
-          }}
+          className="absolute inset-0 bg-gradient-to-br from-background/95 to-secondary/40"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/95 to-secondary/40" />
       </div>
 
       {/* Content */}
@@ -61,9 +72,8 @@ export function HeroSection() {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 leading-tight"
           >
-            Détection précise de{" "}
-            <span className="text-primary">réseaux souterrains</span> par
-            Géoradar
+            Notre expertise au service de{" "}
+            <span className="text-primary">vos projets</span>
           </motion.h1>
 
           {/* Subtitle */}
@@ -73,9 +83,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed"
           >
-            SOGECOR vous accompagne dans la localisation et la cartographie de
-            vos réseaux souterrains avec une technologie de pointe et une
-            expertise reconnue.
+            SOGECOR met son expertise dans l'ingénierie des réseaux au service des territoires et infrastructures. Nous accompagnons les gestionnaires de réseaux, les collectivités locales, et les entreprises à concevoir leur chantier de demain.
           </motion.p>
 
           {/* CTAs */}
@@ -97,69 +105,110 @@ export function HeroSection() {
             </Button>
           </motion.div>
 
-          {/* Features Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-3xl mx-auto"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.2 }}
-              className="flex flex-col items-center text-center p-4"
+          {/* Scroll down indicator */}
+          <div className="mt-10 flex justify-center">
+            <button
+              type="button"
+              onClick={() => {
+                const el = document.getElementById("expertise");
+                if (el) el.scrollIntoView({ behavior: "smooth" });
+              }}
+              aria-label="Voir nos expertises"
+              className="flex flex-col items-center text-muted-foreground hover:text-foreground transition"
             >
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
-                <Crosshair size={24} className="text-primary" />
-              </div>
-              <h3 className="font-semibold text-foreground mb-2">
-                Technologie Avancée
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Équipements géoradar de dernière génération pour une précision
-                maximale
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.4 }}
-              className="flex flex-col items-center text-center p-4"
-            >
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
-                <MapPin size={24} className="text-primary" />
-              </div>
-              <h3 className="font-semibold text-foreground mb-2">
-                Localisation Précise
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Cartographie détaillée de tous types de réseaux souterrains
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 1.6 }}
-              className="flex flex-col items-center text-center p-4"
-            >
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-3">
-                <div className="w-6 h-6 bg-primary rounded text-white flex items-center justify-center text-xs font-bold">
-                  ✓
-                </div>
-              </div>
-              <h3 className="font-semibold text-foreground mb-2">
-                Expertise Reconnue
-              </h3>
-              <p className="text-sm text-muted-foreground">
-                Des professionnels expérimentés au service de vos projets
-              </p>
-            </motion.div>
-          </motion.div>
+              <span className="text-sm mb-2">Voir nos expertises</span>
+              <span className="w-12 h-12 rounded-full border border-muted-foreground flex items-center justify-center">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="w-6 h-6"
+                >
+                  <path d="M12 5v14" />
+                  <path d="M19 12l-7 7-7-7" />
+                </svg>
+              </span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
+
+    <section id="expertise" className="bg-white py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl sm:text-3xl font-semibold text-foreground mb-8">
+            Notre expertise
+          </h2>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Card 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.2 }}
+              className="group border border-border rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-lg transition"
+            >
+              <div className="w-full h-36 bg-white rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                <img src={vlocImage} alt="Détection des réseaux enterrés" className="w-full h-full object-contain" />
+              </div>
+              <h3 className="font-semibold text-foreground">
+                Détection des réseaux enterrés
+              </h3>
+            </motion.div>
+
+            {/* Card 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.4 }}
+              className="group border border-border rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-lg transition"
+            >
+              <div className="w-full h-36 bg-white rounded-lg mb-4 flex items-center justify-center overflow-hidden">
+                <img src={gpsImage} alt="Cartographie des réseaux" className="w-full h-full object-contain" />
+              </div>
+              <h3 className="font-semibold text-foreground">
+                Cartographie des réseaux
+              </h3>
+            </motion.div>
+
+            {/* Card 3 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.6 }}
+              className="group border border-border rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-lg transition"
+            >
+              <div className="w-full h-36 bg-muted-foreground/10 rounded-lg mb-4 flex items-center justify-center">
+                <span className="text-sm text-muted-foreground">Image</span>
+              </div>
+              <h3 className="font-semibold text-foreground">
+                Conception d'études
+              </h3>
+            </motion.div>
+
+            {/* Card 4 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 1.8 }}
+              className="group border border-border rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-lg transition"
+            >
+              <div className="w-full h-36 bg-muted-foreground/10 rounded-lg mb-4 flex items-center justify-center">
+                <span className="text-sm text-muted-foreground">Image</span>
+              </div>
+              <h3 className="font-semibold text-foreground">
+                Marquage des réseaux
+              </h3>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </>
   );
 }

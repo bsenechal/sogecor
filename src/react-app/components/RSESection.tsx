@@ -9,51 +9,55 @@ import {
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import aiprLogo from "@/assets/images/AIPR.jpg";
+import tstLogo from "@/assets/images/certif-ctst.jpg";
+import bureauVeritasLogo from "@/assets/images/Bureau Veritas.png";
+import adntLogo from "@/assets/images/Certification ADNT 3002 avec laurier.png";
 
 export function RSESection() {
   const rseCommitments = [
     {
       icon: Leaf,
-      title: "Respect de l'Environnement",
+      title: "Préservation de l’environnement",
       description:
-        "Nos méthodes de détection non invasives préservent l'environnement et limitent les excavations inutiles.",
+        "Nous privilégions des méthodes d’intervention respectueuses de l’environnement, limitant l’impact sur les sols, les infrastructures existantes et les milieux urbains.",
       features: [
-        "Techniques non destructives",
-        "Réduction des déchets",
-        "Préservation des sols",
+        "Techniques de détection non intrusives",
+        "Utilisation de peintures exemptes de métaux lourds et substances dangereuses",
+        "Réduction des nuisances et des contraintes liées à la coactivité et à l’environnement urbain",
       ],
     },
     {
       icon: Recycle,
-      title: "Économie Circulaire",
+      title: "Gestion responsable des ressources",
       description:
-        "Nous privilégions la réutilisation et le recyclage de nos équipements pour minimiser notre impact.",
+        "Nous adoptons une approche responsable dans la gestion de nos activités, visant à optimiser l’utilisation des ressources et à réduire l’empreinte environnementale de nos interventions.",
       features: [
-        "Matériel reconditionné",
-        "Recyclage des composants",
-        "Durabilité des équipements",
+        "Optimisation des tournées et des interventions",
+        "Réduction, gestion et tri des déchets issus des interventions",
+        "Production de données directement exploitables, dans des formats adaptés à vos outils",
       ],
     },
     {
       icon: Users,
-      title: "Responsabilité Sociale",
+      title: "Engagement humain et sécurité",
       description:
-        "Formation continue de nos équipes et partenariats avec les acteurs locaux du territoire.",
+        "Nous accordons une importance centrale à la sécurité et à la montée en compétences de nos équipes, en assurant des interventions maîtrisées et conformes aux exigences réglementaires.",
       features: [
-        "Formation certifiée",
-        "Emploi local",
-        "Partenariats durables",
+        "Formation continue de nos équipes",
+        "Respect des exigences du décret DT-DICT et des contraintes liées aux réseaux",
+        "Organisation des interventions garantissant la sécurité et la fluidité du chantier",
       ],
     },
     {
       icon: Heart,
-      title: "Engagement Communautaire",
+      title: "Proximité et engagement",
       description:
-        "Soutien aux initiatives locales et participation à l'amélioration de notre territoire.",
+        "Nous garantissons disponibilité, réactivité et un accompagnement sur mesure à chaque étape de vos projets.",
       features: [
-        "Actions citoyennes",
-        "Soutien associatif",
-        "Développement local",
+        "Disponibilité et réactivité des interlocuteurs",
+        "Adaptation aux contraintes de coactivité",
+        "Conseil et adaptation aux évolutions des projets",
       ],
     },
   ];
@@ -85,9 +89,9 @@ export function RSESection() {
               Notre Engagement <span className="text-primary">Responsable</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              SOGECOR s'engage dans une démarche de responsabilité sociétale et
-              environnementale, au service d'un développement durable et
-              respectueux de notre territoire.
+              Chez SOGECOR, nous menons nos interventions avec exigence et
+              responsabilité, en intégrant les enjeux environnementaux, humains
+              et opérationnels propres à chacun de vos projets.
             </p>
           </ScrollReveal>
 
@@ -167,34 +171,93 @@ export function RSESection() {
             </div>
           </ScrollReveal>
 
-          {/* Additional Commitment */}
+          {/* Certifications & habilitations */}
           <ScrollReveal direction="up" delay={0.4}>
-            <Card className="bg-primary/5 border-primary/20">
-              <CardContent className="p-8 text-center">
+            <div className="rounded-3xl border border-primary/10 bg-white/90 p-8 shadow-sm">
+              <div className="text-center mb-10">
                 <h3 className="text-2xl font-semibold text-foreground mb-4">
-                  Notre Engagement Continu
+                  Certifications & habilitations
                 </h3>
-                <p className="text-muted-foreground mb-6 max-w-3xl mx-auto">
-                  Nous nous engageons à améliorer continuellement nos pratiques,
-                  à réduire notre empreinte environnementale et à contribuer
-                  positivement au développement durable de notre région.
+                <p className="text-muted-foreground max-w-3xl mx-auto">
+                  Nos accréditations métiers et garanties de conformité.
                 </p>
-                <div className="flex flex-wrap justify-center gap-3">
-                  <Badge variant="secondary" className="text-sm">
-                    ISO 14001
-                  </Badge>
-                  <Badge variant="secondary" className="text-sm">
-                    Certification Qualité
-                  </Badge>
-                  <Badge variant="secondary" className="text-sm">
-                    Formation Continue
-                  </Badge>
-                  <Badge variant="secondary" className="text-sm">
-                    Innovation Durable
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <Card className="hover:shadow-xl transition-all duration-300 h-full border border-border/70">
+                  <CardContent className="p-6">
+                    <div className="mb-6 flex items-center justify-center">
+                      <img
+                        src={aiprLogo}
+                        alt="Logo AIPR"
+                        className="h-32 object-contain"
+                      />
+                    </div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">
+                      AIPR
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Autorisation d’intervention à proximité des réseaux.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-xl transition-all duration-300 h-full border border-border/70">
+                  <CardContent className="p-6">
+                    <div className="mb-6 flex items-center justify-center">
+                      <img
+                        src={tstLogo}
+                        alt="Logo TST"
+                        className="h-32 object-contain"
+                      />
+                    </div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">
+                      TST
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Habilitation Travaux sous Tension (TST) pour des
+                      interventions conformes aux exigences du Comité TST.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-xl transition-all duration-300 h-full border border-border/70">
+                  <CardContent className="p-6">
+                    <div className="mb-6 flex items-center justify-center">
+                      <img
+                        src={bureauVeritasLogo}
+                        alt="Logo Bureau Veritas"
+                        className="h-32 object-contain"
+                      />
+                    </div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">
+                      Bureau Veritas
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Détection & géoréférencement certifiés, conformes aux normes en vigueur.
+                    </p>
+                  </CardContent>
+                </Card>
+
+                <Card className="hover:shadow-xl transition-all duration-300 h-full border border-border/70">
+                  <CardContent className="p-6">
+                    <div className="mb-6 flex items-center justify-center">
+                      <img
+                        src={adntLogo}
+                        alt="Certification ADNT 3002"
+                        className="h-32 object-contain"
+                      />
+                    </div>
+                    <h4 className="text-lg font-semibold text-foreground mb-2">
+                      ADNT 3002
+                    </h4>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      Certification ADNT 3002 pour les interventions sur réseaux électriques.
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
           </ScrollReveal>
         </div>
       </div>

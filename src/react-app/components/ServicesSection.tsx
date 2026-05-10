@@ -1,48 +1,31 @@
-import {
-  MapPin,
-  Crosshair,
-  FileText,
-  ShieldCheck,
-  Factory,
-  House,
-  Buildings,
-  Wrench,
-} from "@phosphor-icons/react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Crosshair, FileText, ShieldCheck, Factory, Buildings, House, Wrench, Plug, TrainSimple } from "@phosphor-icons/react";
 
 export function ServicesSection() {
   const services = [
     {
-      icon: MapPin,
-      title: "Détection de Réseaux Souterrains",
-      description:
-        "Localisation précise de tous types de réseaux enterrés : eau, gaz, électricité, télécommunications, assainissement.",
-      features: [
-        "Technologies multiples",
-        "Cartographie précise",
-        "Rapport détaillé",
-      ],
-      color: "primary",
-    },
-    {
       icon: Crosshair,
       title: "Cartographie de Réseaux",
       description:
-        "Établissement de plans précis des réseaux souterrains existants pour vos projets d'aménagement.",
-      features: ["Plans CAO/DAO", "Géoréférencement", "Formats standards"],
+        "Réalisation de plans précis et géoréférencés des réseaux existants pour sécuriser vos projets d’aménagement et de travaux.",
+      features: [
+        "Plans CAO/DAO exploitables",
+        "Géoréférencement précis (classe A)",
+        "Formats compatibles avec vos outils métiers",
+      ],
       color: "accent",
     },
     {
       icon: FileText,
       title: "Études Géophysiques",
       description:
-        "Analyse complète du sous-sol avant travaux de construction, rénovation ou terrassement.",
+        "Analyse du sous-sol avant travaux pour anticiper les contraintes, identifier les anomalies et sécuriser vos opérations.",
       features: [
-        "Analyse des sols",
-        "Détection d'obstacles",
-        "Recommandations",
+        "Analyse des structures et des sols",
+        "Détection d’ouvrages et d’obstacles enterrés",
+        "Aide à la décision et recommandations techniques",
       ],
       color: "secondary",
     },
@@ -50,8 +33,12 @@ export function ServicesSection() {
       icon: ShieldCheck,
       title: "Sécurisation de Chantiers",
       description:
-        "Prévention des accidents et dommages lors de travaux de terrassement et d'excavation.",
-      features: ["Intervention rapide", "Marquage au sol", "Suivi de chantier"],
+        "Prévention des risques liés aux travaux à proximité des réseaux pour garantir la sécurité des intervenants et des infrastructures.",
+      features: [
+        "Marquage-piquetage au sol",
+        "Intervention rapide sur site",
+        "Accompagnement et suivi de chantier",
+      ],
       color: "primary",
     },
   ];
@@ -60,7 +47,7 @@ export function ServicesSection() {
     {
       icon: Factory,
       title: "Industrie",
-      description: "Sites industriels, usines, entrepôts",
+      description: "Sites industriels, usines, entrepots, ...",
     },
     {
       icon: Buildings,
@@ -70,12 +57,22 @@ export function ServicesSection() {
     {
       icon: House,
       title: "Particuliers",
-      description: "Maisons individuelles, copropriétés",
+      description: "Copropriété, demandes individuels",
     },
     {
       icon: Wrench,
       title: "BTP",
-      description: "Entreprises de construction et travaux publics",
+      description: "TP : Entreprises de construction et de travaux publics",
+    },
+    {
+      icon: Plug,
+      title: "Gestionnaire de réseaux",
+      description: "Electriques, Gaz, Telecoms, etc...",
+    },
+    {
+      icon: TrainSimple,
+      title: "Ferroviaire",
+      description: "Gestionnaires de réseaux, entreprises ferroviaires",
     },
   ];
 
@@ -87,23 +84,20 @@ export function ServicesSection() {
   };
 
   return (
-    <section id="services" className="py-20 lg:py-32 bg-secondary/10">
+    <section id="services" className="py-20 lg:py-32 bg-blue-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
-          <ScrollReveal direction="up" className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Une Expertise Complète au Service de{" "}
-              <span className="text-primary">Vos Projets</span>
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              SOGECOR propose une gamme complète de services de détection de
-              réseaux souterrains, adaptés à tous types de projets et secteurs
-              d'activité.
-            </p>
-          </ScrollReveal>
+            <ScrollReveal direction="up" className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
+                Notre expertise
+              </h2>
+              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                SOGECOR vous accompagne à chaque étape de vos projets grâce à une gamme complète de prestations en détection, cartographie et étude des réseaux enterrés. Nous intervenons pour les collectivités, concessionnaires et acteurs des travaux publics, avec des solutions adaptées à chaque contexte.
+              </p>
+            </ScrollReveal>
 
-          {/* Services Grid */}
+            {/* Services Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
             {services.map((service, index) => {
               const Icon = service.icon;

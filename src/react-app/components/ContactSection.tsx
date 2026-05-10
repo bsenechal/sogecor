@@ -8,6 +8,7 @@ import {
 import { useState } from "react";
 import { toast } from "sonner";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { NetworkAnimation } from "@/components/NetworkAnimation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -86,196 +87,156 @@ export function ContactSection() {
       value: "matthieu.senechal@sogecor.fr",
       link: "mailto:matthieu.senechal@sogecor.fr",
     },
-    {
-      icon: LocationIcon,
-      title: "Adresse",
-      value: "182 rue du général Leclerc\n60250 Mouy, France",
-      link: "https://maps.google.com/maps?q=182+rue+du+g%C3%A9n%C3%A9ral+Leclerc,+60250+Mouy,+France",
-    },
-    {
-      icon: Clock,
-      title: "Horaires",
-      value: "Lun - Ven : 8h00 - 18h00\nSamedi : 9h00 - 12h00",
-      link: null,
-    },
   ];
 
   return (
-    <section id="contact" className="py-20 lg:py-32 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="relative py-20 lg:py-32 bg-blue-50 overflow-hidden">
+      <NetworkAnimation />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
           <ScrollReveal direction="up" className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
               Parlons de Votre <span className="text-primary">Projet</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Notre équipe d'experts est à votre disposition pour étudier vos
-              besoins et vous proposer la solution la plus adaptée.
-            </p>
           </ScrollReveal>
 
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <ScrollReveal direction="left" delay={0.2}>
-              <Card>
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2">
-                    <PaperPlaneTilt size={24} className="text-primary" />
-                    Demande d'Informations
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="flex flex-col lg:flex-row gap-12 items-stretch">
+            {/* Left: Formulaire */}
+            <div className="flex-1 flex flex-col">
+              <ScrollReveal direction="left" delay={0.2}>
+                <h3 className="text-2xl font-semibold text-foreground mb-6 text-left">Contact par formulaire</h3>
+                <Card className="flex-1 flex flex-col">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <PaperPlaneTilt size={24} className="text-primary" />
+                      Demande d'Informations
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-1 flex flex-col">
+                    <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col justify-between">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                          <Label htmlFor="name">Nom complet *</Label>
+                          <Input
+                            id="name"
+                            name="name"
+                            type="text"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            placeholder="Votre nom et prénom"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <Label htmlFor="phone">Téléphone</Label>
+                          <Input
+                            id="phone"
+                            name="phone"
+                            type="tel"
+                            value={formData.phone}
+                            onChange={handleInputChange}
+                            placeholder="06 12 34 56 78"
+                          />
+                        </div>
+                      </div>
+
                       <div>
-                        <Label htmlFor="name">Nom complet *</Label>
+                        <Label htmlFor="email">Email *</Label>
                         <Input
-                          id="name"
-                          name="name"
-                          type="text"
-                          value={formData.name}
+                          id="email"
+                          name="email"
+                          type="email"
+                          value={formData.email}
                           onChange={handleInputChange}
-                          placeholder="Votre nom et prénom"
+                          placeholder="votre.email@exemple.fr"
                           required
                         />
                       </div>
+
                       <div>
-                        <Label htmlFor="phone">Téléphone</Label>
-                        <Input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          value={formData.phone}
+                        <Label htmlFor="message">
+                          Description de votre besoin *
+                        </Label>
+                        <Textarea
+                          id="message"
+                          name="message"
+                          value={formData.message}
                           onChange={handleInputChange}
-                          placeholder="06 12 34 56 78"
+                          placeholder="Décrivez votre besoin, le type d'information souhaité, la localisation, etc."
+                          rows={6}
+                          required
                         />
                       </div>
-                    </div>
 
-                    <div>
-                      <Label htmlFor="email">Email *</Label>
-                      <Input
-                        id="email"
-                        name="email"
-                        type="email"
-                        value={formData.email}
-                        onChange={handleInputChange}
-                        placeholder="votre.email@exemple.fr"
-                        required
-                      />
-                    </div>
+                      <Button
+                        type="submit"
+                        className="w-full"
+                        size="lg"
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting
+                          ? "Envoi en cours..."
+                          : "Envoyer ma Demande"}
+                      </Button>
 
-                    <div>
-                      <Label htmlFor="message">
-                        Description de votre besoin *
-                      </Label>
-                      <Textarea
-                        id="message"
-                        name="message"
-                        value={formData.message}
-                        onChange={handleInputChange}
-                        placeholder="Décrivez votre besoin, le type d'information souhaité, la localisation, etc."
-                        rows={6}
-                        required
-                      />
-                    </div>
+                      <p className="text-sm text-muted-foreground text-center">
+                        * Champs obligatoires. Nous nous engageons à répondre sous 24h.
+                      </p>
+                    </form>
+                  </CardContent>
+                </Card>
+              </ScrollReveal>
+            </div>
 
-                    <Button
-                      type="submit"
-                      className="w-full"
-                      size="lg"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting
-                        ? "Envoi en cours..."
-                        : "Envoyer ma Demande"}
-                    </Button>
+            {/* Divider */}
+            <div className="hidden lg:flex items-stretch">
+              <div className="w-px bg-gray-300 mx-8" style={{ minHeight: '100%' }} />
+            </div>
 
-                    <p className="text-sm text-muted-foreground text-center">
-                      * Champs obligatoires. Nous nous engageons à répondre sous
-                      24h.
-                    </p>
-                  </form>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
-
-            {/* Contact Information */}
-            <ScrollReveal direction="right" delay={0.4} className="space-y-6">
-              <div>
-                <h3 className="text-2xl font-semibold text-foreground mb-6">
-                  Informations de Contact
-                </h3>
-                <p className="text-muted-foreground mb-8">
-                  Contactez-nous directement ou utilisez le formulaire
-                  ci-contre. Nous intervenons sur toute la France
-                  métropolitaine.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {contactInfo.map((info, index) => {
-                  const Icon = info.icon;
-                  const content = (
-                    <ScrollReveal
-                      key={index}
-                      direction="up"
-                      delay={0.1 * index}
-                    >
-                      <Card className="hover:shadow-md transition-shadow h-full">
-                        <CardContent className="p-4">
-                          <div className="flex items-start gap-3">
-                            <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                              <Icon size={18} className="text-primary" />
+            {/* Right: Coordonnées directes */}
+            <div className="flex-1 flex flex-col">
+              <ScrollReveal direction="right" delay={0.4} className="h-full flex flex-col">
+                <h3 className="text-2xl font-semibold text-foreground mb-6 text-left">Coordonnées directes</h3>
+                <div className="grid grid-cols-1 gap-4 mb-8">
+                  {contactInfo.map((info, index) => {
+                    const Icon = info.icon;
+                    return (
+                      <a
+                        key={index}
+                        href={info.link}
+                        className="block"
+                        target="_self"
+                        rel={undefined}
+                      >
+                        <Card className="hover:shadow-md transition-shadow h-full">
+                          <CardContent className="p-4">
+                            <div className="flex items-start gap-3">
+                              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <Icon size={18} className="text-primary" />
+                              </div>
+                              <div>
+                                <h4 className="font-medium text-foreground mb-1">
+                                  {info.title}
+                                </h4>
+                                <p className="text-sm text-muted-foreground whitespace-pre-line">
+                                  {info.value}
+                                </p>
+                              </div>
                             </div>
-                            <div>
-                              <h4 className="font-medium text-foreground mb-1">
-                                {info.title}
-                              </h4>
-                              <p className="text-sm text-muted-foreground whitespace-pre-line">
-                                {info.value}
-                              </p>
-                            </div>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </ScrollReveal>
-                  );
+                          </CardContent>
+                        </Card>
+                      </a>
+                    );
+                  })}
+                </div>
 
-                  return info.link ? (
-                    <a
-                      key={index}
-                      href={info.link}
-                      className="block"
-                      target={
-                        info.link.startsWith("https://maps")
-                          ? "_blank"
-                          : "_self"
-                      }
-                      rel={
-                        info.link.startsWith("https://maps")
-                          ? "noopener noreferrer"
-                          : undefined
-                      }
-                    >
-                      {content}
-                    </a>
-                  ) : (
-                    content
-                  );
-                })}
-              </div>
-
-              <ScrollReveal direction="up" delay={0.8}>
-                <Card className="bg-primary/5 border-primary/20">
+                <Card className="bg-primary/5 border-primary/20 mt-auto">
                   <CardContent className="p-6">
                     <h4 className="font-semibold text-foreground mb-3">
                       Information et Conseil
                     </h4>
                     <p className="text-sm text-muted-foreground mb-4">
-                      Notre équipe vous renseigne sur nos services et vous
-                      conseille sur les meilleures solutions pour vos besoins.
+                      Notre équipe se tiens à votre disposition, du lundi au vendredi, de 8h00 à 18h00
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary">Conseil Gratuit</Badge>
@@ -285,7 +246,7 @@ export function ContactSection() {
                   </CardContent>
                 </Card>
               </ScrollReveal>
-            </ScrollReveal>
+            </div>
           </div>
         </div>
       </div>
