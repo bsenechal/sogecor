@@ -78,8 +78,8 @@ export function ContactSection() {
     {
       icon: Phone,
       title: "Téléphone",
-      value: "03 44 09 12 34",
-      link: "tel:0344091234",
+      value: "+33 6 27 76 20 22",
+      link: "tel:+33627762022",
     },
     {
       icon: Envelope,

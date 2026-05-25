@@ -14,9 +14,9 @@ export function NetworkAnimation() {
     [1160, 180], [1270, 165], [1375, 125], [1480, 140], [1565, 110]
   ];
 
-  const totalDuration = 12000;
-  const pointsDuration = 3000;
-  const cableDuration = 3000;
+  const totalDuration = 6000;
+  const pointsDuration = 1500;
+  const cableDuration = 1500;
 
   useEffect(() => {
     let animationFrameId: number;
