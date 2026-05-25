@@ -74,7 +74,7 @@ export function WhyUsSection() {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="py-20 lg:py-32 bg-foreground">
+    <section className="py-20 lg:py-32 bg-foreground/75">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <ScrollReveal direction="up" className="text-center mb-14">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">

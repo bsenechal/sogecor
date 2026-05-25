@@ -1,109 +1,65 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "@phosphor-icons/react";
-import { Button } from "@/components/ui/button";
+import vlocImage from "@/assets/images/vloc.png";
+import gpsImage from "@/assets/images/gps.png";
+import mapsogecorImage from "@/assets/images/mapsogecor.png";
+import marquageConeImage from "@/assets/images/marquage-cone.png";
 
 export function ExpertiseSection() {
-  const scrollToServices = () => {
-    const element = document.getElementById("services");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const [scrollY, setScrollY] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const shift = (scrollY % 160) / 160;
+  const shadowY = 14 + shift * 14;
+  const shadowBlur = 28 + shift * 14;
+  const shadowOpacity = 0.08 + shift * 0.05;
+
+  const openServiceItem = (index: number) => {
+    document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+    window.dispatchEvent(new CustomEvent("openService", { detail: { index } }));
   };
 
-  const scrollToContact = () => {
-    const element = document.getElementById("contact");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  const cards = [
+    { img: vlocImage,         alt: "Géo-détection des réseaux",               label: "La géo-détection des réseaux",                 shadowX: -6 - shift * 6, index: 0 },
+    { img: gpsImage,          alt: "Cartographie et implantation des réseaux", label: "La cartographie et l'implantation des réseaux", shadowX: -2 - shift * 4, index: 1 },
+    { img: mapsogecorImage,   alt: "Conception d'études",                      label: "La conception d'études",                       shadowX:  2 + shift * 4, index: 2 },
+    { img: marquageConeImage, alt: "Marquage-piquetage des réseaux",           label: "Le marquage-piquetage des réseaux",            shadowX:  6 + shift * 6, index: 3 },
+  ];
 
   return (
-    <section
-      id="expertise"
-      className="relative py-24 lg:py-32 overflow-hidden"
-    >
-      {/* Background Video */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
-        >
-          <source
-            src={new URL("../assets/images/background-video.mp4", import.meta.url).href}
-            type="video/mp4"
-          />
-        </video>
-        {/* Overlay for text visibility */}
-        <div className="absolute inset-0 bg-blue-600/70"></div>
-      </div>
-
-      {/* Content */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          className="max-w-3xl mx-auto text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6">
-            Notre expertise au service de{" "}
-            <span className="text-blue-300">vos projets</span>
+    <section id="expertise" className="bg-transparent py-20">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="mb-8 text-2xl font-semibold text-white sm:text-3xl">
+            Notre expertise
           </h2>
-
-          <p className="text-lg text-neutral-100 mb-8 leading-relaxed">
-            SOGECOR met son expertise dans l'ingénierie des réseaux au service
-            des territoires et infrastructures. Nous accompagnons les
-            gestionnaires de réseaux, les collectivités locales, et les
-            entreprises à concevoir leur chantier de demain.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              onClick={scrollToContact}
-              className="bg-blue-500 hover:bg-blue-600 text-white"
-            >
-              Demander un Devis Gratuit
-              <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              onClick={scrollToServices}
-              className="text-white border-white hover:bg-white/10"
-            >
-              Découvrir nos Services
-            </Button>
-          </div>
-
-          {/* Scroll Indicator */}
-          <motion.div
-            className="mt-16 flex justify-center"
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <div className="w-8 h-8 border-2 border-white rounded-full flex items-center justify-center">
-              <svg
-                className="w-4 h-4 text-white"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
+          <div className="grid grid-cols-1 gap-[29px] sm:grid-cols-2 lg:grid-cols-4">
+            {cards.map((card, i) => (
+              <motion.button
+                key={i}
+                type="button"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.1 + i * 0.15 }}
+                onClick={() => openServiceItem(card.index)}
+                className="group flex cursor-pointer flex-col items-center rounded-2xl border border-border p-[26px] text-center transition hover:border-primary hover:shadow-lg w-full"
+                style={{
+                  boxShadow: `${card.shadowX}px ${shadowY}px ${shadowBlur}px rgba(33, 72, 117, ${shadowOpacity})`,
+                }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
-                />
-              </svg>
-            </div>
-          </motion.div>
-        </motion.div>
+                <div className="mb-4 flex h-40 w-full items-center justify-center overflow-hidden rounded-lg bg-white">
+                  <img src={card.img} alt={card.alt} className="h-full w-full object-contain transition group-hover:scale-105" />
+                </div>
+                <h3 className="font-semibold text-primary">{card.label}</h3>
+              </motion.button>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

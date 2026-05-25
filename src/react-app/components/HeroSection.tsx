@@ -3,23 +3,12 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import bgImage from "@/assets/images/Fond.jpg";
-import vlocImage from "@/assets/images/vloc.png";
-import gpsImage from "@/assets/images/gps.png";
-import mapsogecorImage from "@/assets/images/mapsogecor.png";
-import marquageConeImage from "@/assets/images/marquage-cone.png";
 
 export function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
-  const expertiseShadowShift = (scrollY % 160) / 160;
-  const expertiseShadowY = 14 + expertiseShadowShift * 14;
-  const expertiseShadowBlur = 28 + expertiseShadowShift * 14;
-  const expertiseShadowOpacity = 0.08 + expertiseShadowShift * 0.05;
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-
+    const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -47,9 +36,8 @@ export function HeroSection() {
   };
 
   return (
-    <>
-      <section
-        id="accueil"
+    <section
+      id="accueil"
         className="relative min-h-[60vh] overflow-hidden pt-16"
       >
         <div className="hero absolute inset-0 z-0">
@@ -156,45 +144,5 @@ export function HeroSection() {
           </div>
         </div>
       </section>
-
-      <section id="expertise" className="bg-white py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-5xl text-center">
-            <h2 className="mb-8 text-2xl font-semibold text-foreground sm:text-3xl">
-              Notre expertise
-            </h2>
-
-            <div className="grid grid-cols-1 gap-[29px] sm:grid-cols-2 lg:grid-cols-4">
-              {[
-                { img: vlocImage,         alt: "Géo-détection des réseaux",                 label: "La géo-détection des réseaux",                    shadowX: -6 - expertiseShadowShift * 6, index: 0 },
-                { img: gpsImage,          alt: "Cartographie et implantation des réseaux",   label: "La cartographie et l'implantation des réseaux",   shadowX: -2 - expertiseShadowShift * 4, index: 1 },
-                { img: mapsogecorImage,   alt: "Conception d'études",                        label: "La conception d'études",                          shadowX:  2 + expertiseShadowShift * 4, index: 2 },
-                { img: marquageConeImage, alt: "Marquage-piquetage des réseaux",             label: "Le marquage-piquetage des réseaux",                shadowX:  6 + expertiseShadowShift * 6, index: 3 },
-              ].map((card, i) => (
-                <motion.button
-                  key={i}
-                  type="button"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 1.2 + i * 0.2 }}
-                  onClick={() => openServiceItem(card.index)}
-                  className="group flex cursor-pointer flex-col items-center rounded-2xl border border-border p-[26px] text-center transition hover:border-primary hover:shadow-lg w-full"
-                  style={{
-                    boxShadow: `${card.shadowX}px ${expertiseShadowY}px ${expertiseShadowBlur}px rgba(33, 72, 117, ${expertiseShadowOpacity})`,
-                  }}
-                >
-                  <div className="mb-4 flex h-40 w-full items-center justify-center overflow-hidden rounded-lg bg-white">
-                    <img src={card.img} alt={card.alt} className="h-full w-full object-contain transition group-hover:scale-105" />
-                  </div>
-                  <h3 className="font-semibold text-primary">
-                    {card.label}
-                  </h3>
-                </motion.button>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    </>
   );
 }

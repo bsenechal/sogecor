@@ -9,6 +9,12 @@ export function ValeursSection() {
       <div className="hero-valeurs__sky" aria-hidden="true" />
       <div className="hero-valeurs__glow" aria-hidden="true" />
 
+      <div className="text-center pt-16 pb-4 px-4">
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+          Nos valeurs qui font notre entreprise
+        </h2>
+      </div>
+
       <ScrollReveal
         direction="up"
         delay={0.1}
