@@ -99,7 +99,7 @@ export function Footer() {
           {/* Bottom Bar */}
           <div className="mt-12 flex flex-col items-center gap-2 border-t border-background/15 pt-8 text-center text-sm text-background/55 sm:flex-row sm:justify-between sm:text-left">
             <p>
-              © {new Date().getFullYear()} {COMPANY.name} · {COMPANY.tagline}
+              © {new Date().getFullYear()} {COMPANY.name} · Tous droits réservés
             </p>
             <p>SIRET : {COMPANY.siret}</p>
           </div>

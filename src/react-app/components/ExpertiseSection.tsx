@@ -56,14 +56,13 @@ export function ExpertiseSection() {
               onClick={() => openServiceItem(card.index)}
               className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-card text-left shadow-soft transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-card"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+              <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-muted/70 to-secondary/40 p-6">
                 <img
                   src={card.img}
                   alt={card.alt}
                   loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/10 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
               </div>
               <div className="flex flex-1 items-center justify-between gap-2 p-5">
                 <h3 className="font-semibold leading-snug text-foreground">

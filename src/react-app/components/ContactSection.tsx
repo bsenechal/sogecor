@@ -18,6 +18,7 @@ export function ContactSection() {
     email: "",
     phone: "",
     message: "",
+    company: "", // honeypot anti-spam (doit rester vide)
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -31,10 +32,27 @@ export function ContactSection() {
     }));
   };
 
+  const resetForm = () =>
+    setFormData({ name: "", email: "", phone: "", message: "", company: "" });
+
+  /** Repli : ouvre le client mail pré-rempli si l'envoi automatique échoue. */
+  const openMailFallback = () => {
+    const subject = `Demande de contact — ${formData.name}`;
+    const lines = [
+      `Nom : ${formData.name}`,
+      `Email : ${formData.email}`,
+      `Téléphone : ${formData.phone || "—"}`,
+      "",
+      formData.message,
+    ];
+    window.location.href = `${CONTACT.emailHref}?subject=${encodeURIComponent(
+      subject,
+    )}&body=${encodeURIComponent(lines.join("\n"))}`;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       toast.error("Veuillez remplir tous les champs obligatoires");
       return;
@@ -49,22 +67,27 @@ export function ContactSection() {
     setIsSubmitting(true);
 
     try {
-      // Simulate form submission
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      toast.success(
-        "Votre message a été envoyé avec succès ! Nous vous recontacterons rapidement.",
-      );
-
-      // Reset form
-      setFormData({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
       });
-    } catch (_error) {
-      toast.error("Erreur lors de l'envoi du message. Veuillez réessayer.");
+
+      if (res.ok) {
+        toast.success(
+          "Votre message a bien été envoyé ! Nous vous recontacterons rapidement.",
+        );
+        resetForm();
+        return;
+      }
+
+      // Envoi automatique indisponible (service non configuré, erreur réseau…)
+      // → on bascule sur le client mail de l'utilisateur.
+      toast.info("Ouverture de votre messagerie pour finaliser l'envoi…");
+      openMailFallback();
+    } catch {
+      toast.info("Ouverture de votre messagerie pour finaliser l'envoi…");
+      openMailFallback();
     } finally {
       setIsSubmitting(false);
     }
@@ -90,7 +113,17 @@ export function ContactSection() {
       id="contact"
       className="relative py-20 lg:py-32 bg-secondary/40 overflow-hidden"
     >
-      <NetworkAnimation />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.12]"
+      >
+        <NetworkAnimation />
+      </div>
+      {/* Voile pour garantir la lisibilité du contenu */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-secondary/60 via-background/40 to-secondary/60"
+      />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
           <SectionHeading
@@ -122,6 +155,18 @@ export function ContactSection() {
                       onSubmit={handleSubmit}
                       className="space-y-6 flex-1 flex flex-col justify-between"
                     >
+                      {/* Honeypot anti-spam — masqué aux humains */}
+                      <input
+                        type="text"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        tabIndex={-1}
+                        autoComplete="off"
+                        aria-hidden="true"
+                        className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                      />
+
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="name">Nom complet *</Label>

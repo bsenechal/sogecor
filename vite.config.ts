@@ -14,4 +14,10 @@ export default defineConfig({
       "@": resolve(projectRoot, "src/react-app"),
     },
   },
+  server: {
+    // En dev, les appels /api sont transmis au worker (wrangler dev sur 8787).
+    proxy: {
+      "/api": "http://localhost:8787",
+    },
+  },
 });
