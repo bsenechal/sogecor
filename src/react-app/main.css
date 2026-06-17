@@ -100,11 +100,21 @@
     text-rendering: optimizeLegibility;
   }
 
-  /* Titres : légèrement resserrés pour un rendu corporate net */
+  /* Titres : resserrés et équilibrés (pas de ligne orpheline) */
   h1,
   h2,
-  h3 {
+  h3,
+  h4 {
     letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+
+  /* Décalage des ancres pour ne pas passer sous le header fixe */
+  :where(section[id], [id]) {
+    scroll-margin-top: 5rem;
   }
 
   /* Curseurs cohérents pour les éléments interactifs */
@@ -157,6 +167,16 @@
   }
   .shadow-card {
     box-shadow: var(--shadow-card);
+  }
+
+  /* Typographie fluide — les titres scalent en continu avec le viewport */
+  .text-fluid-hero {
+    font-size: clamp(2.5rem, 1.6rem + 4.2vw, 4.75rem);
+    line-height: 1.04;
+  }
+  .text-fluid-h2 {
+    font-size: clamp(1.875rem, 1.3rem + 2.6vw, 3rem);
+    line-height: 1.1;
   }
 }
 

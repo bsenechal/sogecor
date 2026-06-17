@@ -94,7 +94,7 @@ export function HeroSection() {
             variants={fadeUp}
             initial={initial}
             animate="show"
-            className="text-4xl font-bold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl xl:text-7xl"
+            className="text-fluid-hero font-bold text-foreground"
           >
             Notre expertise au service de{" "}
             <span className="text-primary">vos projets</span>

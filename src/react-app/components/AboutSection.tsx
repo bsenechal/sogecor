@@ -34,7 +34,7 @@ export function AboutSection() {
           <span className="eyebrow mb-4">À propos de SOGECOR</span>
           <h2
             id="about-title"
-            className="text-3xl font-bold leading-tight text-foreground sm:text-4xl"
+            className="text-fluid-h2 font-bold text-foreground"
           >
             Un bureau d'études dédié aux{" "}
             <span className="text-primary">réseaux souterrains</span>

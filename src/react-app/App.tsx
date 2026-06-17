@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
 import { RSESection } from "@/components/RSESection";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { ServicesSection } from "@/components/ServicesSection";
 import { ValeursSection } from "@/components/ValeursSection";
 import { WhyUsSection } from "@/components/WhyUsSection";
@@ -20,6 +21,7 @@ function App() {
       >
         Aller au contenu
       </a>
+      <ScrollProgress />
       <Header />
 
       <main id="contenu">

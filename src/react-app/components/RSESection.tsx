@@ -7,6 +7,7 @@ import {
   CarSimple,
 } from "@phosphor-icons/react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { CountUp } from "@/components/CountUp";
 import { Section } from "@/components/ui/section";
 import { SectionHeading } from "@/components/SectionHeading";
 import aiprLogo from "@/assets/images/aipr.webp";
@@ -178,9 +179,10 @@ export function RSESection() {
                       <Icon size={32} weight="duotone" />
                     </div>
                     <div>
-                      <div className="text-4xl font-bold leading-none text-primary">
-                        {impact.value}
-                      </div>
+                      <CountUp
+                        value={impact.value}
+                        className="block text-4xl font-bold leading-none text-primary"
+                      />
                       <h4 className="mt-2 font-semibold text-foreground">
                         {impact.title}
                       </h4>
