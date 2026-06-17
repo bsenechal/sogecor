@@ -1,0 +1,36 @@
+# SOGECOR
+
+> SOGECOR est un bureau d'études français spécialisé dans la **détection, la
+> géolocalisation et le géoréférencement des réseaux souterrains par géoradar**.
+> L'entreprise accompagne gestionnaires de réseaux, collectivités, entreprises
+> de TP et bureaux d'études dans toute la France, en conformité avec la
+> réglementation anti-endommagement DT-DICT.
+
+## Services
+
+- **Géo-détection des réseaux** : détection et localisation des réseaux
+  souterrains existants (investigations complémentaires IC, opérations de
+  localisation OL) pour sécuriser les chantiers et respecter la réglementation
+  DT-DICT.
+- **Cartographie et implantation des réseaux** : cartographie, géoréférencement,
+  plans de récolement, mise à jour de plans, plans de synthèse et implantation
+  terrain.
+- **Conception d'études** : études réseaux et pièces techniques pour projets VRD,
+  phases d'étude, de consultation ou d'exécution (DCE).
+- **Marquage-piquetage** : matérialisation sur le terrain de la position des
+  réseaux avant travaux, avec des produits respectueux de l'environnement.
+
+## Atouts
+
+- Certifications et habilitations : AIPR, TST, Bureau Veritas, ADNT 3002.
+- Données précises, fiables et exploitables dans vos formats métiers.
+- Engagement RSE : méthodes non intrusives, optimisation des tournées,
+  réduction des excavations.
+
+## Contact
+
+- Téléphone : +33 6 27 76 20 22
+- Email : contact@sogecor.fr
+- Zone d'intervention : France entière
+- Site : https://www.sogecor.fr/
+- Horaires : lun–ven 8h–18h, samedi 9h–12h
