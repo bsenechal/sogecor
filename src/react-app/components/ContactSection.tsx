@@ -5,7 +5,6 @@ import { ScrollReveal } from "@/components/ScrollReveal";
 import { NetworkAnimation } from "@/components/NetworkAnimation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -143,102 +142,104 @@ export function ContactSection() {
                 <h3 className="text-2xl font-semibold text-foreground mb-6 text-left">
                   Contact par formulaire
                 </h3>
-                <Card className="flex-1 flex flex-col">
-                  <CardHeader>
-                    <CardTitle className="flex items-center gap-2">
-                      <PaperPlaneTilt size={24} className="text-primary" />
-                      Demande d'Informations
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="flex-1 flex flex-col">
-                    <form
-                      onSubmit={handleSubmit}
-                      className="space-y-6 flex-1 flex flex-col justify-between"
-                    >
-                      {/* Honeypot anti-spam — masqué aux humains */}
-                      <input
-                        type="text"
-                        name="company"
-                        value={formData.company}
-                        onChange={handleInputChange}
-                        tabIndex={-1}
-                        autoComplete="off"
-                        aria-hidden="true"
-                        className="absolute -left-[9999px] h-0 w-0 opacity-0"
-                      />
+                <div className="flex flex-1 flex-col rounded-2xl border border-border/60 bg-card p-7 shadow-card sm:p-9">
+                  <div className="mb-8 flex items-center gap-3">
+                    <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <PaperPlaneTilt size={22} weight="duotone" />
+                    </span>
+                    <h4 className="text-lg font-semibold text-foreground">
+                      Demande d'informations
+                    </h4>
+                  </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                          <Label htmlFor="name">Nom complet *</Label>
-                          <Input
-                            id="name"
-                            name="name"
-                            type="text"
-                            value={formData.name}
-                            onChange={handleInputChange}
-                            placeholder="Votre nom et prénom"
-                            required
-                          />
-                        </div>
-                        <div>
-                          <Label htmlFor="phone">Téléphone</Label>
-                          <Input
-                            id="phone"
-                            name="phone"
-                            type="tel"
-                            value={formData.phone}
-                            onChange={handleInputChange}
-                            placeholder="06 12 34 56 78"
-                          />
-                        </div>
-                      </div>
+                  <form
+                    onSubmit={handleSubmit}
+                    className="flex flex-1 flex-col gap-6"
+                  >
+                    {/* Honeypot anti-spam — masqué aux humains */}
+                    <input
+                      type="text"
+                      name="company"
+                      value={formData.company}
+                      onChange={handleInputChange}
+                      tabIndex={-1}
+                      autoComplete="off"
+                      aria-hidden="true"
+                      className="absolute -left-[9999px] h-0 w-0 opacity-0"
+                    />
 
-                      <div>
-                        <Label htmlFor="email">Email *</Label>
+                    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Nom complet *</Label>
                         <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
+                          id="name"
+                          name="name"
+                          type="text"
+                          value={formData.name}
                           onChange={handleInputChange}
-                          placeholder="votre.email@exemple.fr"
+                          placeholder="Votre nom et prénom"
                           required
+                          className="h-11 rounded-xl"
                         />
                       </div>
-
-                      <div>
-                        <Label htmlFor="message">
-                          Description de votre besoin *
-                        </Label>
-                        <Textarea
-                          id="message"
-                          name="message"
-                          value={formData.message}
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">Téléphone</Label>
+                        <Input
+                          id="phone"
+                          name="phone"
+                          type="tel"
+                          value={formData.phone}
                           onChange={handleInputChange}
-                          placeholder="Décrivez votre besoin, le type d'information souhaité, la localisation, etc."
-                          rows={6}
-                          required
+                          placeholder="06 12 34 56 78"
+                          className="h-11 rounded-xl"
                         />
                       </div>
+                    </div>
 
-                      <Button
-                        type="submit"
-                        className="w-full"
-                        size="lg"
-                        disabled={isSubmitting}
-                      >
-                        {isSubmitting
-                          ? "Envoi en cours..."
-                          : "Envoyer ma Demande"}
-                      </Button>
+                    <div className="space-y-2">
+                      <Label htmlFor="email">Email *</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="votre.email@exemple.fr"
+                        required
+                        className="h-11 rounded-xl"
+                      />
+                    </div>
 
-                      <p className="text-sm text-muted-foreground text-center">
-                        * Champs obligatoires. Nous nous engageons à répondre
-                        sous 24h.
-                      </p>
-                    </form>
-                  </CardContent>
-                </Card>
+                    <div className="space-y-2">
+                      <Label htmlFor="message">
+                        Description de votre besoin *
+                      </Label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        placeholder="Décrivez votre besoin, le type d'information souhaité, la localisation, etc."
+                        rows={5}
+                        required
+                        className="rounded-xl"
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      className="mt-2 w-full rounded-full shadow-soft"
+                      size="lg"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? "Envoi en cours…" : "Envoyer ma demande"}
+                    </Button>
+
+                    <p className="text-center text-xs text-muted-foreground">
+                      * Champs obligatoires · Réponse sous 24h
+                    </p>
+                  </form>
+                </div>
               </ScrollReveal>
             </div>
 
@@ -260,55 +261,47 @@ export function ContactSection() {
                 <h3 className="text-2xl font-semibold text-foreground mb-6 text-left">
                   Coordonnées directes
                 </h3>
-                <div className="grid grid-cols-1 gap-4 mb-8">
+                <div className="mb-5 grid grid-cols-1 gap-4">
                   {contactInfo.map((info, index) => {
                     const Icon = info.icon;
                     return (
                       <a
                         key={index}
                         href={info.link}
-                        className="block"
-                        target="_self"
-                        rel={undefined}
+                        className="group block rounded-2xl border border-border/60 bg-card p-5 shadow-soft transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-card"
                       >
-                        <Card className="hover:shadow-md transition-shadow h-full">
-                          <CardContent className="p-4">
-                            <div className="flex items-start gap-3">
-                              <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                <Icon size={18} className="text-primary" />
-                              </div>
-                              <div>
-                                <h4 className="font-medium text-foreground mb-1">
-                                  {info.title}
-                                </h4>
-                                <p className="text-sm text-muted-foreground whitespace-pre-line">
-                                  {info.value}
-                                </p>
-                              </div>
-                            </div>
-                          </CardContent>
-                        </Card>
+                        <div className="flex items-center gap-4">
+                          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                            <Icon size={22} weight="duotone" />
+                          </span>
+                          <div>
+                            <p className="text-xs font-medium uppercase tracking-wider text-muted-foreground">
+                              {info.title}
+                            </p>
+                            <p className="text-lg font-semibold text-foreground">
+                              {info.value}
+                            </p>
+                          </div>
+                        </div>
                       </a>
                     );
                   })}
                 </div>
 
-                <Card className="bg-primary/5 border-primary/20 mt-auto">
-                  <CardContent className="p-6">
-                    <h4 className="font-semibold text-foreground mb-3">
-                      Information et Conseil
-                    </h4>
-                    <p className="text-sm text-muted-foreground mb-4">
-                      Notre équipe se tient à votre disposition, du lundi au
-                      vendredi, de 8h00 à 18h00.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      <Badge variant="secondary">Conseil Gratuit</Badge>
-                      <Badge variant="secondary">Réponse Rapide</Badge>
-                      <Badge variant="secondary">France Entière</Badge>
-                    </div>
-                  </CardContent>
-                </Card>
+                <div className="mt-auto rounded-2xl border border-primary/20 bg-primary/5 p-6">
+                  <h4 className="mb-2 font-semibold text-foreground">
+                    Information et conseil
+                  </h4>
+                  <p className="mb-4 text-sm leading-relaxed text-muted-foreground">
+                    Notre équipe se tient à votre disposition, du lundi au
+                    vendredi, de 8h00 à 18h00.
+                  </p>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="secondary">Conseil gratuit</Badge>
+                    <Badge variant="secondary">Réponse rapide</Badge>
+                    <Badge variant="secondary">France entière</Badge>
+                  </div>
+                </div>
               </ScrollReveal>
             </div>
           </div>
