@@ -1,9 +1,28 @@
-import { ArrowRight } from "@phosphor-icons/react";
-import { motion } from "framer-motion";
+import { ArrowRight, ShieldCheck, MapPin, Clock } from "@phosphor-icons/react";
+import { motion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SECTION_IDS } from "@/config/site";
 import { useScrollToSection } from "@/hooks";
+
+const trustItems = [
+  { Icon: ShieldCheck, label: "Conforme DT-DICT" },
+  { Icon: MapPin, label: "Intervention France entière" },
+  { Icon: Clock, label: "Devis sous 24h" },
+];
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24 },
+  show: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      delay: 0.15 + i * 0.12,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  }),
+};
 
 export function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
@@ -11,22 +30,24 @@ export function HeroSection() {
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <section
-      id="accueil"
-      className="relative min-h-[60vh] overflow-hidden pt-16"
+      id={SECTION_IDS.accueil}
+      className="relative flex min-h-[92vh] items-center overflow-hidden pt-16"
     >
-      <div className="hero absolute inset-0 z-0">
+      {/* Vidéo de fond */}
+      <div className="absolute inset-0 z-0">
         <video
           autoPlay
           muted
           loop
           playsInline
           className="h-full w-full object-cover"
+          style={{ transform: `translateY(${scrollY * 0.15}px) scale(1.05)` }}
         >
           <source
             src={
@@ -36,96 +57,120 @@ export function HeroSection() {
             type="video/mp4"
           />
         </video>
-        <div className="absolute inset-0 bg-background/40" />
+        {/* Voiles : assurent la lisibilité du texte marine à gauche */}
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-background/60" />
       </div>
 
+      {/* Trame radar discrète */}
       <div
-        className="absolute inset-0 z-0"
-        style={{
-          transform: `translateY(${scrollY * 0.5}px)`,
-          transition: "transform 0.1s ease-out",
-        }}
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-background/95 to-secondary/40" />
-      </div>
+        aria-hidden="true"
+        className="radar-grid absolute inset-0 z-0 text-primary opacity-[0.15]"
+      />
 
-      <div className="relative z-10 container mx-auto px-4 py-20 sm:px-6 lg:px-8 lg:py-32">
-        <div className="mx-auto max-w-4xl text-center">
+      <div className="relative z-10 container mx-auto px-4 py-20 sm:px-6 lg:px-8">
+        <div className="max-w-3xl">
+          <motion.span
+            custom={0}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="eyebrow mb-6"
+          >
+            Détection de réseaux souterrains par géoradar
+          </motion.span>
+
           <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="mb-6 text-4xl font-bold leading-tight text-foreground sm:text-5xl lg:text-6xl"
+            custom={1}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="text-4xl font-bold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl xl:text-7xl"
           >
             Notre expertise au service de{" "}
             <span className="text-primary">vos projets</span>
           </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            className="mx-auto mb-8 max-w-2xl text-xl leading-relaxed text-muted-foreground"
+            custom={2}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground/70 sm:text-xl"
           >
             SOGECOR met son expertise dans l'ingénierie des réseaux au service
-            des territoires et infrastructures. Nous accompagnons les
-            gestionnaires de réseaux, les collectivités locales et les
-            entreprises à concevoir leur chantier de demain.
+            des territoires et infrastructures. Nous accompagnons gestionnaires
+            de réseaux, collectivités et entreprises à concevoir leur chantier
+            de demain.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            className="mb-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
+            custom={3}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
             <Button
               size="lg"
               onClick={() => scrollToSection(SECTION_IDS.contact)}
-              className="group"
+              className="group rounded-full shadow-soft"
             >
-              Demander un Devis Gratuit
+              Demander un devis gratuit
               <ArrowRight
-                size={16}
-                className="ml-2 transition-transform group-hover:translate-x-1"
+                size={18}
+                className="ml-1 transition-transform group-hover:translate-x-1"
               />
             </Button>
             <Button
               variant="outline"
               size="lg"
               onClick={() => scrollToSection(SECTION_IDS.services)}
+              className="rounded-full border-foreground/15 bg-background/60 backdrop-blur-sm"
             >
-              Découvrir nos Services
+              Découvrir nos services
             </Button>
           </motion.div>
 
-          <div className="mt-10 flex justify-center">
-            <button
-              type="button"
-              onClick={() => scrollToSection(SECTION_IDS.services)}
-              aria-label="Voir nos expertises"
-              className="flex flex-col items-center text-muted-foreground transition hover:text-foreground"
-            >
-              <span className="mb-2 text-sm">Voir nos expertises</span>
-              <span className="flex h-12 w-12 items-center justify-center rounded-full border border-muted-foreground">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="h-6 w-6"
-                >
-                  <path d="M12 5v14" />
-                  <path d="M19 12l-7 7-7-7" />
-                </svg>
-              </span>
-            </button>
-          </div>
+          {/* Bande de confiance */}
+          <motion.ul
+            custom={4}
+            variants={fadeUp}
+            initial="hidden"
+            animate="show"
+            className="mt-12 flex flex-wrap gap-x-8 gap-y-3"
+          >
+            {trustItems.map(({ Icon, label }) => (
+              <li
+                key={label}
+                className="flex items-center gap-2 text-sm font-medium text-foreground/70"
+              >
+                <Icon size={20} weight="duotone" className="text-primary" />
+                {label}
+              </li>
+            ))}
+          </motion.ul>
         </div>
       </div>
+
+      {/* Indicateur de défilement */}
+      <button
+        type="button"
+        onClick={() => scrollToSection(SECTION_IDS.aPropos)}
+        aria-label="Faire défiler vers la suite"
+        className="absolute bottom-6 left-1/2 z-10 hidden -translate-x-1/2 flex-col items-center text-foreground/50 transition hover:text-primary sm:flex"
+      >
+        <span className="mb-2 text-xs uppercase tracking-widest">
+          Découvrir
+        </span>
+        <motion.span
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+          className="flex h-10 w-6 items-start justify-center rounded-full border border-current pt-2"
+        >
+          <span className="h-1.5 w-1.5 rounded-full bg-current" />
+        </motion.span>
+      </button>
     </section>
   );
 }

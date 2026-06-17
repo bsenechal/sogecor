@@ -8,7 +8,8 @@ import {
   CarSimple,
 } from "@phosphor-icons/react";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import { Card, CardContent } from "@/components/ui/card";
+import { Section } from "@/components/ui/section";
+import { SectionHeading } from "@/components/SectionHeading";
 import aiprLogo from "@/assets/images/aipr.webp";
 import tstLogo from "@/assets/images/certif-ctst.webp";
 import bureauVeritasLogo from "@/assets/images/bureau-veritas.webp";
@@ -154,177 +155,123 @@ function RSEFlipCard({
   );
 }
 
+const certifications = [
+  {
+    logo: aiprLogo,
+    name: "AIPR",
+    description: "Autorisation d'intervention à proximité des réseaux.",
+  },
+  {
+    logo: tstLogo,
+    name: "TST",
+    description:
+      "Habilitation Travaux sous Tension, conforme aux exigences du Comité TST.",
+  },
+  {
+    logo: bureauVeritasLogo,
+    name: "Bureau Veritas",
+    description:
+      "Détection & géoréférencement certifiés, conformes aux normes en vigueur.",
+  },
+  {
+    logo: adntLogo,
+    name: "ADNT 3002",
+    description:
+      "Certification pour les interventions sur réseaux électriques.",
+  },
+];
+
 export function RSESection() {
   return (
     <>
-      <section id="rse" className="py-20 lg:py-32 bg-muted/30">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            {/* Section Header */}
-            <ScrollReveal direction="up" className="text-center mb-16">
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-                Notre Engagement{" "}
-                <span className="text-primary">Responsable</span>
-              </h2>
-              <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                Chez SOGECOR, nous menons nos interventions avec exigence et
-                responsabilité, en intégrant les enjeux environnementaux,
-                humains et opérationnels propres à chacun de vos projets.
-              </p>
-            </ScrollReveal>
+      <Section id="rse" className="bg-muted/40">
+        <SectionHeading
+          eyebrow="Engagement RSE"
+          title={
+            <>
+              Notre engagement <span className="text-primary">responsable</span>
+            </>
+          }
+          subtitle="Chez SOGECOR, nous menons nos interventions avec exigence et responsabilité, en intégrant les enjeux environnementaux, humains et opérationnels propres à chacun de vos projets."
+        />
 
-            {/* RSE Commitments — flip cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-              {rseCommitments.map((commitment, index) => (
-                <ScrollReveal key={index} direction="up" delay={0.1 * index}>
-                  <RSEFlipCard
-                    icon={commitment.icon}
-                    title={commitment.title}
-                    description={commitment.description}
-                    features={commitment.features}
-                  />
-                </ScrollReveal>
-              ))}
-            </div>
-
-            {/* Environmental Impact */}
-            <ScrollReveal direction="up" delay={0.2} className="mb-16">
-              <h3 className="text-2xl font-semibold text-foreground text-center mb-12">
-                Notre Impact Environnemental
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                {environmentalImpacts.map((impact, index) => {
-                  const Icon = impact.icon;
-                  return (
-                    <ScrollReveal
-                      key={index}
-                      direction="up"
-                      delay={0.1 * index}
-                      className="h-full"
-                    >
-                      <Card className="text-center hover:shadow-md transition-shadow bg-white border-border/70 h-full">
-                        <CardContent className="p-8">
-                          <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4">
-                            <Icon size={32} className="text-primary" />
-                          </div>
-                          <div className="text-4xl font-bold text-primary mb-2">
-                            {impact.value}
-                          </div>
-                          <h4 className="font-semibold text-foreground mb-3">
-                            {impact.title}
-                          </h4>
-                          <p className="text-sm text-muted-foreground">
-                            {impact.description}
-                          </p>
-                        </CardContent>
-                      </Card>
-                    </ScrollReveal>
-                  );
-                })}
-              </div>
+        {/* RSE Commitments — flip cards */}
+        <div className="mb-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {rseCommitments.map((commitment, index) => (
+            <ScrollReveal key={index} direction="up" delay={0.08 * index}>
+              <RSEFlipCard
+                icon={commitment.icon}
+                title={commitment.title}
+                description={commitment.description}
+                features={commitment.features}
+              />
             </ScrollReveal>
-          </div>
+          ))}
         </div>
-      </section>
 
-      {/* Certifications — fond blanc */}
-      <section className="py-20 lg:py-24 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <ScrollReveal direction="up" delay={0.2}>
-              <div className="text-center mb-10">
-                <h3 className="text-2xl font-semibold text-foreground mb-4">
-                  Certifications & habilitations
-                </h3>
-                <p className="text-muted-foreground max-w-3xl mx-auto">
-                  Nos accréditations métiers et garanties de conformité.
+        {/* Environmental Impact */}
+        <ScrollReveal direction="up">
+          <h3 className="mb-10 text-center text-2xl font-semibold text-foreground">
+            Notre impact environnemental
+          </h3>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {environmentalImpacts.map((impact, index) => {
+              const Icon = impact.icon;
+              return (
+                <ScrollReveal key={index} direction="up" delay={0.1 * index}>
+                  <div className="flex h-full items-center gap-6 rounded-2xl border border-border bg-card p-8 shadow-soft">
+                    <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+                      <Icon size={32} weight="duotone" />
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold leading-none text-primary">
+                        {impact.value}
+                      </div>
+                      <h4 className="mt-2 font-semibold text-foreground">
+                        {impact.title}
+                      </h4>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {impact.description}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              );
+            })}
+          </div>
+        </ScrollReveal>
+      </Section>
+
+      {/* Certifications */}
+      <Section className="bg-background">
+        <SectionHeading
+          eyebrow="Certifications"
+          title="Certifications & habilitations"
+          subtitle="Nos accréditations métiers et garanties de conformité."
+        />
+        <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
+          {certifications.map((cert, index) => (
+            <ScrollReveal key={cert.name} direction="up" delay={0.08 * index}>
+              <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 text-center shadow-soft transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-card">
+                <div className="mb-5 flex h-28 items-center justify-center rounded-xl bg-muted/60">
+                  <img
+                    src={cert.logo}
+                    alt={`Logo ${cert.name}`}
+                    loading="lazy"
+                    className="h-24 object-contain"
+                  />
+                </div>
+                <h4 className="mb-2 text-lg font-semibold text-foreground">
+                  {cert.name}
+                </h4>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                  {cert.description}
                 </p>
               </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <Card className="hover:shadow-xl transition-all duration-300 h-full border border-border/70">
-                  <CardContent className="p-6">
-                    <div className="mb-6 flex items-center justify-center">
-                      <img
-                        src={aiprLogo}
-                        alt="Logo AIPR"
-                        loading="lazy"
-                        className="h-32 object-contain"
-                      />
-                    </div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2">
-                      AIPR
-                    </h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      Autorisation d'intervention à proximité des réseaux.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-xl transition-all duration-300 h-full border border-border/70">
-                  <CardContent className="p-6">
-                    <div className="mb-6 flex items-center justify-center">
-                      <img
-                        src={tstLogo}
-                        alt="Logo TST"
-                        loading="lazy"
-                        className="h-32 object-contain"
-                      />
-                    </div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2">
-                      TST
-                    </h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      Habilitation Travaux sous Tension (TST) pour des
-                      interventions conformes aux exigences du Comité TST.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-xl transition-all duration-300 h-full border border-border/70">
-                  <CardContent className="p-6">
-                    <div className="mb-6 flex items-center justify-center">
-                      <img
-                        src={bureauVeritasLogo}
-                        alt="Logo Bureau Veritas"
-                        loading="lazy"
-                        className="h-32 object-contain"
-                      />
-                    </div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2">
-                      Bureau Veritas
-                    </h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      Détection & géoréférencement certifiés, conformes aux
-                      normes en vigueur.
-                    </p>
-                  </CardContent>
-                </Card>
-
-                <Card className="hover:shadow-xl transition-all duration-300 h-full border border-border/70">
-                  <CardContent className="p-6">
-                    <div className="mb-6 flex items-center justify-center">
-                      <img
-                        src={adntLogo}
-                        alt="Certification ADNT 3002"
-                        loading="lazy"
-                        className="h-32 object-contain"
-                      />
-                    </div>
-                    <h4 className="text-lg font-semibold text-foreground mb-2">
-                      ADNT 3002
-                    </h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      Certification ADNT 3002 pour les interventions sur réseaux
-                      électriques.
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
             </ScrollReveal>
-          </div>
+          ))}
         </div>
-      </section>
+      </Section>
     </>
   );
 }

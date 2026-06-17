@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
+import { Section } from "@/components/ui/section";
+import { SectionHeading } from "@/components/SectionHeading";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import expertisePhotoImage from "@/assets/images/img-2292.webp";
-import { Plus, X } from "@phosphor-icons/react";
+import { Plus, X, CheckCircle } from "@phosphor-icons/react";
 
 const services = [
   {
@@ -85,105 +87,121 @@ export function ServicesSection() {
   }, []);
 
   return (
-    <section id="services" className="py-20 lg:py-32 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-6xl mx-auto">
-          {/* Section Header */}
-          <ScrollReveal direction="up" className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Notre expertise au service de vos projets réseaux
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              SOGECOR vous accompagne à chaque étape de vos projets, de l'étude
-              préalable à l'intervention terrain. Grâce à une approche complète
-              en géo-détection, conception, cartographie, implantation et
-              marquage-piquetage des réseaux, nous vous aidons à sécuriser vos
-              chantiers, fiabiliser vos données et répondre aux exigences
-              réglementaires.
-            </p>
-          </ScrollReveal>
+    <Section id="services" className="bg-background">
+      <SectionHeading
+        eyebrow="Nos services"
+        title="Une approche complète, de l'étude au terrain"
+        subtitle="Géo-détection, conception, cartographie, implantation et marquage-piquetage : nous vous aidons à sécuriser vos chantiers, fiabiliser vos données et répondre aux exigences réglementaires."
+      />
 
-          {/* Two-column layout */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
-            {/* Left: Accordion */}
-            <ScrollReveal direction="left" delay={0.2}>
-              <div className="divide-y divide-border">
-                {services.map((service, index) => (
-                  <div key={index}>
-                    <button
-                      type="button"
-                      aria-expanded={openIndex === index}
-                      aria-controls={`service-panel-${index}`}
-                      className="w-full flex items-center justify-between py-6 text-left group"
-                      onClick={() =>
-                        setOpenIndex(openIndex === index ? null : index)
-                      }
-                    >
-                      <span className="text-sm font-semibold uppercase tracking-widest text-foreground group-hover:text-primary transition-colors">
-                        {service.title}
-                      </span>
+      {/* Two-column layout */}
+      <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
+        {/* Left: Accordion */}
+        <ScrollReveal direction="left" delay={0.1}>
+          <div className="flex flex-col gap-3">
+            {services.map((service, index) => {
+              const open = openIndex === index;
+              return (
+                <div
+                  key={index}
+                  className={`overflow-hidden rounded-2xl border transition-colors ${
+                    open
+                      ? "border-primary/30 bg-card shadow-soft"
+                      : "border-border bg-card/50 hover:border-primary/20"
+                  }`}
+                >
+                  <button
+                    type="button"
+                    aria-expanded={open}
+                    aria-controls={`service-panel-${index}`}
+                    className="group flex w-full items-center justify-between gap-4 p-5 text-left"
+                    onClick={() => setOpenIndex(open ? null : index)}
+                  >
+                    <span className="flex items-center gap-4">
                       <span
                         aria-hidden="true"
-                        className={`w-8 h-8 flex items-center justify-center rounded flex-shrink-0 ml-4 transition-colors ${
-                          openIndex === index
-                            ? "bg-foreground text-background"
-                            : "bg-primary text-primary-foreground"
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-bold transition-colors ${
+                          open
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-primary/10 text-primary"
                         }`}
                       >
-                        {openIndex === index ? (
-                          <X size={16} weight="bold" />
-                        ) : (
-                          <Plus size={16} weight="bold" />
-                        )}
+                        {index + 1}
                       </span>
-                    </button>
+                      <span className="font-semibold text-foreground transition-colors group-hover:text-primary">
+                        {service.title}
+                      </span>
+                    </span>
+                    <span
+                      aria-hidden="true"
+                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-primary"
+                    >
+                      {open ? (
+                        <X size={18} weight="bold" />
+                      ) : (
+                        <Plus size={18} weight="bold" />
+                      )}
+                    </span>
+                  </button>
 
-                    {openIndex === index && (
-                      <div
-                        id={`service-panel-${index}`}
-                        className="pb-6 space-y-4 text-sm text-muted-foreground leading-relaxed"
-                      >
-                        <p>{service.intro}</p>
-                        <p>{service.detail}</p>
-                        <div>
-                          <p className="font-medium text-foreground mb-2">
-                            {service.listLabel}
-                          </p>
-                          <ul className="space-y-1.5">
-                            {service.items.map((item, idx) => (
-                              <li key={idx} className="flex items-start gap-2">
-                                <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                        <p className="italic">{service.closing}</p>
+                  {open && (
+                    <div
+                      id={`service-panel-${index}`}
+                      className="space-y-4 px-5 pb-6 text-sm leading-relaxed text-muted-foreground"
+                    >
+                      <p>{service.intro}</p>
+                      <p>{service.detail}</p>
+                      <div>
+                        <p className="mb-2 font-medium text-foreground">
+                          {service.listLabel}
+                        </p>
+                        <ul className="space-y-2">
+                          {service.items.map((item, idx) => (
+                            <li key={idx} className="flex items-start gap-2.5">
+                              <CheckCircle
+                                size={18}
+                                weight="fill"
+                                className="mt-0.5 shrink-0 text-primary"
+                              />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </ScrollReveal>
-
-            {/* Right: Image */}
-            <ScrollReveal
-              direction="right"
-              delay={0.3}
-              className="lg:sticky lg:top-24"
-            >
-              <div className="rounded-2xl overflow-hidden shadow-xl aspect-[3/4]">
-                <img
-                  src={expertisePhotoImage}
-                  alt="Technicien SOGECOR en intervention de détection de réseaux sur le terrain"
-                  loading="lazy"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </ScrollReveal>
+                      <p className="border-l-2 border-primary/30 pl-4 italic">
+                        {service.closing}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           </div>
-        </div>
+        </ScrollReveal>
+
+        {/* Right: Image */}
+        <ScrollReveal
+          direction="right"
+          delay={0.2}
+          className="lg:sticky lg:top-28"
+        >
+          <div className="relative overflow-hidden rounded-3xl shadow-card">
+            <div className="aspect-[3/4]">
+              <img
+                src={expertisePhotoImage}
+                alt="Technicien SOGECOR en intervention de détection de réseaux sur le terrain"
+                loading="lazy"
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-foreground/80 to-transparent p-6">
+              <p className="text-sm font-medium text-white/90">
+                Des interventions terrain précises, du relevé au livrable.
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
-    </section>
+    </Section>
   );
 }

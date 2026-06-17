@@ -10,7 +10,7 @@ import {
   ArrowLeft,
   ArrowRight,
 } from "@phosphor-icons/react";
-import { ScrollReveal } from "@/components/ScrollReveal";
+import { SectionHeading } from "@/components/SectionHeading";
 
 const reasons = [
   {
@@ -23,7 +23,7 @@ const reasons = [
     Icon: ChartBar,
     title: "Fiabilisez vos études",
     description:
-      "Appuyez-vous sur des données précises et des plans exploitables pour sécuriser vos plans et vos choix techniques.",
+      "Appuyez-vous sur des données précises et des plans exploitables pour sécuriser vos choix techniques.",
   },
   {
     Icon: MagnifyingGlass,
@@ -83,47 +83,51 @@ export function WhyUsSection() {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="py-20 lg:py-32 bg-foreground/75">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <ScrollReveal direction="up" className="text-center mb-14">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
-            Pourquoi faire appel à nous ?
-          </h2>
-          <p className="text-white/60 text-lg">
-            + d'informations fiables · − de risques · + de sérénité sur vos
-            chantiers
-          </p>
-        </ScrollReveal>
+    <section className="relative overflow-hidden bg-foreground py-20 lg:py-28">
+      {/* Trame radar */}
+      <div
+        aria-hidden="true"
+        className="radar-grid absolute inset-0 text-white opacity-[0.06]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute -left-32 top-1/3 h-96 w-96 rounded-full bg-primary/20 blur-3xl"
+      />
 
-        {/* Carousel + flèches */}
+      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+        <SectionHeading
+          tone="light"
+          eyebrow="Pourquoi nous choisir"
+          title="Pourquoi faire appel à nous ?"
+          subtitle="+ d'informations fiables · − de risques · + de sérénité sur vos chantiers"
+        />
+
         <div className="relative">
-          {/* Flèche gauche */}
           <button
             type="button"
             onClick={() => emblaApi?.scrollPrev()}
             disabled={!canScrollPrev}
             aria-label="Précédent"
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-10 w-10 h-10 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white transition hover:bg-white/25 disabled:opacity-20 disabled:cursor-not-allowed"
+            className="absolute left-0 top-1/2 z-10 flex h-11 w-11 -translate-x-3 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-20"
           >
             <ArrowLeft size={18} weight="bold" />
           </button>
 
-          {/* Viewport embla */}
           <div className="overflow-hidden" ref={emblaRef}>
             <div className="flex gap-4 sm:gap-6">
               {reasons.map(({ Icon, title, description }, i) => (
                 <div
                   key={i}
-                  className="flex-none w-[85%] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
+                  className="flex-none basis-[85%] sm:basis-[calc(50%-12px)] lg:basis-[calc(33.333%-16px)]"
                 >
-                  <div className="flex flex-col items-center text-center p-8 rounded-2xl bg-white/10 border border-white/15 h-full hover:bg-white/15 transition-colors">
-                    <div className="w-20 h-20 rounded-full bg-primary/20 border-2 border-primary/40 flex items-center justify-center mb-6 shrink-0">
-                      <Icon size={36} className="text-primary" weight="thin" />
+                  <div className="flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.06] p-8 transition-colors hover:bg-white/10">
+                    <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/20 text-primary ring-1 ring-primary/30">
+                      <Icon size={28} weight="duotone" />
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-3 leading-snug">
+                    <h3 className="mb-3 text-lg font-semibold leading-snug text-white">
                       {title}
                     </h3>
-                    <p className="text-sm text-white/70 leading-relaxed">
+                    <p className="text-sm leading-relaxed text-white/65">
                       {description}
                     </p>
                   </div>
@@ -132,20 +136,18 @@ export function WhyUsSection() {
             </div>
           </div>
 
-          {/* Flèche droite */}
           <button
             type="button"
             onClick={() => emblaApi?.scrollNext()}
             disabled={!canScrollNext}
             aria-label="Suivant"
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-10 w-10 h-10 rounded-full bg-white/15 border border-white/20 flex items-center justify-center text-white transition hover:bg-white/25 disabled:opacity-20 disabled:cursor-not-allowed"
+            className="absolute right-0 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 translate-x-3 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/20 disabled:cursor-not-allowed disabled:opacity-20"
           >
             <ArrowRight size={18} weight="bold" />
           </button>
         </div>
 
-        {/* Dots */}
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="mt-8 flex justify-center gap-2">
           {scrollSnaps.map((_, i) => (
             <button
               key={i}
@@ -153,7 +155,7 @@ export function WhyUsSection() {
               onClick={() => emblaApi?.scrollTo(i)}
               aria-label={`Aller à la carte ${i + 1}`}
               className={`h-2 rounded-full transition-all duration-300 ${
-                i === selectedIndex ? "bg-primary w-6" : "bg-white/30 w-2.5"
+                i === selectedIndex ? "w-6 bg-primary" : "w-2.5 bg-white/30"
               }`}
             />
           ))}

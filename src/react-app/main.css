@@ -8,35 +8,44 @@
   Identité : bleu (teinte oklch 240). Tons clairs, professionnels.
 */
 :root {
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.25 0.1 240);
+  /* Fond clair, légèrement bleuté */
+  --background: oklch(0.99 0.004 250);
+  --foreground: oklch(0.27 0.07 256); /* bleu marine — titres & texte fort */
 
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.25 0.1 240);
+  --card-foreground: oklch(0.27 0.07 256);
 
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.25 0.1 240);
+  --popover-foreground: oklch(0.27 0.07 256);
 
-  --primary: oklch(0.6 0.15 240);
-  --primary-foreground: oklch(0.98 0 0);
+  --primary: oklch(0.55 0.17 256); /* bleu de marque — CTA, accents */
+  --primary-foreground: oklch(0.99 0.004 250);
 
-  --secondary: oklch(0.93 0.02 240);
-  --secondary-foreground: oklch(0.25 0.1 240);
+  --secondary: oklch(0.95 0.025 250); /* tuile bleu très clair */
+  --secondary-foreground: oklch(0.32 0.07 256);
 
-  --muted: oklch(0.94 0.01 240);
-  --muted-foreground: oklch(0.48 0.05 240);
+  --muted: oklch(0.965 0.012 250);
+  --muted-foreground: oklch(0.52 0.04 256);
 
-  --accent: oklch(0.75 0.12 240);
-  --accent-foreground: oklch(0.25 0.1 240);
+  --accent: oklch(0.93 0.04 250);
+  --accent-foreground: oklch(0.32 0.08 256);
 
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.98 0 0);
 
-  --border: oklch(0.9 0.02 240);
-  --input: oklch(0.9 0.02 240);
-  --ring: oklch(0.6 0.15 240);
+  --border: oklch(0.91 0.02 252);
+  --input: oklch(0.91 0.02 252);
+  --ring: oklch(0.55 0.17 256);
+
+  /* Ombres douces — cartes minimalistes */
+  --shadow-soft:
+    0 1px 2px oklch(0.5 0.05 256 / 0.04),
+    0 8px 24px -8px oklch(0.5 0.08 256 / 0.12);
+  --shadow-card:
+    0 1px 3px oklch(0.5 0.05 256 / 0.06),
+    0 16px 40px -16px oklch(0.4 0.08 256 / 0.18);
 }
 
 @theme inline {
@@ -87,5 +96,47 @@
   body {
     @apply bg-background text-foreground;
     font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
+
+  /* Titres : légèrement resserrés pour un rendu corporate net */
+  h1,
+  h2,
+  h3 {
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer components {
+  /* Petit label en surtitre de section */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-primary;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply inline-block h-px w-6 bg-primary/50;
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+}
+
+@utility radar-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in oklch, currentColor 8%, transparent) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      color-mix(in oklch, currentColor 8%, transparent) 1px,
+      transparent 1px
+    );
+  background-size: 56px 56px;
 }

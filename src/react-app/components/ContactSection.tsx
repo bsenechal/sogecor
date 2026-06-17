@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { SectionHeading } from "@/components/SectionHeading";
 import { CONTACT } from "@/config/site";
 
 export function ContactSection() {
@@ -92,11 +93,15 @@ export function ContactSection() {
       <NetworkAnimation />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
-          <ScrollReveal direction="up" className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6">
-              Parlons de Votre <span className="text-primary">Projet</span>
-            </h2>
-          </ScrollReveal>
+          <SectionHeading
+            eyebrow="Contact"
+            title={
+              <>
+                Parlons de votre <span className="text-primary">projet</span>
+              </>
+            }
+            subtitle="Un besoin, une question, une demande de devis ? Notre équipe vous répond sous 24h."
+          />
 
           <div className="flex flex-col lg:flex-row gap-12 items-stretch">
             {/* Left: Formulaire */}

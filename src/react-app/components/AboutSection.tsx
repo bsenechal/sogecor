@@ -1,74 +1,74 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Target, TrendUp, Handshake } from "@phosphor-icons/react";
+import { Section } from "@/components/ui/section";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { SECTION_IDS } from "@/config/site";
 
 const cards = [
   {
-    title: "Notre Mission",
+    Icon: Target,
+    title: "Notre mission",
     body: "Rendre visible l'invisible, avec des rendus de qualité pour sécuriser vos travaux et optimiser vos projets.",
   },
   {
-    title: "Notre Ambition",
-    body: "Devenir un acteur majeur dans l'étude, la détection, et le référencement des réseaux en France. En proposant des solutions innovantes et fiables, nous mettons notre savoir-faire au service de vos réalisations.",
+    Icon: TrendUp,
+    title: "Notre ambition",
+    body: "Devenir un acteur majeur dans l'étude, la détection et le référencement des réseaux en France, en proposant des solutions innovantes et fiables.",
   },
   {
-    title: "Nos Engagements",
-    body: null,
+    Icon: Handshake,
+    title: "Nos engagements",
+    body: "Réactivité de nos réponses, devis en moins de 24h, transparence des résultats et accompagnement de nos clients.",
   },
 ];
 
 export function AboutSection() {
   return (
-    <section id="a-propos" className="py-20 lg:py-32 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-6xl grid items-start gap-12 lg:grid-cols-2">
-          {/* Colonne gauche — texte libre */}
-          <ScrollReveal direction="left" delay={0.1}>
-            <h2 className="mb-6 text-3xl sm:text-4xl font-bold text-foreground">
-              À propos de <span className="text-primary">SOGECOR</span>
-            </h2>
-            <div className="space-y-4 text-foreground/75 leading-relaxed">
-              <p>
-                SOGECOR est un bureau d'études spécialisé dans l'étude de
-                réseaux de distribution, de géolocalisation, et géoréférencement
-                des ouvrages construits ou détectés.
-              </p>
-              <p>
-                Nous intervenons pour une clientèle diversifiée : collectivités
-                territoriales, entreprises de TP, entreprises ferroviaires,
-                bureaux d'études, syndics de copropriété, promoteurs
-                immobiliers, gestionnaires de réseaux et même des particuliers.
-                Chaque projet bénéficie d'une approche personnalisée pour
-                répondre au mieux à vos attentes.
-              </p>
-            </div>
-          </ScrollReveal>
-
-          {/* Colonne droite — cartes */}
-          <div className="flex flex-col gap-4">
-            {cards.map((card, i) => (
-              <ScrollReveal key={i} direction="right" delay={0.15 + i * 0.1}>
-                <Card className="border-l-4 border-l-primary bg-primary/5 shadow-sm">
-                  <CardContent className="p-5">
-                    <h4 className="mb-2 text-base font-semibold text-foreground">
-                      {card.title}
-                    </h4>
-                    {card.body ? (
-                      <p className="text-sm text-foreground/70">{card.body}</p>
-                    ) : (
-                      <p className="text-sm text-foreground/70">
-                        <strong>Réactivité</strong> dans nos réponses ·{" "}
-                        <strong>Devis en moins de 24h</strong> ·{" "}
-                        <strong>Transparence</strong> des résultats ·{" "}
-                        <strong>Accompagnement</strong> de nos clients
-                      </p>
-                    )}
-                  </CardContent>
-                </Card>
-              </ScrollReveal>
-            ))}
+    <Section id={SECTION_IDS.aPropos} className="bg-background">
+      <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+        {/* Colonne gauche — texte */}
+        <ScrollReveal direction="left">
+          <span className="eyebrow mb-4">À propos de SOGECOR</span>
+          <h2 className="text-3xl font-bold leading-tight text-foreground sm:text-4xl">
+            Un bureau d'études dédié aux{" "}
+            <span className="text-primary">réseaux souterrains</span>
+          </h2>
+          <div className="mt-6 space-y-4 text-lg leading-relaxed text-muted-foreground">
+            <p>
+              SOGECOR est un bureau d'études spécialisé dans l'étude de réseaux
+              de distribution, de géolocalisation et géoréférencement des
+              ouvrages construits ou détectés.
+            </p>
+            <p>
+              Nous intervenons pour une clientèle diversifiée : collectivités
+              territoriales, entreprises de TP, entreprises ferroviaires,
+              bureaux d'études, syndics de copropriété, promoteurs immobiliers,
+              gestionnaires de réseaux et particuliers. Chaque projet bénéficie
+              d'une approche personnalisée.
+            </p>
           </div>
+        </ScrollReveal>
+
+        {/* Colonne droite — cartes */}
+        <div className="flex flex-col gap-4">
+          {cards.map(({ Icon, title, body }, i) => (
+            <ScrollReveal key={title} direction="right" delay={0.1 + i * 0.1}>
+              <article className="group flex gap-5 rounded-2xl border border-border bg-card p-6 shadow-soft transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-card">
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                  <Icon size={24} weight="duotone" />
+                </div>
+                <div>
+                  <h3 className="mb-1.5 text-lg font-semibold text-foreground">
+                    {title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground">
+                    {body}
+                  </p>
+                </div>
+              </article>
+            </ScrollReveal>
+          ))}
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

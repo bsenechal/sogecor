@@ -39,7 +39,6 @@ export const CONTACT = {
 
 export const COMPANY = {
   name: "SOGECOR",
-  tagline: "Détection de canalisations par géoradar",
-  siret: "123 456 789 00012",
-  url: "https://www.sogecor.com",
+  siret: "933 414 831 00018",
+  url: "https://www.sogecor.fr",
 } as const;
