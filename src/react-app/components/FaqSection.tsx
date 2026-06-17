@@ -8,7 +8,7 @@ import { ScrollReveal } from "@/components/ScrollReveal";
  * Questions fréquentes. Le même contenu est repris en données structurées
  * (FAQPage) dans index.html pour les résultats enrichis et les moteurs IA.
  */
-export const faqs = [
+const faqs = [
   {
     question: "Qu'est-ce que la géo-détection de réseaux souterrains ?",
     answer:

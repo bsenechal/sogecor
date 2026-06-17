@@ -28,7 +28,9 @@ const appHtml = render();
 // 3. Injection dans dist/index.html.
 const html = readFileSync(indexPath, "utf8");
 if (!html.includes("<!--ssr-outlet-->")) {
-  throw new Error("Marqueur <!--ssr-outlet--> introuvable dans dist/index.html");
+  throw new Error(
+    "Marqueur <!--ssr-outlet--> introuvable dans dist/index.html",
+  );
 }
 writeFileSync(indexPath, html.replace("<!--ssr-outlet-->", appHtml));
 
