@@ -21,7 +21,6 @@ export function AboutSection() {
     <section id="a-propos" className="py-20 lg:py-32 bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-6xl grid items-start gap-12 lg:grid-cols-2">
-
           {/* Colonne gauche — texte libre */}
           <ScrollReveal direction="left" delay={0.1}>
             <h2 className="mb-6 text-3xl sm:text-4xl font-bold text-foreground">
@@ -30,16 +29,16 @@ export function AboutSection() {
             <div className="space-y-4 text-foreground/75 leading-relaxed">
               <p>
                 SOGECOR est un bureau d'études spécialisé dans l'étude de
-                réseaux de distribution, de géolocalisation, et
-                géoréférencement des ouvrages construits ou détectés.
+                réseaux de distribution, de géolocalisation, et géoréférencement
+                des ouvrages construits ou détectés.
               </p>
               <p>
-                Nous intervenons pour une clientèle diversifiée :
-                collectivités territoriales, entreprises de TP, entreprises
-                ferroviaires, bureaux d'études, syndics de copropriété,
-                promoteurs immobiliers, gestionnaires de réseaux et même des
-                particuliers. Chaque projet bénéficie d'une approche
-                personnalisée pour répondre au mieux à vos attentes.
+                Nous intervenons pour une clientèle diversifiée : collectivités
+                territoriales, entreprises de TP, entreprises ferroviaires,
+                bureaux d'études, syndics de copropriété, promoteurs
+                immobiliers, gestionnaires de réseaux et même des particuliers.
+                Chaque projet bénéficie d'une approche personnalisée pour
+                répondre au mieux à vos attentes.
               </p>
             </div>
           </ScrollReveal>
@@ -68,7 +67,6 @@ export function AboutSection() {
               </ScrollReveal>
             ))}
           </div>
-
         </div>
       </div>
     </section>

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import vlocImage from "@/assets/images/vloc.png";
-import gpsImage from "@/assets/images/gps.png";
-import mapsogecorImage from "@/assets/images/mapsogecor.png";
-import marquageConeImage from "@/assets/images/marquage-cone.png";
+import vlocImage from "@/assets/images/vloc.webp";
+import gpsImage from "@/assets/images/gps.webp";
+import mapsogecorImage from "@/assets/images/mapsogecor.webp";
+import marquageConeImage from "@/assets/images/marquage-cone.webp";
 
 export function ExpertiseSection() {
   const [scrollY, setScrollY] = useState(0);
@@ -25,10 +25,34 @@ export function ExpertiseSection() {
   };
 
   const cards = [
-    { img: vlocImage,         alt: "Géo-détection des réseaux",               label: "La géo-détection des réseaux",                 shadowX: -6 - shift * 6, index: 0 },
-    { img: gpsImage,          alt: "Cartographie et implantation des réseaux", label: "La cartographie et l'implantation des réseaux", shadowX: -2 - shift * 4, index: 1 },
-    { img: mapsogecorImage,   alt: "Conception d'études",                      label: "La conception d'études",                       shadowX:  2 + shift * 4, index: 2 },
-    { img: marquageConeImage, alt: "Marquage-piquetage des réseaux",           label: "Le marquage-piquetage des réseaux",            shadowX:  6 + shift * 6, index: 3 },
+    {
+      img: vlocImage,
+      alt: "Géo-détection des réseaux",
+      label: "La géo-détection des réseaux",
+      shadowX: -6 - shift * 6,
+      index: 0,
+    },
+    {
+      img: gpsImage,
+      alt: "Cartographie et implantation des réseaux",
+      label: "La cartographie et l'implantation des réseaux",
+      shadowX: -2 - shift * 4,
+      index: 1,
+    },
+    {
+      img: mapsogecorImage,
+      alt: "Conception d'études",
+      label: "La conception d'études",
+      shadowX: 2 + shift * 4,
+      index: 2,
+    },
+    {
+      img: marquageConeImage,
+      alt: "Marquage-piquetage des réseaux",
+      label: "Le marquage-piquetage des réseaux",
+      shadowX: 6 + shift * 6,
+      index: 3,
+    },
   ];
 
   return (
@@ -52,8 +76,13 @@ export function ExpertiseSection() {
                   boxShadow: `${card.shadowX}px ${shadowY}px ${shadowBlur}px rgba(33, 72, 117, ${shadowOpacity})`,
                 }}
               >
-                <div className="mb-4 flex h-40 w-full items-center justify-center overflow-hidden rounded-lg bg-white">
-                  <img src={card.img} alt={card.alt} className="h-full w-full object-contain transition group-hover:scale-105" />
+                <div className="mb-4 flex h-40 w-full items-center justify-center overflow-hidden rounded-lg bg-card">
+                  <img
+                    src={card.img}
+                    alt={card.alt}
+                    loading="lazy"
+                    className="h-full w-full object-contain transition group-hover:scale-105"
+                  />
                 </div>
                 <h3 className="font-semibold text-primary">{card.label}</h3>
               </motion.button>

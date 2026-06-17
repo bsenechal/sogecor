@@ -1,5 +1,4 @@
-import React from "react";
-import maisonSogecor from "@/assets/images/MaisonSOGECOR3-transparent.png";
+import maisonSogecor from "@/assets/images/MaisonSOGECOR3-transparent.webp";
 import { ScrollReveal } from "@/components/ScrollReveal";
 import "../styles/hero-valeurs.css";
 
@@ -26,7 +25,8 @@ export function ValeursSection() {
         <div className="maison-wrap">
           <img
             src={maisonSogecor}
-            alt="Valeurs SOGECOR"
+            alt="Maison des valeurs SOGECOR : expertise, fiabilité, sécurité et proximité, fondations de l'entreprise"
+            loading="lazy"
             className="maison"
           />
         </div>

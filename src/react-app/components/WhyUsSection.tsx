@@ -1,6 +1,15 @@
 import { useEffect, useState, useCallback } from "react";
 import useEmblaCarousel from "embla-carousel-react";
-import { ShieldCheck, ChartBar, MagnifyingGlass, CurrencyEur, Scales, Handshake, ArrowLeft, ArrowRight } from "@phosphor-icons/react";
+import {
+  ShieldCheck,
+  ChartBar,
+  MagnifyingGlass,
+  CurrencyEur,
+  Scales,
+  Handshake,
+  ArrowLeft,
+  ArrowRight,
+} from "@phosphor-icons/react";
 import { ScrollReveal } from "@/components/ScrollReveal";
 
 const reasons = [
@@ -81,7 +90,8 @@ export function WhyUsSection() {
             Pourquoi faire appel à nous ?
           </h2>
           <p className="text-white/60 text-lg">
-            + d'informations fiables · − de risques · + de sérénité sur vos chantiers
+            + d'informations fiables · − de risques · + de sérénité sur vos
+            chantiers
           </p>
         </ScrollReveal>
 

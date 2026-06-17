@@ -3,16 +3,19 @@
 Créer un site web professionnel moderne pour SOGECOR, spécialisée dans la détection de canalisations par géoradar, qui inspire confiance et expertise technique.
 
 **Experience Qualities**:
+
 1. **Professionnel** - Interface épurée qui reflète le sérieux et l'expertise technique de l'entreprise
 2. **Accessible** - Navigation intuitive et contenu clair pour tous types de prospects (particuliers, entreprises, collectivités)
 3. **Moderne** - Design contemporain qui positionne SOGECOR comme une entreprise innovante et technologique
 
 **Complexity Level**: Content Showcase (information-focused)
+
 - Le site présente principalement les services, l'expertise et les informations de contact de l'entreprise, avec un formulaire de contact simple
 
 ## Essential Features
 
 **Navigation Header**
+
 - Functionality: Menu de navigation fixe avec logo SOGECOR
 - Purpose: Faciliter l'accès aux différentes sections du site
 - Trigger: Chargement de la page
@@ -20,6 +23,7 @@ Créer un site web professionnel moderne pour SOGECOR, spécialisée dans la dé
 - Success criteria: Navigation fluide entre les sections, logo visible
 
 **Section Héro**
+
 - Functionality: Présentation impactante avec slogan et appel à l'action
 - Purpose: Capter l'attention et présenter la valeur ajoutée de SOGECOR
 - Trigger: Arrivée sur la page d'accueil
@@ -27,6 +31,7 @@ Créer un site web professionnel moderne pour SOGECOR, spécialisée dans la dé
 - Success criteria: Message clair, bouton d'action visible
 
 **À Propos**
+
 - Functionality: Présentation de l'histoire, valeurs et mission de SOGECOR
 - Purpose: Établir la crédibilité et la confiance
 - Trigger: Navigation depuis le menu ou scroll
@@ -34,6 +39,7 @@ Créer un site web professionnel moderne pour SOGECOR, spécialisée dans la dé
 - Success criteria: Informations complètes et professionnelles
 
 **Nos Services**
+
 - Functionality: Présentation des services avec cartes visuelles et icônes
 - Purpose: Informer sur les domaines d'expertise et services proposés
 - Trigger: Navigation ou scroll vers la section
@@ -41,6 +47,7 @@ Créer un site web professionnel moderne pour SOGECOR, spécialisée dans la dé
 - Success criteria: Services clairement décrits avec visuels appropriés
 
 **Formulaire de Contact**
+
 - Functionality: Formulaire sécurisé (nom, email, téléphone, message)
 - Purpose: Permettre aux prospects de prendre contact facilement
 - Trigger: Clic sur "Contact" ou boutons d'appel à l'action

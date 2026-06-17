@@ -1,23 +1,52 @@
-# ✨ Welcome to Your Spark Template!
-You've just launched your brand-new Spark Template Codespace — everything’s fired up and ready for you to explore, build, and create with Spark!
+# SOGECOR — Site vitrine
 
-This template is your blank canvas. It comes with a minimal setup to help you get started quickly with Spark development.
+Site vitrine de **SOGECOR**, entreprise spécialisée dans la **détection et la
+géolocalisation de réseaux souterrains par géoradar** (géo-détection,
+cartographie, conception d'études, marquage-piquetage).
 
-🚀 What's Inside?
-- A clean, minimal Spark environment
-- Pre-configured for local development
-- Ready to scale with your ideas
-  
-🧠 What Can You Do?
+## Stack
 
-Right now, this is just a starting point — the perfect place to begin building and testing your Spark applications.
+- **Vite 7** + **React 19** + **TypeScript**
+- **Tailwind CSS v4** + composants **shadcn/ui** (Radix)
+- **Framer Motion** pour les animations
+- Déploiement **Cloudflare Workers** (Hono) via **Wrangler**
+- Gestionnaire de paquets **Yarn 4** (linker `node-modules`)
 
-🧹 Just Exploring?
-No problem! If you were just checking things out and don’t need to keep this code:
+## Démarrage
 
-- Simply delete your Spark.
-- Everything will be cleaned up — no traces left behind.
+```bash
+yarn install
+yarn dev          # serveur de développement (http://localhost:5173)
+```
 
-📄 License For Spark Template Resources 
+## Scripts
 
-The Spark Template files and resources from GitHub are licensed under the terms of the MIT license, Copyright GitHub, Inc.
+| Commande       | Description                                   |
+| -------------- | --------------------------------------------- |
+| `yarn dev`     | Serveur de développement Vite                 |
+| `yarn build`   | Vérification TypeScript + build de production |
+| `yarn preview` | Build puis prévisualisation locale            |
+| `yarn lint`    | ESLint                                        |
+| `yarn format`  | Formatage Prettier                            |
+| `yarn deploy`  | Déploiement sur Cloudflare Workers            |
+
+## Structure
+
+```
+src/
+  react-app/
+    components/        # Sections de la page + composants ui/ (shadcn)
+    config/site.ts     # Navigation, coordonnées, infos entreprise (source unique)
+    hooks/             # Hooks réutilisables (scroll, animations)
+    assets/images/     # Images et médias
+    main.css           # Design system (tokens) — source unique du thème
+  worker/index.ts      # Worker Cloudflare (Hono)
+public/                # robots.txt, sitemap.xml, ai.txt, favicons
+```
+
+## Contenu
+
+Les informations partagées (liens de navigation, téléphone, email, SIRET) sont
+centralisées dans [`src/react-app/config/site.ts`](src/react-app/config/site.ts).
+Le thème (couleurs, rayons) est défini dans
+[`src/react-app/main.css`](src/react-app/main.css).

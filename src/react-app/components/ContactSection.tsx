@@ -1,10 +1,4 @@
-import {
-  Clock,
-  Envelope,
-  MapPin as LocationIcon,
-  PaperPlaneTilt,
-  Phone,
-} from "@phosphor-icons/react";
+import { Envelope, PaperPlaneTilt, Phone } from "@phosphor-icons/react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { ScrollReveal } from "@/components/ScrollReveal";
@@ -15,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { CONTACT } from "@/config/site";
 
 export function ContactSection() {
   const [formData, setFormData] = useState({
@@ -78,19 +73,22 @@ export function ContactSection() {
     {
       icon: Phone,
       title: "Téléphone",
-      value: "+33 6 27 76 20 22",
-      link: "tel:+33627762022",
+      value: CONTACT.phoneDisplay,
+      link: CONTACT.phoneHref,
     },
     {
       icon: Envelope,
       title: "Email",
-      value: "matthieu.senechal@sogecor.fr",
-      link: "mailto:matthieu.senechal@sogecor.fr",
+      value: CONTACT.email,
+      link: CONTACT.emailHref,
     },
   ];
 
   return (
-    <section id="contact" className="relative py-20 lg:py-32 bg-blue-50 overflow-hidden">
+    <section
+      id="contact"
+      className="relative py-20 lg:py-32 bg-secondary/40 overflow-hidden"
+    >
       <NetworkAnimation />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
@@ -104,7 +102,9 @@ export function ContactSection() {
             {/* Left: Formulaire */}
             <div className="flex-1 flex flex-col">
               <ScrollReveal direction="left" delay={0.2}>
-                <h3 className="text-2xl font-semibold text-foreground mb-6 text-left">Contact par formulaire</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-6 text-left">
+                  Contact par formulaire
+                </h3>
                 <Card className="flex-1 flex flex-col">
                   <CardHeader>
                     <CardTitle className="flex items-center gap-2">
@@ -113,7 +113,10 @@ export function ContactSection() {
                     </CardTitle>
                   </CardHeader>
                   <CardContent className="flex-1 flex flex-col">
-                    <form onSubmit={handleSubmit} className="space-y-6 flex-1 flex flex-col justify-between">
+                    <form
+                      onSubmit={handleSubmit}
+                      className="space-y-6 flex-1 flex flex-col justify-between"
+                    >
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         <div>
                           <Label htmlFor="name">Nom complet *</Label>
@@ -180,7 +183,8 @@ export function ContactSection() {
                       </Button>
 
                       <p className="text-sm text-muted-foreground text-center">
-                        * Champs obligatoires. Nous nous engageons à répondre sous 24h.
+                        * Champs obligatoires. Nous nous engageons à répondre
+                        sous 24h.
                       </p>
                     </form>
                   </CardContent>
@@ -189,14 +193,23 @@ export function ContactSection() {
             </div>
 
             {/* Divider */}
-            <div className="hidden lg:flex items-stretch">
-              <div className="w-px bg-gray-300 mx-8" style={{ minHeight: '100%' }} />
+            <div className="hidden lg:flex items-stretch" aria-hidden="true">
+              <div
+                className="w-px bg-border mx-8"
+                style={{ minHeight: "100%" }}
+              />
             </div>
 
             {/* Right: Coordonnées directes */}
             <div className="flex-1 flex flex-col">
-              <ScrollReveal direction="right" delay={0.4} className="h-full flex flex-col">
-                <h3 className="text-2xl font-semibold text-foreground mb-6 text-left">Coordonnées directes</h3>
+              <ScrollReveal
+                direction="right"
+                delay={0.4}
+                className="h-full flex flex-col"
+              >
+                <h3 className="text-2xl font-semibold text-foreground mb-6 text-left">
+                  Coordonnées directes
+                </h3>
                 <div className="grid grid-cols-1 gap-4 mb-8">
                   {contactInfo.map((info, index) => {
                     const Icon = info.icon;
@@ -236,7 +249,8 @@ export function ContactSection() {
                       Information et Conseil
                     </h4>
                     <p className="text-sm text-muted-foreground mb-4">
-                      Notre équipe se tiens à votre disposition, du lundi au vendredi, de 8h00 à 18h00
+                      Notre équipe se tient à votre disposition, du lundi au
+                      vendredi, de 8h00 à 18h00.
                     </p>
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary">Conseil Gratuit</Badge>

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ScrollReveal } from "@/components/ScrollReveal";
-import expertisePhotoImage from "@/assets/images/img-2292.jpg";
+import expertisePhotoImage from "@/assets/images/img-2292.webp";
 import { Plus, X } from "@phosphor-icons/react";
 
 const services = [
@@ -85,7 +85,7 @@ export function ServicesSection() {
   }, []);
 
   return (
-    <section id="services" className="py-20 lg:py-32 bg-white">
+    <section id="services" className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Section Header */}
@@ -112,6 +112,8 @@ export function ServicesSection() {
                   <div key={index}>
                     <button
                       type="button"
+                      aria-expanded={openIndex === index}
+                      aria-controls={`service-panel-${index}`}
                       className="w-full flex items-center justify-between py-6 text-left group"
                       onClick={() =>
                         setOpenIndex(openIndex === index ? null : index)
@@ -121,10 +123,11 @@ export function ServicesSection() {
                         {service.title}
                       </span>
                       <span
+                        aria-hidden="true"
                         className={`w-8 h-8 flex items-center justify-center rounded flex-shrink-0 ml-4 transition-colors ${
                           openIndex === index
                             ? "bg-foreground text-background"
-                            : "bg-primary text-white"
+                            : "bg-primary text-primary-foreground"
                         }`}
                       >
                         {openIndex === index ? (
@@ -136,7 +139,10 @@ export function ServicesSection() {
                     </button>
 
                     {openIndex === index && (
-                      <div className="pb-6 space-y-4 text-sm text-muted-foreground leading-relaxed">
+                      <div
+                        id={`service-panel-${index}`}
+                        className="pb-6 space-y-4 text-sm text-muted-foreground leading-relaxed"
+                      >
                         <p>{service.intro}</p>
                         <p>{service.detail}</p>
                         <div>
@@ -161,11 +167,16 @@ export function ServicesSection() {
             </ScrollReveal>
 
             {/* Right: Image */}
-            <ScrollReveal direction="right" delay={0.3} className="lg:sticky lg:top-24">
+            <ScrollReveal
+              direction="right"
+              delay={0.3}
+              className="lg:sticky lg:top-24"
+            >
               <div className="rounded-2xl overflow-hidden shadow-xl aspect-[3/4]">
                 <img
                   src={expertisePhotoImage}
-                  alt="Expertise SOGECOR"
+                  alt="Technicien SOGECOR en intervention de détection de réseaux sur le terrain"
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
               </div>

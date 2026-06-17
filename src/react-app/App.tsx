@@ -9,7 +9,7 @@ import { ServicesSection } from "@/components/ServicesSection";
 import { ValeursSection } from "@/components/ValeursSection";
 import { WhyUsSection } from "@/components/WhyUsSection";
 import { Toaster } from "@/components/ui/sonner";
-import exempleBE from "@/assets/images/ExempleBE.png";
+import exempleBE from "@/assets/images/ExempleBE.webp";
 
 function App() {
   return (

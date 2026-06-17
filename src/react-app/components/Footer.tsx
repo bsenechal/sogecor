@@ -1,7 +1,13 @@
 import { Phone, Envelope, MapPin } from "@phosphor-icons/react";
 import { ScrollReveal } from "@/components/ScrollReveal";
+import { CONTACT, COMPANY, NAV_ITEMS } from "@/config/site";
+import { useScrollToSection } from "@/hooks";
+
+const FOOTER_LINKS = NAV_ITEMS.filter((item) => item.id !== "rse");
 
 export function Footer() {
+  const scrollToSection = useScrollToSection();
+
   return (
     <footer className="bg-foreground text-background py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -19,9 +25,7 @@ export function Footer() {
               </p>
               <div className="flex items-center gap-2 text-background/80">
                 <MapPin size={16} />
-                <span className="text-sm">
-                  Interventions sur toute la France
-                </span>
+                <span className="text-sm">{CONTACT.area}</span>
               </div>
             </ScrollReveal>
 
@@ -29,54 +33,16 @@ export function Footer() {
             <ScrollReveal direction="up" delay={0.2}>
               <h4 className="font-semibold text-background mb-4">Navigation</h4>
               <ul className="space-y-2">
-                <li>
-                  <button
-                    onClick={() =>
-                      document
-                        .getElementById("accueil")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
-                    className="text-background/80 hover:text-background transition-colors"
-                  >
-                    Accueil
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() =>
-                      document
-                        .getElementById("a-propos")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
-                    className="text-background/80 hover:text-background transition-colors"
-                  >
-                    À Propos
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() =>
-                      document
-                        .getElementById("services")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
-                    className="text-background/80 hover:text-background transition-colors"
-                  >
-                    Nos Services
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() =>
-                      document
-                        .getElementById("contact")
-                        ?.scrollIntoView({ behavior: "smooth" })
-                    }
-                    className="text-background/80 hover:text-background transition-colors"
-                  >
-                    Contact
-                  </button>
-                </li>
+                {FOOTER_LINKS.map((item) => (
+                  <li key={item.id}>
+                    <button
+                      onClick={() => scrollToSection(item.id)}
+                      className="text-background/80 hover:text-background transition-colors"
+                    >
+                      {item.label}
+                    </button>
+                  </li>
+                ))}
               </ul>
             </ScrollReveal>
 
@@ -87,28 +53,28 @@ export function Footer() {
                 <div className="flex items-center gap-3">
                   <Phone size={16} className="text-background/60" />
                   <a
-                    href="tel:+33627762022"
+                    href={CONTACT.phoneHref}
                     className="text-background/80 hover:text-background transition-colors"
                   >
-                    +33 6 27 76 20 22
+                    {CONTACT.phoneDisplay}
                   </a>
                 </div>
                 <div className="flex items-center gap-3">
                   <Envelope size={16} className="text-background/60" />
                   <a
-                    href="mailto:contact@sogecor.fr"
+                    href={CONTACT.emailHref}
                     className="text-background/80 hover:text-background transition-colors"
                   >
-                    contact@sogecor.fr
+                    {CONTACT.email}
                   </a>
                 </div>
               </div>
               <div className="mt-6">
                 <h5 className="font-medium text-background mb-2">Horaires</h5>
                 <p className="text-sm text-background/80">
-                  Lun - Ven : 8h00 - 18h00
+                  {CONTACT.hours}
                   <br />
-                  Samedi : 9h00 - 12h00
+                  {CONTACT.hoursWeekend}
                 </p>
               </div>
             </ScrollReveal>
@@ -118,9 +84,8 @@ export function Footer() {
           <ScrollReveal direction="fade" delay={0.4}>
             <div className="border-t border-background/20 mt-8 pt-8 text-center">
               <p className="text-background/60 text-sm">
-                © {new Date().getFullYear()} SOGECOR. Tous droits réservés. |
-                Détection de canalisations par géoradar | SIRET : 123 456 789
-                00012
+                © {new Date().getFullYear()} {COMPANY.name}. Tous droits
+                réservés. | {COMPANY.tagline} | SIRET : {COMPANY.siret}
               </p>
             </div>
           </ScrollReveal>
