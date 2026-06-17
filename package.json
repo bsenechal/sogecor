@@ -65,10 +65,11 @@
     ]
   },
   "scripts": {
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && node scripts/prerender.mjs",
+    "prerender": "node scripts/prerender.mjs",
     "cf-typegen": "wrangler types",
     "check": "tsc && vite build && wrangler deploy --dry-run",
-    "deploy": "wrangler deploy",
+    "deploy": "npm run build && wrangler deploy",
     "dev": "vite",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

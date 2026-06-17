@@ -28,6 +28,8 @@ export function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
   const scrollToSection = useScrollToSection();
   const reduceMotion = useReducedMotion();
+  // Au prérendu (serveur), on rend l'état final pour un HTML pleinement visible.
+  const initial = false;
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -79,7 +81,7 @@ export function HeroSection() {
           <motion.span
             custom={0}
             variants={fadeUp}
-            initial="hidden"
+            initial={initial}
             animate="show"
             className="eyebrow mb-6"
           >
@@ -90,7 +92,7 @@ export function HeroSection() {
             id="hero-title"
             custom={1}
             variants={fadeUp}
-            initial="hidden"
+            initial={initial}
             animate="show"
             className="text-4xl font-bold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl xl:text-7xl"
           >
@@ -101,7 +103,7 @@ export function HeroSection() {
           <motion.p
             custom={2}
             variants={fadeUp}
-            initial="hidden"
+            initial={initial}
             animate="show"
             className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground/70 sm:text-xl"
           >
@@ -114,7 +116,7 @@ export function HeroSection() {
           <motion.div
             custom={3}
             variants={fadeUp}
-            initial="hidden"
+            initial={initial}
             animate="show"
             className="mt-9 flex flex-col gap-3 sm:flex-row"
           >
@@ -143,7 +145,7 @@ export function HeroSection() {
           <motion.ul
             custom={4}
             variants={fadeUp}
-            initial="hidden"
+            initial={initial}
             animate="show"
             className="mt-12 flex flex-wrap gap-x-8 gap-y-3"
           >

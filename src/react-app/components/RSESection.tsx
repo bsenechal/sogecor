@@ -92,10 +92,10 @@ function RSECard({
       <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
         <Icon size={28} weight="duotone" />
       </div>
-      <h4 className="mb-4 text-lg font-semibold leading-snug text-foreground">
+      <h4 className="mb-4 flex min-h-[3.25rem] items-start text-lg font-semibold leading-snug text-foreground">
         {title}
       </h4>
-      <ul className="mt-auto space-y-2.5 border-t border-border/70 pt-4">
+      <ul className="space-y-2.5 border-t border-border/70 pt-4">
         {features.map((feature, idx) => (
           <li key={idx} className="flex items-start gap-2.5">
             <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />

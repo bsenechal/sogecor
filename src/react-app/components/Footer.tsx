@@ -29,7 +29,7 @@ export function Footer() {
               </p>
               <div className="flex items-center gap-2 text-sm text-background/70">
                 <MapPin size={18} weight="duotone" className="text-primary" />
-                <span>{CONTACT.area}</span>
+                <span>Mouy (Oise) · {CONTACT.area}</span>
               </div>
             </ScrollReveal>
 

@@ -1,6 +1,7 @@
 import { AboutSection } from "@/components/AboutSection";
 import { ContactSection } from "@/components/ContactSection";
 import { ExpertiseSection } from "@/components/ExpertiseSection";
+import { FaqSection } from "@/components/FaqSection";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { HeroSection } from "@/components/HeroSection";
@@ -29,6 +30,7 @@ function App() {
         <ServicesSection />
         <ValeursSection />
         <RSESection />
+        <FaqSection />
         <ContactSection />
       </main>
       <Footer />

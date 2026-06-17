@@ -44,6 +44,11 @@
     <meta property="og:locale" content="fr_FR" />
     <meta property="og:image" content="https://www.sogecor.fr/og-image.jpg" />
     <meta
+      property="og:image:secure_url"
+      content="https://www.sogecor.fr/og-image.jpg"
+    />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta
       property="og:image:alt"
       content="Technicien SOGECOR en détection de réseaux souterrains"
     />
@@ -103,6 +108,13 @@
             "email": "contact@sogecor.fr",
             "priceRange": "€€",
             "currenciesAccepted": "EUR",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Mouy",
+              "postalCode": "60250",
+              "addressRegion": "Hauts-de-France",
+              "addressCountry": "FR"
+            },
             "areaServed": {
               "@type": "Country",
               "name": "France"
@@ -188,6 +200,60 @@
             "name": "SOGECOR",
             "inLanguage": "fr-FR",
             "publisher": { "@id": "https://www.sogecor.fr/#organization" }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://www.sogecor.fr/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Qu'est-ce que la géo-détection de réseaux souterrains ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "La géo-détection consiste à localiser précisément les réseaux enterrés (eau, gaz, électricité, télécom, assainissement…) sans excavation, à l'aide de technologies comme le géoradar et la détection électromagnétique. Elle permet de sécuriser les chantiers, de fiabiliser les études et de limiter les risques d'endommagement."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Qu'est-ce que la réglementation DT-DICT ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "La DT (Déclaration de projet de Travaux) et la DICT (Déclaration d'Intention de Commencement de Travaux) encadrent les travaux réalisés à proximité des réseaux afin de prévenir leur endommagement. SOGECOR réalise des investigations complémentaires (IC) et des opérations de localisation (OL) conformes à cette réglementation anti-endommagement."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Dans quelles régions SOGECOR intervient-il ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "SOGECOR intervient dans toute la France. L'entreprise est basée à Mouy, dans l'Oise (60)."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quels types de réseaux pouvez-vous détecter ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Nous détectons les réseaux sensibles et non sensibles : eau potable, assainissement, gaz, électricité, télécommunications, éclairage public, etc. Nos interventions couvrent les investigations complémentaires (IC) sur réseaux sensibles et les opérations de localisation (OL) sur réseaux non sensibles."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Quelles certifications et habilitations possède SOGECOR ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "SOGECOR dispose de l'AIPR (Autorisation d'Intervention à Proximité des Réseaux), de l'habilitation TST (Travaux Sous Tension), ainsi que des certifications Bureau Veritas et ADNT 3002."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Sous quel délai puis-je obtenir un devis ?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Nous nous engageons à répondre sous 24h. Vous pouvez demander un devis gratuit via notre formulaire de contact ou par téléphone au +33 6 27 76 20 22."
+                }
+              }
+            ]
           }
         ]
       }
@@ -195,9 +261,9 @@
   </head>
 
   <body>
-    <div id="root">
-      <!-- Contenu de repli pour les robots et navigateurs sans JavaScript -->
-      <noscript>
+    <div id="root"><!--ssr-outlet--></div>
+    <!-- Repli pour les robots/navigateurs sans JavaScript (si le prérendu est absent) -->
+    <noscript>
         <h1>
           SOGECOR — Détection et géolocalisation de réseaux souterrains par
           géoradar
@@ -205,9 +271,9 @@
         <p>
           SOGECOR est un bureau d'études spécialisé dans la détection, la
           géolocalisation et le géoréférencement des réseaux souterrains.
-          Nous accompagnons gestionnaires de réseaux, collectivités,
-          entreprises de TP et bureaux d'études dans toute la France, en
-          conformité avec la réglementation DT-DICT.
+          Basée à Mouy (Oise), l'entreprise accompagne gestionnaires de
+          réseaux, collectivités, entreprises de TP et bureaux d'études dans
+          toute la France, en conformité avec la réglementation DT-DICT.
         </p>
         <h2>Nos services</h2>
         <ul>
@@ -222,7 +288,6 @@
           Email : <a href="mailto:contact@sogecor.fr">contact@sogecor.fr</a>
         </p>
       </noscript>
-    </div>
     <script type="module" src="/src/react-app/main.tsx"></script>
   </body>
 </html>
