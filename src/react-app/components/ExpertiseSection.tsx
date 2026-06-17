@@ -54,17 +54,17 @@ export function ExpertiseSection() {
             <button
               type="button"
               onClick={() => openServiceItem(card.index)}
-              className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-card text-left shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-card"
+              className="group flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-card text-left shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-card"
             >
-              <div className="aspect-[4/3] bg-white p-6">
+              <div className="flex h-44 items-center justify-center bg-white p-6">
                 <img
                   src={card.img}
                   alt={card.alt}
                   loading="lazy"
-                  className="h-full w-full object-contain"
+                  className="max-h-full max-w-full object-contain"
                 />
               </div>
-              <div className="flex flex-1 items-center justify-between gap-2 border-t border-border/60 bg-secondary p-5 transition-colors duration-300 group-hover:bg-primary">
+              <div className="flex min-h-[5.5rem] items-center justify-between gap-3 border-t border-border/60 bg-secondary p-5 transition-colors duration-300 group-hover:bg-primary">
                 <h3 className="font-semibold leading-snug text-foreground transition-colors duration-300 group-hover:text-primary-foreground">
                   {card.label}
                 </h3>
