@@ -138,7 +138,7 @@ const certifications = [
 export function RSESection() {
   return (
     <>
-      <Section id="rse" aria-labelledby="rse-title" className="bg-muted/40">
+      <Section id="rse" aria-labelledby="rse-title" className="bg-background">
         <SectionHeading
           id="rse-title"
           eyebrow="Engagement RSE"
@@ -197,7 +197,10 @@ export function RSESection() {
       </Section>
 
       {/* Certifications */}
-      <Section aria-labelledby="certifications-title" className="bg-background">
+      <Section
+        aria-labelledby="certifications-title"
+        className="bg-secondary/70"
+      >
         <SectionHeading
           id="certifications-title"
           eyebrow="Certifications"

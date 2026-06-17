@@ -45,7 +45,7 @@ const valeurs = [
 
 export function ValeursSection() {
   return (
-    <Section aria-labelledby="valeurs-title" className="bg-secondary/40">
+    <Section aria-labelledby="valeurs-title" className="bg-secondary/70">
       <SectionHeading
         id="valeurs-title"
         eyebrow="Nos valeurs"

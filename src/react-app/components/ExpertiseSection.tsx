@@ -44,7 +44,7 @@ export function ExpertiseSection() {
     <Section
       id="expertise"
       aria-labelledby="expertise-title"
-      className="bg-secondary/40"
+      className="bg-secondary/70"
     >
       <SectionHeading
         id="expertise-title"

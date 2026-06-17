@@ -111,7 +111,7 @@ export function ContactSection() {
     <section
       id="contact"
       aria-labelledby="contact-title"
-      className="relative py-20 lg:py-32 bg-secondary/40 overflow-hidden"
+      className="relative py-20 lg:py-32 bg-secondary/70 overflow-hidden"
     >
       <div
         aria-hidden="true"
