@@ -1,5 +1,5 @@
 import { ArrowRight, ShieldCheck, MapPin, Clock } from "@phosphor-icons/react";
-import { motion, type Variants } from "framer-motion";
+import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SECTION_IDS } from "@/config/site";
@@ -27,6 +27,7 @@ const fadeUp: Variants = {
 export function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
   const scrollToSection = useScrollToSection();
+  const reduceMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -37,6 +38,7 @@ export function HeroSection() {
   return (
     <section
       id={SECTION_IDS.accueil}
+      aria-labelledby="hero-title"
       className="relative flex min-h-[92vh] items-center overflow-hidden pt-16"
     >
       {/* Vidéo de fond */}
@@ -47,7 +49,11 @@ export function HeroSection() {
           loop
           playsInline
           className="h-full w-full object-cover"
-          style={{ transform: `translateY(${scrollY * 0.15}px) scale(1.05)` }}
+          style={{
+            transform: reduceMotion
+              ? undefined
+              : `translateY(${scrollY * 0.15}px) scale(1.05)`,
+          }}
         >
           <source
             src={
@@ -81,6 +87,7 @@ export function HeroSection() {
           </motion.span>
 
           <motion.h1
+            id="hero-title"
             custom={1}
             variants={fadeUp}
             initial="hidden"
@@ -164,7 +171,7 @@ export function HeroSection() {
           Découvrir
         </span>
         <motion.span
-          animate={{ y: [0, 6, 0] }}
+          animate={reduceMotion ? undefined : { y: [0, 6, 0] }}
           transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
           className="flex h-10 w-6 items-start justify-center rounded-full border border-current pt-2"
         >

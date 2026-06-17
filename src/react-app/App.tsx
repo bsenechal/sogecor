@@ -13,9 +13,15 @@ import { Toaster } from "@/components/ui/sonner";
 function App() {
   return (
     <div className="min-h-screen bg-background">
+      <a
+        href="#contenu"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-primary focus:px-4 focus:py-2 focus:font-medium focus:text-primary-foreground focus:shadow-card"
+      >
+        Aller au contenu
+      </a>
       <Header />
 
-      <main>
+      <main id="contenu">
         <HeroSection />
         <AboutSection />
         <ExpertiseSection />

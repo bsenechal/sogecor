@@ -110,6 +110,7 @@ export function ContactSection() {
   return (
     <section
       id="contact"
+      aria-labelledby="contact-title"
       className="relative py-20 lg:py-32 bg-secondary/40 overflow-hidden"
     >
       <div
@@ -126,6 +127,7 @@ export function ContactSection() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="max-w-6xl mx-auto">
           <SectionHeading
+            id="contact-title"
             eyebrow="Contact"
             title={
               <>
@@ -147,13 +149,17 @@ export function ContactSection() {
                     <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <PaperPlaneTilt size={22} weight="duotone" />
                     </span>
-                    <h4 className="text-lg font-semibold text-foreground">
+                    <h4
+                      id="form-title"
+                      className="text-lg font-semibold text-foreground"
+                    >
                       Demande d'informations
                     </h4>
                   </div>
 
                   <form
                     onSubmit={handleSubmit}
+                    aria-labelledby="form-title"
                     className="flex flex-1 flex-col gap-6"
                   >
                     {/* Honeypot anti-spam — masqué aux humains */}

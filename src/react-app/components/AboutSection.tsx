@@ -23,12 +23,19 @@ const cards = [
 
 export function AboutSection() {
   return (
-    <Section id={SECTION_IDS.aPropos} className="bg-background">
+    <Section
+      id={SECTION_IDS.aPropos}
+      aria-labelledby="about-title"
+      className="bg-background"
+    >
       <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
         {/* Colonne gauche — texte */}
         <ScrollReveal direction="left">
           <span className="eyebrow mb-4">À propos de SOGECOR</span>
-          <h2 className="text-3xl font-bold leading-tight text-foreground sm:text-4xl">
+          <h2
+            id="about-title"
+            className="text-3xl font-bold leading-tight text-foreground sm:text-4xl"
+          >
             Un bureau d'études dédié aux{" "}
             <span className="text-primary">réseaux souterrains</span>
           </h2>

@@ -87,8 +87,13 @@ export function ServicesSection() {
   }, []);
 
   return (
-    <Section id="services" className="bg-background">
+    <Section
+      id="services"
+      aria-labelledby="services-title"
+      className="bg-background"
+    >
       <SectionHeading
+        id="services-title"
         eyebrow="Nos services"
         title="Une approche complète, de l'étude au terrain"
         subtitle="Géo-détection, conception, cartographie, implantation et marquage-piquetage : nous vous aidons à sécuriser vos chantiers, fiabiliser vos données et répondre aux exigences réglementaires."

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { type ReactNode, forwardRef } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
@@ -34,15 +34,17 @@ export const ScrollReveal = forwardRef<HTMLDivElement, ScrollRevealProps>(
       rootMargin,
       triggerOnce: true,
     });
+    const reduceMotion = useReducedMotion();
 
     // Déplacements volontairement discrets pour un rendu sobre.
-    const OFFSET = 18;
+    // Mouvement neutralisé si l'utilisateur préfère réduire les animations.
+    const OFFSET = reduceMotion ? 0 : 18;
     const variants = {
       hidden: {
         opacity: 0,
         y: direction === "up" ? OFFSET : direction === "down" ? -OFFSET : 0,
         x: direction === "left" ? OFFSET : direction === "right" ? -OFFSET : 0,
-        scale: direction === "fade" ? 0.98 : 1,
+        scale: direction === "fade" && !reduceMotion ? 0.98 : 1,
       },
       visible: {
         opacity: 1,

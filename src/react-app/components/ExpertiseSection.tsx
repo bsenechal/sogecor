@@ -41,8 +41,13 @@ function openServiceItem(index: number) {
 
 export function ExpertiseSection() {
   return (
-    <Section id="expertise" className="bg-secondary/40">
+    <Section
+      id="expertise"
+      aria-labelledby="expertise-title"
+      className="bg-secondary/40"
+    >
       <SectionHeading
+        id="expertise-title"
         eyebrow="Nos expertises"
         title="Notre savoir-faire de bout en bout"
         subtitle="De l'étude préalable à l'intervention terrain, quatre pôles de compétences au service de vos projets réseaux."

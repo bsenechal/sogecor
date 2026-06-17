@@ -83,7 +83,10 @@ export function WhyUsSection() {
   }, [emblaApi, onSelect]);
 
   return (
-    <section className="relative overflow-hidden bg-foreground py-20 lg:py-28">
+    <section
+      aria-labelledby="whyus-title"
+      className="relative overflow-hidden bg-foreground py-20 lg:py-28"
+    >
       {/* Trame radar */}
       <div
         aria-hidden="true"
@@ -96,6 +99,7 @@ export function WhyUsSection() {
 
       <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
+          id="whyus-title"
           tone="light"
           eyebrow="Pourquoi nous choisir"
           title="Pourquoi faire appel à nous ?"

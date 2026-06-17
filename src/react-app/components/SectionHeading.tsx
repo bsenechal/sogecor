@@ -10,6 +10,8 @@ type SectionHeadingProps = {
   /** Couleur du texte sur fond sombre. */
   tone?: "dark" | "light";
   className?: string;
+  /** id du titre — sert d'ancrage `aria-labelledby` pour nommer la section. */
+  id?: string;
 };
 
 /**
@@ -22,6 +24,7 @@ export function SectionHeading({
   align = "center",
   tone = "dark",
   className,
+  id,
 }: SectionHeadingProps) {
   const isLight = tone === "light";
   return (
@@ -45,6 +48,7 @@ export function SectionHeading({
         </span>
       )}
       <h2
+        id={id}
         className={cn(
           "text-3xl font-bold leading-[1.1] sm:text-4xl lg:text-5xl",
           isLight ? "text-white" : "text-foreground",
