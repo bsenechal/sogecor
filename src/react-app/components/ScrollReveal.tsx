@@ -22,7 +22,7 @@ export const ScrollReveal = forwardRef<HTMLDivElement, ScrollRevealProps>(
       children,
       direction = "up",
       delay = 0,
-      duration = 0.6,
+      duration = 0.5,
       className = "",
       threshold = 0.1,
       rootMargin = "0px 0px -50px 0px",
@@ -35,13 +35,14 @@ export const ScrollReveal = forwardRef<HTMLDivElement, ScrollRevealProps>(
       triggerOnce: true,
     });
 
-    // Définir les variantes d'animation selon la direction
+    // Déplacements volontairement discrets pour un rendu sobre.
+    const OFFSET = 18;
     const variants = {
       hidden: {
         opacity: 0,
-        y: direction === "up" ? 60 : direction === "down" ? -60 : 0,
-        x: direction === "left" ? 60 : direction === "right" ? -60 : 0,
-        scale: direction === "fade" ? 0.8 : 1,
+        y: direction === "up" ? OFFSET : direction === "down" ? -OFFSET : 0,
+        x: direction === "left" ? OFFSET : direction === "right" ? -OFFSET : 0,
+        scale: direction === "fade" ? 0.98 : 1,
       },
       visible: {
         opacity: 1,
@@ -51,6 +52,7 @@ export const ScrollReveal = forwardRef<HTMLDivElement, ScrollRevealProps>(
         transition: {
           duration,
           delay,
+          ease: [0.22, 1, 0.36, 1] as [number, number, number, number],
         },
       },
     };

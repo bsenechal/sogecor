@@ -88,7 +88,7 @@ function RSECard({
   features: string[];
 }) {
   return (
-    <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-soft transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-card">
+    <article className="group flex h-full flex-col rounded-2xl border border-border bg-card p-7 shadow-soft transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-card">
       <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
         <Icon size={28} weight="duotone" />
       </div>
@@ -149,7 +149,7 @@ export function RSESection() {
           subtitle="Chez SOGECOR, nous menons nos interventions avec exigence et responsabilité, en intégrant les enjeux environnementaux, humains et opérationnels propres à chacun de vos projets."
         />
 
-        {/* RSE Commitments — flip cards */}
+        {/* Engagements RSE */}
         <div className="mb-20 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {rseCommitments.map((commitment, index) => (
             <ScrollReveal key={index} direction="up" delay={0.08 * index}>
@@ -205,7 +205,7 @@ export function RSESection() {
         <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
           {certifications.map((cert, index) => (
             <ScrollReveal key={cert.name} direction="up" delay={0.08 * index}>
-              <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 text-center shadow-soft transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-card">
+              <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 text-center shadow-soft transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-card">
                 <div className="mb-5 flex h-28 items-center justify-center rounded-xl bg-muted/60">
                   <img
                     src={cert.logo}

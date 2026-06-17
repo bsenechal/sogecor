@@ -54,24 +54,24 @@ export function ExpertiseSection() {
             <button
               type="button"
               onClick={() => openServiceItem(card.index)}
-              className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-card text-left shadow-soft transition-all hover:-translate-y-1 hover:border-primary/30 hover:shadow-card"
+              className="group flex h-full w-full flex-col overflow-hidden rounded-2xl border border-border bg-card text-left shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-card"
             >
-              <div className="relative aspect-[4/3] overflow-hidden bg-gradient-to-br from-muted/70 to-secondary/40 p-6">
+              <div className="aspect-[4/3] bg-white p-6">
                 <img
                   src={card.img}
                   alt={card.alt}
                   loading="lazy"
-                  className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  className="h-full w-full object-contain"
                 />
               </div>
-              <div className="flex flex-1 items-center justify-between gap-2 p-5">
-                <h3 className="font-semibold leading-snug text-foreground">
+              <div className="flex flex-1 items-center justify-between gap-2 border-t border-border/60 bg-secondary p-5 transition-colors duration-300 group-hover:bg-primary">
+                <h3 className="font-semibold leading-snug text-foreground transition-colors duration-300 group-hover:text-primary-foreground">
                   {card.label}
                 </h3>
                 <ArrowUpRight
                   size={20}
                   weight="bold"
-                  className="shrink-0 text-primary opacity-0 transition-all -translate-x-1 group-hover:translate-x-0 group-hover:opacity-100"
+                  className="shrink-0 text-primary transition-colors duration-300 group-hover:text-primary-foreground"
                 />
               </div>
             </button>
