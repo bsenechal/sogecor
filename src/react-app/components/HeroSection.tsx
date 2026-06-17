@@ -41,7 +41,7 @@ export function HeroSection() {
     <section
       id={SECTION_IDS.accueil}
       aria-labelledby="hero-title"
-      className="relative flex min-h-[92vh] items-center overflow-hidden pt-16"
+      className="relative flex min-h-[88vh] items-start overflow-hidden pt-16 sm:min-h-[92vh] sm:items-center"
     >
       {/* Vidéo de fond */}
       <div className="absolute inset-0 z-0">
@@ -76,7 +76,7 @@ export function HeroSection() {
         className="radar-grid absolute inset-0 z-0 text-primary opacity-[0.15]"
       />
 
-      <div className="relative z-10 container mx-auto px-4 py-20 sm:px-6 lg:px-8">
+      <div className="relative z-10 container mx-auto px-4 pb-16 pt-8 sm:px-6 sm:py-20 lg:px-8">
         <div className="max-w-3xl">
           <motion.span
             custom={0}
@@ -94,7 +94,7 @@ export function HeroSection() {
             variants={fadeUp}
             initial={initial}
             animate="show"
-            className="text-fluid-hero font-bold text-foreground"
+            className="fluid-hero font-bold text-foreground"
           >
             Notre expertise au service de{" "}
             <span className="text-primary">vos projets</span>

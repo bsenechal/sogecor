@@ -209,7 +209,7 @@ export function RSESection() {
           title="Certifications & habilitations"
           subtitle="Nos accréditations métiers et garanties de conformité."
         />
-        <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
           {certifications.map((cert, index) => (
             <ScrollReveal key={cert.name} direction="up" delay={0.08 * index}>
               <div className="flex h-full flex-col rounded-2xl border border-border bg-card p-6 text-center shadow-soft transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-card">

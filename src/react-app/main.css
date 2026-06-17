@@ -169,12 +169,14 @@
     box-shadow: var(--shadow-card);
   }
 
-  /* Typographie fluide — les titres scalent en continu avec le viewport */
-  .text-fluid-hero {
+  /* Typographie fluide — les titres scalent en continu avec le viewport.
+     Nommées sans préfixe `text-` pour éviter que tailwind-merge (cn) ne les
+     élimine en les confondant avec une autre classe `text-*` (couleur/taille). */
+  .fluid-hero {
     font-size: clamp(2.5rem, 1.6rem + 4.2vw, 4.75rem);
     line-height: 1.04;
   }
-  .text-fluid-h2 {
+  .fluid-h2 {
     font-size: clamp(1.875rem, 1.3rem + 2.6vw, 3rem);
     line-height: 1.1;
   }

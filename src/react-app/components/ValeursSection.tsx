@@ -53,7 +53,7 @@ export function ValeursSection() {
         subtitle="Et des relations de confiance, à chaque étape de nos interventions."
       />
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {valeurs.map(({ Icon, title, body }, i) => (
           <ScrollReveal key={title} direction="up" delay={0.06 * i}>
             <article className="group h-full rounded-2xl border border-border bg-card p-7 shadow-soft transition-all hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-card">

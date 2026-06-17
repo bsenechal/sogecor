@@ -50,7 +50,7 @@ export function SectionHeading({
       <h2
         id={id}
         className={cn(
-          "text-fluid-h2 font-bold",
+          "fluid-h2 font-bold",
           isLight ? "text-white" : "text-foreground",
         )}
       >

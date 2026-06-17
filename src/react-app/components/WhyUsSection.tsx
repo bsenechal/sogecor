@@ -85,7 +85,7 @@ export function WhyUsSection() {
   return (
     <section
       aria-labelledby="whyus-title"
-      className="relative overflow-hidden bg-foreground py-20 lg:py-28"
+      className="relative overflow-hidden bg-foreground py-16 sm:py-20 lg:py-28"
     >
       {/* Trame radar */}
       <div
