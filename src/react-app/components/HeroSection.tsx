@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SECTION_IDS } from "@/config/site";
 import { useScrollToSection } from "@/hooks";
+import backgroundVideo from "@/assets/images/background-video.mp4";
 
 const trustItems = [
   { Icon: ShieldCheck, label: "Conforme DT-DICT" },
@@ -49,13 +50,7 @@ export function HeroSection() {
               : `translateY(${scrollY * 0.15}px) scale(1.05)`,
           }}
         >
-          <source
-            src={
-              new URL("../assets/images/background-video.mp4", import.meta.url)
-                .href
-            }
-            type="video/mp4"
-          />
+          <source src={backgroundVideo} type="video/mp4" />
         </video>
         {/* Voiles : assurent la lisibilité du texte marine à gauche */}
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/90 to-background/40" />
