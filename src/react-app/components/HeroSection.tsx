@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { SECTION_IDS } from "@/config/site";
 import { useScrollToSection } from "@/hooks";
 import backgroundVideo from "@/assets/images/background-video.mp4";
+import heroPoster from "@/assets/images/hero-poster.webp";
 
 const trustItems = [
   { Icon: ShieldCheck, label: "Conforme DT-DICT" },
@@ -43,6 +44,8 @@ export function HeroSection() {
           muted
           loop
           playsInline
+          preload="metadata"
+          poster={heroPoster}
           className="h-full w-full object-cover"
           style={{
             transform: reduceMotion
