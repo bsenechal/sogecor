@@ -1,13 +1,11 @@
-import { useTheme } from "next-themes";
 import { type CSSProperties } from "react";
 import { Toaster as Sonner, type ToasterProps } from "sonner";
 
+// Le site est exclusivement en thème clair (aucun ThemeProvider).
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme();
-
   return (
     <Sonner
-      theme={theme as ToasterProps["theme"]}
+      theme="light"
       className="toaster group"
       style={
         {

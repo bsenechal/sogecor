@@ -1,5 +1,4 @@
 import { ArrowRight, ShieldCheck, MapPin, Clock } from "@phosphor-icons/react";
-import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SECTION_IDS } from "@/config/site";
@@ -11,30 +10,23 @@ const trustItems = [
   { Icon: Clock, label: "Devis sous 24h" },
 ];
 
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: (i: number) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      delay: 0.12 + i * 0.1,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  }),
-};
-
 export function HeroSection() {
   const [scrollY, setScrollY] = useState(0);
+  const [reduceMotion, setReduceMotion] = useState(false);
   const scrollToSection = useScrollToSection();
-  const reduceMotion = useReducedMotion();
-  // Au prérendu (serveur), on rend l'état final pour un HTML pleinement visible.
-  const initial = false;
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReduceMotion(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
   }, []);
 
   return (
@@ -76,50 +68,25 @@ export function HeroSection() {
         className="radar-grid absolute inset-0 z-0 text-primary opacity-[0.15]"
       />
 
-      <div className="relative z-10 container mx-auto px-4 pb-16 pt-8 sm:px-6 sm:py-20 lg:px-8">
+      <div className="relative z-10 container mx-auto px-4 pb-12 pt-6 sm:px-6 sm:py-20 lg:px-8">
         <div className="max-w-3xl">
-          <motion.span
-            custom={0}
-            variants={fadeUp}
-            initial={initial}
-            animate="show"
-            className="eyebrow mb-6"
-          >
+          <span className="eyebrow mb-5 sm:mb-6">
             Détection de réseaux souterrains par géoradar
-          </motion.span>
+          </span>
 
-          <motion.h1
-            id="hero-title"
-            custom={1}
-            variants={fadeUp}
-            initial={initial}
-            animate="show"
-            className="fluid-hero font-bold text-foreground"
-          >
+          <h1 id="hero-title" className="fluid-hero font-bold text-foreground">
             Notre expertise au service de{" "}
             <span className="text-primary">vos projets</span>
-          </motion.h1>
+          </h1>
 
-          <motion.p
-            custom={2}
-            variants={fadeUp}
-            initial={initial}
-            animate="show"
-            className="mt-6 max-w-2xl text-lg leading-relaxed text-foreground/70 sm:text-xl"
-          >
+          <p className="mt-5 max-w-2xl text-lg leading-relaxed text-foreground/70 sm:mt-6 sm:text-xl">
             SOGECOR met son expertise dans l'ingénierie des réseaux au service
             des territoires et infrastructures. Nous accompagnons gestionnaires
             de réseaux, collectivités et entreprises à concevoir leur chantier
             de demain.
-          </motion.p>
+          </p>
 
-          <motion.div
-            custom={3}
-            variants={fadeUp}
-            initial={initial}
-            animate="show"
-            className="mt-9 flex flex-col gap-3 sm:flex-row"
-          >
+          <div className="mt-7 flex flex-col gap-3 sm:mt-9 sm:flex-row">
             <Button
               size="lg"
               onClick={() => scrollToSection(SECTION_IDS.contact)}
@@ -139,16 +106,10 @@ export function HeroSection() {
             >
               Découvrir nos services
             </Button>
-          </motion.div>
+          </div>
 
           {/* Bande de confiance */}
-          <motion.ul
-            custom={4}
-            variants={fadeUp}
-            initial={initial}
-            animate="show"
-            className="mt-12 flex flex-wrap gap-x-8 gap-y-3"
-          >
+          <ul className="mt-8 flex flex-wrap gap-x-8 gap-y-3 sm:mt-12">
             {trustItems.map(({ Icon, label }) => (
               <li
                 key={label}
@@ -158,7 +119,7 @@ export function HeroSection() {
                 {label}
               </li>
             ))}
-          </motion.ul>
+          </ul>
         </div>
       </div>
 
@@ -172,13 +133,9 @@ export function HeroSection() {
         <span className="mb-2 text-xs uppercase tracking-widest">
           Découvrir
         </span>
-        <motion.span
-          animate={reduceMotion ? undefined : { y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
-          className="flex h-10 w-6 items-start justify-center rounded-full border border-current pt-2"
-        >
+        <span className="hero-scroll-dot flex h-10 w-6 items-start justify-center rounded-full border border-current pt-2">
           <span className="h-1.5 w-1.5 rounded-full bg-current" />
-        </motion.span>
+        </span>
       </button>
     </section>
   );

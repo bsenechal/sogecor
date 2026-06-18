@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -179,6 +178,27 @@
   .fluid-h2 {
     font-size: clamp(1.875rem, 1.3rem + 2.6vw, 3rem);
     line-height: 1.1;
+  }
+
+  /* Indicateur de défilement du hero (remplace framer-motion). */
+  .hero-scroll-dot {
+    animation: hero-scroll-dot 1.6s ease-in-out infinite;
+  }
+}
+
+@keyframes hero-scroll-dot {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-dot {
+    animation: none;
   }
 }
 

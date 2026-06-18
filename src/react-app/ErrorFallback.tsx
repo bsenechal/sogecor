@@ -1,4 +1,4 @@
-import { AlertTriangleIcon, RefreshCwIcon } from "lucide-react";
+import { Warning, ArrowClockwise } from "@phosphor-icons/react";
 import type { FallbackProps } from "react-error-boundary";
 import { Button } from "./components/ui/button";
 
@@ -10,7 +10,7 @@ export const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="mb-6 flex items-start gap-3 rounded-lg border border-destructive/50 bg-destructive/5 p-4 text-destructive">
-          <AlertTriangleIcon className="mt-0.5 size-5 shrink-0" />
+          <Warning size={20} weight="duotone" className="mt-0.5 shrink-0" />
           <div>
             <p className="font-semibold">Une erreur est survenue</p>
             <p className="mt-1 text-sm text-destructive/90">
@@ -34,7 +34,7 @@ export const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
           className="w-full"
           variant="outline"
         >
-          <RefreshCwIcon />
+          <ArrowClockwise size={18} weight="bold" />
           Réessayer
         </Button>
       </div>
